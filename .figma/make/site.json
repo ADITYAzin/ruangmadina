@@ -1,0 +1,10 @@
+{
+  "description": "Explore Interior Living Custom’s interior design services, curated spaces, and custom solutions through a welcoming landing page with refined dark accents.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
