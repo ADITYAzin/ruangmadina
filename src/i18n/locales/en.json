@@ -1,0 +1,245 @@
+{
+  "nav": {
+    "works": "Works",
+    "process": "Process",
+    "services": "Services",
+    "about": "About us",
+    "consultation": "Consultation",
+    "openMenu": "Open menu"
+  },
+  "hero": {
+    "eyebrow": "INTERIOR & CUSTOM FURNITURE · SIDOARJO",
+    "title": "Ruang Madina",
+    "copy": "We design neat, functional, and peaceful interiors—tailor-made to embrace how your family truly lives.",
+    "cta": "Consult Here",
+    "scrollHint": "EXPLORE"
+  },
+  "trust": {
+    "partOf": "Part of",
+    "company": "PT Madina Build International",
+    "locationTitle": "Based in Sidoarjo",
+    "locationSub": "Serving Surabaya & surroundings",
+    "processTitle": "Design through installation",
+    "processSub": "One team, a seamless process",
+    "customTitle": "Custom crafted",
+    "customSub": "Tailored to your space and lifestyle"
+  },
+  "projects": {
+    "eyebrow": "SELECTED WORKS",
+    "title": "Details crafted",
+    "titleEmphasis": "to be lived in.",
+    "desc": "Not merely picturesque in photos. Every corner is crafted to fulfill real daily needs, from bustling mornings to quiet gatherings.",
+    "askProject": "Inquire about {{title}}",
+    "photoNote": "Inspiration imagery reflects design intent and craftsmanship character. Client projects are presented respecting privacy.",
+    "items": [
+      {
+        "title": "Seamless flow kitchen",
+        "category": "Kitchen set",
+        "place": "Sidoarjo"
+      },
+      {
+        "title": "A serene living sanctuary",
+        "category": "Living area",
+        "place": "Surabaya"
+      },
+      {
+        "title": "Storage without clutter",
+        "category": "Built-in wardrobe",
+        "place": "East Java"
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "OUR PROCESS",
+    "title": "Clarity from the start,",
+    "titleEmphasis": "peace of mind throughout.",
+    "desc": "Six thoughtful steps to keep budget, dimensions, and project timeline precisely on track.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Estimate your kitchen set transparently",
+        "text": "Send room photos, rough dimensions, and your family's daily living habits."
+      },
+      {
+        "number": "02",
+        "title": "Design finalized before production",
+        "text": "Clients review and refine the full design visualization before manufacturing begins."
+      },
+      {
+        "number": "03",
+        "title": "Measured twice",
+        "text": "Initial estimate based on your provided dimensions, followed by thorough on-site measurements before fabrication."
+      },
+      {
+        "number": "04",
+        "title": "Written timeline as a firm commitment",
+        "text": "Design phase ~7 working days; room fabrication 30 working days once design is approved."
+      },
+      {
+        "number": "05",
+        "title": "Pricing includes full installation",
+        "text": "Any item calculated separately is transparently stated upfront (countertop, backsplash, lighting, delivery)."
+      },
+      {
+        "number": "06",
+        "title": "Unified with Madina Build",
+        "text": "Interior can be conceived seamlessly alongside architecture, preventing costly retrofits."
+      }
+    ]
+  },
+  "principles": {
+    "eyebrow": "DESIGN PRINCIPLES",
+    "kicker": "A good space is about much more than appearance.",
+    "title": "It calms your routine,",
+    "titleLine2": "safeguards your privacy, and creates",
+    "titleLine3": "a home for",
+    "titleEmphasis": "what truly matters.",
+    "items": [
+      {
+        "icon": "path",
+        "title": "Taharah (Purity & Cleanliness)",
+        "text": "Practical ablution areas and washbasins, easy-to-clean kitchen surfaces, discreet closed storage"
+      },
+      {
+        "icon": "layers",
+        "title": "Mahram & Privacy",
+        "text": "Thoughtful zoning between guest reception and private family areas; separate bedrooms for boys and girls"
+      },
+      {
+        "icon": "screen",
+        "title": "Facilitating Worship",
+        "text": "Dedicated prayer corner aligned with the Qibla, integrated storage for prayer garments and mats"
+      },
+      {
+        "icon": "drop",
+        "title": "Enduring & Quality Materials",
+        "text": "Safe, sustainable, long-lasting materials with detailed specifications stated from day one"
+      },
+      {
+        "icon": "sun",
+        "title": "Tawazun (Balance & Moderation)",
+        "text": "Functionality first, unpretentious elegance, tailored strictly to real needs and sensible budgets"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "SERVICES & ESTIMATIONS",
+    "title": "Starting from one room,",
+    "titleEmphasis": "growing with your home.",
+    "desc": "We guide you in understanding the scope and cost components before breaking ground.",
+    "serviceTag": "Service",
+    "byRoom": "By Room Count",
+    "byArea": "By Building Floor Area",
+    "items": [
+      {
+        "number": "01",
+        "title": "Kitchen set",
+        "basis": "Per linear meter (m')",
+        "basisNote": "Upper and lower cabinetry calculated separately",
+        "tiers": [
+          { "name": "Essential", "price": "IDR 2.5M / m'" },
+          { "name": "Premium", "price": "IDR 3.0M / m'" },
+          { "name": "Signature", "price": "IDR 3.7M / m'" },
+          { "name": "Duco Minimalist", "price": "IDR 4.4M / m'" },
+          { "name": "Duco Classic", "price": "IDR 5.4M / m'" }
+        ],
+        "exampleLabel": "Calculation example",
+        "exampleText": "4 m wall kitchen = 8 linear meters (4 m lower + 4 m upper) = IDR 20M (Essential).",
+        "scope": "Includes cabinetry and on-site installation. Countertop, backsplash, and sink quoted separately.",
+        "cta": "Consult for kitchen set",
+        "waQuery": "Hello Ruang Madina, I would like to consult about a kitchen set."
+      },
+      {
+        "number": "02",
+        "title": "Custom furniture",
+        "basis": "Per m² frontal surface / dimension",
+        "basisNote": "Customized to your exact space dimensions and layout",
+        "customPrices": [
+          {
+            "title": "Built-in wardrobe",
+            "price": "From IDR 3.0M / m²",
+            "unit": "frontal area (front view)"
+          },
+          {
+            "title": "Other custom units",
+            "desc": "TV backdrops, credenzas, study desks, and partitions quoted based on physical dimensions."
+          }
+        ],
+        "exampleLabel": "Calculation basis",
+        "exampleText": "Frontal area is calculated from height × width of the front wardrobe elevation.",
+        "scope": "Cost includes on-site assembly and seamless built-in installation.",
+        "cta": "Consult for custom furniture",
+        "waQuery": "Hello Ruang Madina, I would like to consult about custom furniture."
+      },
+      {
+        "number": "03",
+        "title": "Interior design package",
+        "basis": "Per room or total floor area",
+        "basisNote": "Pre-production planning phase",
+        "designPrices": {
+          "rooms": [
+            { "label": "1 Room", "price": "IDR 3.0M" },
+            { "label": "2 Rooms", "price": "IDR 5.0M" }
+          ],
+          "areaPackages": ["IDR 10M", "IDR 13M", "IDR 20M", "IDR 25M"],
+          "areaDesc": "Scaled according to total building floor area."
+        },
+        "exampleLabel": "Deliverables",
+        "exampleText": "Photorealistic 3D renders, spatial floor plans, technical working drawings, and budget bill of quantities.",
+        "scope": "Design planning can be conducted independently before proceeding to physical production.",
+        "cta": "Consult for design package",
+        "waQuery": "Hello Ruang Madina, I would like to consult about an interior design package."
+      }
+    ]
+  },
+  "calculator": {
+    "eyebrow": "KITCHEN SET ESTIMATOR",
+    "heading": "Have a kitchen wall around",
+    "unit": "meters?",
+    "desc": "Slide to give us an initial idea. Final estimation follows accurate site measurements, configuration, and design details.",
+    "ariaLabel": "Estimated cabinet length",
+    "cta": "Request detailed estimate",
+    "note": "Final investment is not determined solely by cabinet length. Our team will transparently break down all components upon understanding your needs.",
+    "waQueryWithLength": "Hello Ruang Madina, I would like to consult about home interior with an estimated cabinet length of {{length}} meters.",
+    "waQueryDefault": "Hello Ruang Madina, I would like to consult about home interior."
+  },
+  "about": {
+    "badge1": "DESIGNED WITH INTENTION",
+    "badge2": "CRAFTED WITH PRECISION",
+    "eyebrow": "ABOUT Ruang Madina",
+    "title": "Not merely filling spaces.",
+    "titleEmphasis": "Understanding life.",
+    "p1": "Ruang Madina is the interior and custom furniture division of Madina Build. We believe a peaceful home begins by listening: how you move, store, gather, and rest.",
+    "p2": "From there, we translate your lifestyle into spaces that feel serene, personal, and enduring for years to come.",
+    "cta": "Discover Madina Build"
+  },
+  "closing": {
+    "eyebrow": "BEGIN HERE",
+    "title": "The space you envision,",
+    "titleLine2": "can begin from",
+    "titleEmphasis": "a single conversation.",
+    "desc": "Send photos and rough dimensions of your room. Our team will help map out the next steps.",
+    "cta": "Share your space",
+    "note": "No technical architectural drawings required to get started."
+  },
+  "footer": {
+    "tagline": "Interiors that are neater, purposeful, and deeply connected to how you live.",
+    "explore": "EXPLORE",
+    "contact": "CONTACT",
+    "connect": "CONNECT",
+    "whatsappLabel": "Official WhatsApp",
+    "city": "Sidoarjo, East Java",
+    "workingHours": "Mon—Sat, 09.00—17.00 WIB",
+    "copyright": "© {{year}} PT Madina Build International",
+    "brandLocation": "Ruang Madina · Sidoarjo",
+    "backToTop": "Back to top ↑"
+  },
+  "modal": {
+    "title": "Select Language",
+    "subtitle": "Welcome to Ruang Madina. Please choose your preferred language.",
+    "selectLabel": "Preferred Language",
+    "chooseBtn": "Choose",
+    "idOption": "Bahasa Indonesia",
+    "enOption": "English"
+  }
+}

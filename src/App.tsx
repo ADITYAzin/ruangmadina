@@ -1,139 +1,68 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import LanguageModal from "./components/LanguageModal";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
 const heroImage =
   "https://images.unsplash.com/photo-1760067538612-c0ecd3bc3d3a?auto=format&fit=crop&w=2000&q=88";
 
-const projects = [
+const projectMetadata = [
   {
-    title: "Dapur yang mengalir",
-    category: "Kitchen set",
-    place: "Sidoarjo",
     image:
       "https://images.unsplash.com/photo-1771888703722-ee7ad9143a67?auto=format&fit=crop&w=1100&q=85",
     className: "project-wide",
   },
   {
-    title: "Ruang pulang yang tenang",
-    category: "Living area",
-    place: "Surabaya",
     image:
       "https://images.unsplash.com/photo-1760067538299-3f58e7a99fc5?auto=format&fit=crop&w=900&q=85",
     className: "project-tall",
   },
   {
-    title: "Penyimpanan tanpa sesak",
-    category: "Built-in wardrobe",
-    place: "Jawa Timur",
     image:
       "https://images.unsplash.com/photo-1752407828514-660d6945d392?auto=format&fit=crop&w=900&q=85",
     className: "",
   },
 ];
 
-const steps = [
-  ["01", "Harga kitchen set bisa dihitung sendiri", "Kirim foto ruang, ukuran kasar, dan kebiasaan keluarga Anda."],
-  ["02", "Desain dulu, baru produksi", "Klien melihat desain sebelum produksi dimulai."],
-  ["03", "Diukur dua kali", "Penawaran awal dari ukuran dan foto kiriman klien, lalu tim mengukur langsung sebelum produksi."],
-  ["04", "Waktu tertulis sebagai batas paling lama","Desain sekitar 7 hari kerja; pengerjaan satu ruangan 30 hari kerja setelah desain disetujui."],
-  ["05", "Harga sudah termasuk pemasangan", "Yang dihitung terpisah disebut di depan (top table, backsplash, lampu, pengiriman)."],
-  ["06", "Satu tim dengan Madina Build", "Interior bisa dirancang bersama arsitektur, sehingga tidak bongkar ulang."],
-];
+interface ServiceItem {
+  number: string;
+  title: string;
+  basis: string;
+  basisNote: string;
+  tiers?: { name: string; price: string }[];
+  customPrices?: [
+    { title: string; price: string; unit: string },
+    { title: string; desc: string },
+  ];
+  designPrices?: {
+    rooms: { label: string; price: string }[];
+    areaPackages: string[];
+    areaDesc: string;
+  };
+  exampleLabel: string;
+  exampleText: string;
+  scope: string;
+  cta: string;
+  waQuery: string;
+}
 
-const principles = [
-  {
-    icon: "path",
-    title: "Taharah (kebersihan)",
-    text: "Area wudhu dan wastafel yang praktis, dapur mudah dibersihkan, penyimpanan tertutup",
-  },
-  {
-    icon: "layers",
-    title: "Mahram dan privasi",
-    text: "Batas area tamu dan ruang keluarga, pemisahan kamar anak laki-laki dan perempuan",
-  },
-  {
-    icon: "screen",
-    title: "Memudahkan ibadah",
-    text: "Sudut salat sesuai arah kiblat, penyimpanan sajadah dan mukena",
-  },
-  {
-    icon: "drop",
-    title: "Material yang baik",
-    text: "Material aman dan tahan lama, spesifikasi tertulis sejak awal",
-  },
-  {
-    icon: "sun",
-    title: "Tawazun (seimbang)",
-    text: "Fungsional dulu, tidak berlebihan, sesuai kebutuhan dan anggaran",
-  },
-];
+interface ProjectItem {
+  title: string;
+  category: string;
+  place: string;
+}
 
-const services = [
-  {
-    number: "01",
-    title: "Kitchen set",
-    basis: "Per meter lari (m')",
-    basisNote: "Kabinet atas dan bawah dihitung terpisah",
-    tiers: [
-      { name: "Esensial", price: "Rp2,5 jt / m'" },
-      { name: "Premium", price: "Rp3,0 jt / m'" },
-      { name: "Signature", price: "Rp3,7 jt / m'" },
-      { name: "Duco Minimalis", price: "Rp4,4 jt / m'" },
-      { name: "Duco Classic", price: "Rp5,4 jt / m'" },
-    ],
-    example: {
-      label: "Contoh hitungan",
-      text: "Dapur dinding 4 m = 8 m lari (4 m bawah + 4 m atas) = Rp20 jt (Esensial).",
-    },
-    scope: "Termasuk kabinet dan pemasangan. Top table, backsplash, dan sink terpisah.",
-    cta: "Konsultasi kitchen set",
-    waQuery: "Halo Ruang Madina, saya ingin berkonsultasi tentang kitchen set.",
-  },
-  {
-    number: "02",
-    title: "Furniture custom",
-    basis: "Per m² bidang muka / dimensi",
-    basisNote: "Menyesuaikan ukuran dan denah ruang",
-    customPrices: [
-      {
-        title: "Lemari pakaian built-in",
-        price: "Mulai Rp3,0 jt / m²",
-        unit: "bidang muka (tampak depan)",
-      },
-      {
-        title: "Unit custom lainnya",
-        desc: "Backdrop TV, credenza, meja kerja, dan partisi dihitung berdasarkan dimensi fisik unit.",
-      },
-    ],
-    example: {
-      label: "Dasar hitung",
-      text: "Bidang muka dihitung dari tinggi × lebar tampak depan lemari.",
-    },
-    scope: "Biaya sudah termasuk perakitan dan pemasangan built-in di lokasi.",
-    cta: "Konsultasi furniture custom",
-    waQuery: "Halo Ruang Madina, saya ingin berkonsultasi tentang furniture custom.",
-  },
-  {
-    number: "03",
-    title: "Paket interior (desain)",
-    basis: "Per ruangan atau luas total",
-    basisNote: "Tahap perencanaan pra-produksi",
-    designPrices: {
-      rooms: [
-        { label: "1 Ruangan", price: "Rp3,0 jt" },
-        { label: "2 Ruangan", price: "Rp5,0 jt" },
-      ],
-      areaPackages: ["Rp10 jt", "Rp13 jt", "Rp20 jt", "Rp25 jt"],
-      areaDesc: "Disesuaikan dengan luasan total bangunan.",
-    },
-    example: {
-      label: "Output kerja",
-      text: "Gambar 3D visual, denah tata ruang, gambar kerja teknis, dan RAB.",
-    },
-    scope: "Perencanaan desain dapat dilakukan mandiri sebelum masuk tahap produksi fisik.",
-    cta: "Konsultasi paket desain",
-    waQuery: "Halo Ruang Madina, saya ingin berkonsultasi tentang paket desain interior.",
-  },
-];
+interface StepItem {
+  number: string;
+  title: string;
+  text: string;
+}
+
+interface PrincipleItem {
+  icon: string;
+  title: string;
+  text: string;
+}
 
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
@@ -193,58 +122,89 @@ function PrincipleIcon({ type }: { type: string }) {
   };
   return (
     <svg className="principle-icon" viewBox="0 0 40 40" aria-hidden="true">
-      {paths[type]}
+      {paths[type] || paths.path}
     </svg>
   );
 }
 
 export default function App() {
+  const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [length, setLength] = useState(4);
-  const waText = encodeURIComponent(
-    `Halo Ruang Madina, saya ingin berkonsultasi tentang interior rumah${length ? ` dengan perkiraan panjang kabinet ${length} meter` : ""}.`,
-  );
-  const whatsappUrl = `https://wa.me/628113330232?text=${waText}`;
+
+  const waBaseUrl = "https://wa.me/628113330232";
+  const defaultWaQuery = t("calculator.waQueryDefault");
+  const mainWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(defaultWaQuery)}`;
+
+  const dynamicWaQuery = length
+    ? t("calculator.waQueryWithLength", { length })
+    : defaultWaQuery;
+  const calculatorWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(dynamicWaQuery)}`;
 
   const closeMenu = () => setMenuOpen(false);
 
+  const rawProjects = t("projects.items", { returnObjects: true });
+  const projectList: ProjectItem[] = Array.isArray(rawProjects) ? (rawProjects as ProjectItem[]) : [];
+
+  const rawSteps = t("process.steps", { returnObjects: true });
+  const stepsList: StepItem[] = Array.isArray(rawSteps) ? (rawSteps as StepItem[]) : [];
+
+  const rawPrinciples = t("principles.items", { returnObjects: true });
+  const principlesList: PrincipleItem[] = Array.isArray(rawPrinciples)
+    ? (rawPrinciples as PrincipleItem[])
+    : [];
+
+  const rawServices = t("services.items", { returnObjects: true });
+  const servicesList: ServiceItem[] = Array.isArray(rawServices) ? (rawServices as ServiceItem[]) : [];
+
   return (
     <main id="top">
+      {/* First-visit IP Geolocation Language Popup Modal */}
+      <LanguageModal />
+
       <header className="nav-wrap">
         <nav className="nav shell" aria-label="Navigasi utama">
           <ArchLogo />
           <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
             <a href="#karya" onClick={closeMenu}>
-              Karya
+              {t("nav.works")}
             </a>
             <a href="#cara-kerja" onClick={closeMenu}>
-              Cara kerja
+              {t("nav.process")}
             </a>
             <a href="#layanan" onClick={closeMenu}>
-              Layanan
+              {t("nav.services")}
             </a>
             <a href="#tentang" onClick={closeMenu}>
-              Tentang kami
+              {t("nav.about")}
             </a>
+            <div className="nav-desktop-lang">
+              <LanguageSwitcher />
+            </div>
             <a
               className="nav-cta"
-              href={whatsappUrl}
+              href={mainWhatsappUrl}
               target="_blank"
               rel="noreferrer"
               onClick={closeMenu}
             >
-              Konsultasi <Arrow />
+              {t("nav.consultation")} <Arrow />
             </a>
           </div>
-          <button
-            className={`menu-button ${menuOpen ? "active" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Buka menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-          </button>
+          <div className="nav-mobile-right">
+            <div className="nav-mobile-lang">
+              <LanguageSwitcher />
+            </div>
+            <button
+              className={`menu-button ${menuOpen ? "active" : ""}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={t("nav.openMenu")}
+              aria-expanded={menuOpen}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -255,20 +215,15 @@ export default function App() {
         />
         <div className="hero-overlay" />
         <div className="hero-content shell">
-          <p className="eyebrow light">INTERIOR & FURNITURE CUSTOM · SIDOARJO</p>
-          <h1>
-            Ruang Madina
-          </h1>
-          <p className="hero-copy">
-            Kami merancang interior yang rapi, fungsional, dan nyaman—dibuat khusus mengikuti cara
-            keluarga Anda hidup.
-          </p>
-          <a className="primary-button" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Konsultasi Disini <Arrow />
+          <p className="eyebrow light">{t("hero.eyebrow")}</p>
+          <h1>{t("hero.title")}</h1>
+          <p className="hero-copy">{t("hero.copy")}</p>
+          <a className="primary-button" href={mainWhatsappUrl} target="_blank" rel="noreferrer">
+            {t("hero.cta")} <Arrow />
           </a>
         </div>
         <a className="scroll-hint" href="#trust">
-          <span>JELAJAHI</span>
+          <span>{t("hero.scrollHint")}</span>
           <Arrow down />
         </a>
       </section>
@@ -278,23 +233,23 @@ export default function App() {
           <div className="trust-parent">
             <span className="mini-arch">R</span>
             <p>
-              Bagian dari <strong>Madina Build</strong>
+              {t("trust.partOf")} <strong>Madina Build</strong>
               <br />
-              <small>PT Madina Build International</small>
+              <small>{t("trust.company")}</small>
             </p>
           </div>
           <div className="trust-divider" />
           <div>
-            <b>Berbasis di Sidoarjo</b>
-            <span>Melayani Surabaya & sekitarnya</span>
+            <b>{t("trust.locationTitle")}</b>
+            <span>{t("trust.locationSub")}</span>
           </div>
           <div>
-            <b>Desain hingga instalasi</b>
-            <span>Satu tim, proses lebih terarah</span>
+            <b>{t("trust.processTitle")}</b>
+            <span>{t("trust.processSub")}</span>
           </div>
           <div>
-            <b>Dibuat khusus</b>
-            <span>Sesuai ruang dan kebutuhan Anda</span>
+            <b>{t("trust.customTitle")}</b>
+            <span>{t("trust.customSub")}</span>
           </div>
         </div>
       </section>
@@ -303,68 +258,65 @@ export default function App() {
         <div className="shell">
           <div className="section-heading split-heading">
             <div>
-              <p className="eyebrow">HASIL PENGERJAAN</p>
+              <p className="eyebrow">{t("projects.eyebrow")}</p>
               <h2>
-                Detail yang hadir
+                {t("projects.title")}
                 <br />
-                untuk <i>dipakai.</i>
+                <i>{t("projects.titleEmphasis")}</i>
               </h2>
             </div>
-            <p>
-              Bukan sekadar indah di foto. Setiap sudut dirancang untuk menjawab kebutuhan nyata,
-              dari pagi yang sibuk hingga waktu berkumpul.
-            </p>
+            <p>{t("projects.desc")}</p>
           </div>
           <div className="project-grid">
-            {projects.map((project) => (
-              <article className={`project-card ${project.className}`} key={project.title}>
-                <img src={project.image} alt={project.title} />
-                <div className="project-shade" />
-                <div className="project-meta">
-                  <span>
-                    {project.category} · {project.place}
-                  </span>
-                  <h3>{project.title}</h3>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Tanyakan ${project.title}`}
-                  >
-                    <Arrow />
-                  </a>
-                </div>
-              </article>
-            ))}
+            {projectList.map((project, idx) => {
+              const meta = projectMetadata[idx] || projectMetadata[0];
+              const projectWa = `${waBaseUrl}?text=${encodeURIComponent(
+                t("projects.askProject", { title: project.title })
+              )}`;
+              return (
+                <article className={`project-card ${meta.className}`} key={project.title}>
+                  <img src={meta.image} alt={project.title} />
+                  <div className="project-shade" />
+                  <div className="project-meta">
+                    <span>
+                      {project.category} · {project.place}
+                    </span>
+                    <h3>{project.title}</h3>
+                    <a
+                      href={projectWa}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={t("projects.askProject", { title: project.title })}
+                    >
+                      <Arrow />
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-          <p className="photo-note">
-            Foto inspirasi mewakili arah dan karakter pengerjaan. Dokumentasi proyek ditampilkan
-            dengan menjaga privasi klien.
-          </p>
+          <p className="photo-note">{t("projects.photoNote")}</p>
         </div>
       </section>
 
       <section className="section process-section" id="cara-kerja">
         <div className="shell">
           <div className="process-intro">
-            <p className="eyebrow">CARA KERJA</p>
+            <p className="eyebrow">{t("process.eyebrow")}</p>
             <h2>
-              Jelas sejak awal,
+              {t("process.title")}
               <br />
-              <i>tenang sampai akhir.</i>
+              <i>{t("process.titleEmphasis")}</i>
             </h2>
-            <p>
-              Enam langkah sederhana untuk menjaga anggaran, ukuran, dan waktu pengerjaan tetap
-              terarah.
-            </p>
+            <p>{t("process.desc")}</p>
           </div>
           <div className="steps-grid">
-            {steps.map(([number, title, text]) => (
-              <article className="step-card" key={number}>
-                <span>{number}</span>
+            {stepsList.map((step) => (
+              <article className="step-card" key={step.number}>
+                <span>{step.number}</span>
                 <div className="step-line" />
-                <h3>{title}</h3>
-                <p>{text}</p>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
               </article>
             ))}
           </div>
@@ -374,18 +326,19 @@ export default function App() {
       <section className="section principles-section">
         <div className="shell">
           <div className="principles-top">
-            <p className="eyebrow light">PRINSIP DESAIN</p>
-            <p className="principles-kicker">Ruang yang baik bukan hanya tentang tampilan.</p>
+            <p className="eyebrow light">{t("principles.eyebrow")}</p>
+            <p className="principles-kicker">{t("principles.kicker")}</p>
             <h2>
-              Ia menenangkan rutinitas,
+              {t("principles.title")}
               <br />
-              menjaga privasi, dan memberi
+              {t("principles.titleLine2")}
               <br />
-              tempat untuk <i>hal yang berarti.</i>
+              {t("principles.titleLine3")}{" "}
+              <i>{t("principles.titleEmphasis")}</i>
             </h2>
           </div>
           <div className="principles-list">
-            {principles.map((principle, index) => (
+            {principlesList.map((principle, index) => (
               <article key={principle.title}>
                 <span>0{index + 1}</span>
                 <PrincipleIcon type={principle.icon} />
@@ -402,21 +355,21 @@ export default function App() {
       <section className="section services-section" id="layanan">
         <div className="shell">
           <div className="section-heading centered">
-            <p className="eyebrow">LAYANAN & ESTIMASI</p>
+            <p className="eyebrow">{t("services.eyebrow")}</p>
             <h2>
-              Mulai dari satu ruang,
+              {t("services.title")}
               <br />
-              tumbuh bersama <i>rumah Anda.</i>
+              <i>{t("services.titleEmphasis")}</i>
             </h2>
-            <p>Kami membantu Anda memahami lingkup dan komponen biaya sebelum memulai.</p>
+            <p>{t("services.desc")}</p>
           </div>
           <div className="service-grid">
-            {services.map((service) => (
+            {servicesList.map((service) => (
               <article className="service-card" key={service.number}>
                 <div className="service-card-top">
                   <div className="service-badge">
                     <span className="service-number">{service.number}</span>
-                    <span className="service-tag">Layanan</span>
+                    <span className="service-tag">{t("services.serviceTag")}</span>
                   </div>
                   <h3>{service.title}</h3>
                   <div className="service-basis-wrap">
@@ -457,7 +410,7 @@ export default function App() {
                   {service.designPrices && (
                     <div className="service-design-pricing">
                       <div className="design-subgroup">
-                        <span className="design-label">Berdasarkan Ruangan</span>
+                        <span className="design-label">{t("services.byRoom")}</span>
                         <div className="design-rows">
                           {service.designPrices.rooms.map((room) => (
                             <div className="price-row" key={room.label}>
@@ -469,10 +422,12 @@ export default function App() {
                         </div>
                       </div>
                       <div className="design-subgroup">
-                        <span className="design-label">Berdasarkan Luas Bangunan</span>
+                        <span className="design-label">{t("services.byArea")}</span>
                         <div className="design-tags">
                           {service.designPrices.areaPackages.map((pkg) => (
-                            <span key={pkg} className="design-tag">{pkg}</span>
+                            <span key={pkg} className="design-tag">
+                              {pkg}
+                            </span>
                           ))}
                         </div>
                         <span className="design-subnote">{service.designPrices.areaDesc}</span>
@@ -484,13 +439,13 @@ export default function App() {
                 <div className="service-card-bottom">
                   <div className="service-note-box">
                     <p className="note-example">
-                      <b>{service.example.label}:</b> {service.example.text}
+                      <b>{service.exampleLabel}:</b> {service.exampleText}
                     </p>
                     <p className="note-scope">{service.scope}</p>
                   </div>
                   <a
                     className="service-card-action"
-                    href={`https://wa.me/628113330232?text=${encodeURIComponent(service.waQuery)}`}
+                    href={`${waBaseUrl}?text=${encodeURIComponent(service.waQuery)}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -504,16 +459,13 @@ export default function App() {
 
           <div className="calculator">
             <div className="calculator-copy">
-              <p className="eyebrow light">SIMULASI AWAL KITCHEN SET</p>
+              <p className="eyebrow light">{t("calculator.eyebrow")}</p>
               <h3>
-                Punya dinding dapur sekitar
+                {t("calculator.heading")}
                 <br />
-                <i>{length} meter?</i>
+                <i>{length} {t("calculator.unit")}</i>
               </h3>
-              <p>
-                Geser untuk memberi kami gambaran awal. Estimasi final mengikuti hasil ukur,
-                konfigurasi, dan detail desain.
-              </p>
+              <p>{t("calculator.desc")}</p>
             </div>
             <div className="calculator-control">
               <div className="range-labels">
@@ -528,17 +480,14 @@ export default function App() {
                 step="0.5"
                 value={length}
                 onChange={(event) => setLength(Number(event.target.value))}
-                aria-label="Perkiraan panjang kabinet"
+                aria-label={t("calculator.ariaLabel")}
               />
-              <a className="light-button" href={whatsappUrl} target="_blank" rel="noreferrer">
-                Minta estimasi terperinci <Arrow />
+              <a className="light-button" href={calculatorWhatsappUrl} target="_blank" rel="noreferrer">
+                {t("calculator.cta")} <Arrow />
               </a>
             </div>
           </div>
-          <p className="estimate-note">
-            Nilai akhir tidak ditentukan hanya dari panjang kabinet. Tim kami akan menjelaskan
-            seluruh komponen secara transparan setelah memahami kebutuhan Anda.
-          </p>
+          <p className="estimate-note">{t("calculator.note")}</p>
         </div>
       </section>
 
@@ -550,29 +499,22 @@ export default function App() {
               alt="Detail kabinet kayu yang hangat dan presisi"
             />
             <span>
-              DIRANCANG DENGAN NIAT
+              {t("about.badge1")}
               <br />
-              DIBUAT DENGAN TELITI
+              {t("about.badge2")}
             </span>
           </div>
           <div className="about-copy">
-            <p className="eyebrow">TENTANG Ruang Madina</p>
+            <p className="eyebrow">{t("about.eyebrow")}</p>
             <h2>
-              Bukan mengisi ruang.
+              {t("about.title")}
               <br />
-              <i>Memahami kehidupan.</i>
+              <i>{t("about.titleEmphasis")}</i>
             </h2>
-            <p>
-              Ruang Madina adalah layanan interior dan furniture custom dari Madina Build. Kami
-              percaya rumah yang nyaman berawal dari mendengarkan: bagaimana Anda bergerak,
-              menyimpan, berkumpul, dan beristirahat.
-            </p>
-            <p>
-              Dari sana, kami menerjemahkannya menjadi ruang yang terasa tenang, personal, dan
-              relevan untuk waktu yang panjang.
-            </p>
+            <p>{t("about.p1")}</p>
+            <p>{t("about.p2")}</p>
             <a href="https://Madinabuild.com" target="_blank" rel="noreferrer">
-              Kenali Madina Build <Arrow />
+              {t("about.cta")} <Arrow />
             </a>
           </div>
         </div>
@@ -581,20 +523,18 @@ export default function App() {
       <section className="closing">
         <div className="closing-pattern" />
         <div className="shell closing-content">
-          <p className="eyebrow light">MULAI DARI SINI</p>
+          <p className="eyebrow light">{t("closing.eyebrow")}</p>
           <h2>
-            Ruang yang Anda bayangkan,
+            {t("closing.title")}
             <br />
-            bisa dimulai dari <i>satu percakapan.</i>
+            {t("closing.titleLine2")}{" "}
+            <i>{t("closing.titleEmphasis")}</i>
           </h2>
-          <p>
-            Kirim foto dan ukuran kasar ruang Anda. Tim kami akan membantu memetakan langkah
-            berikutnya.
-          </p>
-          <a className="primary-button" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Ceritakan ruang Anda <Arrow />
+          <p>{t("closing.desc")}</p>
+          <a className="primary-button" href={mainWhatsappUrl} target="_blank" rel="noreferrer">
+            {t("closing.cta")} <Arrow />
           </a>
-          <small>Tidak perlu gambar teknis untuk memulai.</small>
+          <small>{t("closing.note")}</small>
         </div>
       </section>
 
@@ -602,34 +542,34 @@ export default function App() {
         <div className="shell footer-grid">
           <div className="footer-brand">
             <ArchLogo light />
-            <p>Interior yang lebih rapi, fungsional, dan terasa dekat dengan cara Anda hidup.</p>
+            <p>{t("footer.tagline")}</p>
           </div>
           <div>
-            <p className="footer-label">JELAJAHI</p>
-            <a href="#karya">Karya</a>
-            <a href="#cara-kerja">Cara kerja</a>
-            <a href="#layanan">Layanan</a>
-            <a href="#tentang">Tentang kami</a>
+            <p className="footer-label">{t("footer.explore")}</p>
+            <a href="#karya">{t("nav.works")}</a>
+            <a href="#cara-kerja">{t("nav.process")}</a>
+            <a href="#layanan">{t("nav.services")}</a>
+            <a href="#tentang">{t("nav.about")}</a>
           </div>
           <div>
-            <p className="footer-label">HUBUNGI</p>
-            <a href={whatsappUrl} target="_blank" rel="noreferrer">
-              WhatsApp resmi
+            <p className="footer-label">{t("footer.contact")}</p>
+            <a href={mainWhatsappUrl} target="_blank" rel="noreferrer">
+              {t("footer.whatsappLabel")}
             </a>
-            <span>Sidoarjo, Jawa Timur</span>
-            <span>Senin—Sabtu, 09.00—17.00</span>
+            <span>{t("footer.city")}</span>
+            <span>{t("footer.workingHours")}</span>
           </div>
           <div>
-            <p className="footer-label">TERHUBUNG</p>
+            <p className="footer-label">{t("footer.connect")}</p>
             <a href="https://Madinabuild.com" target="_blank" rel="noreferrer">
               Madinabuild.com
             </a>
           </div>
         </div>
         <div className="shell footer-bottom">
-          <span>© {new Date().getFullYear()} PT Madina Build International</span>
-          <span>Ruang Madina · Sidoarjo</span>
-          <a href="#top">Kembali ke atas ↑</a>
+          <span>{t("footer.copyright", { year: new Date().getFullYear() })}</span>
+          <span>{t("footer.brandLocation")}</span>
+          <a href="#top">{t("footer.backToTop")}</a>
         </div>
       </footer>
     </main>
