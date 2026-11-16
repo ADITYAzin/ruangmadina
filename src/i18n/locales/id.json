@@ -10,7 +10,7 @@
   "hero": {
     "eyebrow": "INTERIOR & FURNITURE CUSTOM · SIDOARJO",
     "title": "RUANG MADINA",
-    "copy": "Kami merancang interior yang rapi, fungsional, dan nyaman—dibuat khusus mengikuti cara keluarga Anda hidup.",
+    "copy": "Kami merancang interior yang rapi, fungsional, dan nyaman—dibuat khusus mengikuti cara keluarga Anda hidup",
     "cta": "Konsultasi Disini",
     "scrollHint": "JELAJAHI"
   },
@@ -27,33 +27,33 @@
   "projects": {
     "eyebrow": "HASIL PENGERJAAN",
     "title": "Detail yang hadir",
-    "titleEmphasis": "untuk dipakai.",
-    "desc": "Bukan sekadar indah di foto. Setiap sudut dirancang untuk menjawab kebutuhan nyata, dari pagi yang sibuk hingga waktu berkumpul.",
+    "titleEmphasis": "untuk dipakai",
+    "desc": "Bukan sekadar indah di foto, setiap sudut dirancang untuk menjawab kebutuhan nyata, dari pagi yang sibuk hingga waktu berkumpul",
     "askProject": "Tanyakan {{title}}",
     "photoNote": "Foto inspirasi mewakili arah dan karakter pengerjaan. Dokumentasi proyek ditampilkan dengan menjaga privasi klien.",
     "items": [
       {
         "title": "Dapur yang mengalir",
         "category": "Kitchen set",
-        "place": "Sidoarjo"
+        "place": ""
       },
       {
         "title": "Ruang pulang yang tenang",
-        "category": "Living area",
-        "place": "Surabaya"
+        "category": "Living room",
+        "place": ""
       },
       {
-        "title": "Penyimpanan tanpa sesak",
+        "title": "Penyimpanan yang fungsional",
         "category": "Built-in wardrobe",
-        "place": "Jawa Timur"
+        "place": ""
       }
     ]
   },
   "process": {
     "eyebrow": "CARA KERJA",
     "title": "Jelas sejak awal,",
-    "titleEmphasis": "tenang sampai akhir.",
-    "desc": "Enam langkah sederhana untuk menjaga anggaran, ukuran, dan waktu pengerjaan tetap terarah.",
+    "titleEmphasis": "tenang sampai akhir",
+    "desc": "Enam langkah sederhana untuk menjaga anggaran, ukuran, dan waktu pengerjaan tetap terarah",
     "steps": [
       {
         "number": "01",
@@ -89,11 +89,11 @@
   },
   "principles": {
     "eyebrow": "PRINSIP DESAIN",
-    "kicker": "Ruang yang baik bukan hanya tentang tampilan.",
-    "title": "Ia menenangkan rutinitas,",
+    "kicker": "Ruang yang baik bukan hanya tentang tampilan",
+    "title": "Menyederhanakan keseharian,",
     "titleLine2": "menjaga privasi, dan memberi",
     "titleLine3": "tempat untuk",
-    "titleEmphasis": "hal yang berarti.",
+    "titleEmphasis": "hal yang berarti",
     "items": [
       {
         "icon": "path",
@@ -125,8 +125,8 @@
   "services": {
     "eyebrow": "LAYANAN & ESTIMASI",
     "title": "Mulai dari satu ruang,",
-    "titleEmphasis": "tumbuh bersama rumah Anda.",
-    "desc": "Kami membantu Anda memahami lingkup dan komponen biaya sebelum memulai.",
+    "titleEmphasis": "tumbuh bersama rumah Anda",
+    "desc": "Kami membantu Anda memahami lingkup dan komponen biaya sebelum memulai",
     "serviceTag": "Layanan",
     "byRoom": "Berdasarkan Ruangan",
     "byArea": "Berdasarkan Luas Bangunan",
@@ -196,7 +196,7 @@
     "eyebrow": "SIMULASI AWAL KITCHEN SET",
     "heading": "Punya dinding dapur sekitar",
     "unit": "meter?",
-    "desc": "Geser untuk memberi kami gambaran awal. Estimasi final mengikuti hasil ukur, konfigurasi, dan detail desain.",
+    "desc": "Geser untuk memberi kami gambaran awal, estimasi final mengikuti hasil ukur, konfigurasi, dan detail desain",
     "ariaLabel": "Perkiraan panjang kabinet",
     "cta": "Minta estimasi terperinci",
     "note": "Nilai akhir tidak ditentukan hanya dari panjang kabinet. Tim kami akan menjelaskan seluruh komponen secara transparan setelah memahami kebutuhan Anda.",
@@ -207,20 +207,19 @@
     "badge1": "DIRANCANG DENGAN NIAT",
     "badge2": "DIBUAT DENGAN TELITI",
     "eyebrow": "TENTANG RUANG MADINA",
-    "title": "Bukan mengisi ruang.",
-    "titleEmphasis": "Memahami kehidupan.",
-    "p1": "RUANG MADINA adalah layanan interior dan furniture custom dari Madina Build. Kami percaya rumah yang nyaman berawal dari mendengarkan: bagaimana Anda bergerak, menyimpan, berkumpul, dan beristirahat.",
-    "p2": "Dari sana, kami menerjemahkannya menjadi ruang yang terasa tenang, personal, dan relevan untuk waktu yang panjang.",
+    "title": "Berawal dari mendengar,",
+    "titleEmphasis": "hadir untuk menyamankan",
+    "p1": "RUANG MADINA adalah layanan interior dan furniture custom dari Madina Build. Kami percaya rumah yang nyaman berawal dari mendengarkan: bagaimana Anda bergerak, menyimpan, berkumpul, dan beristirahat",
+    "p2": "Dari sana, kami menerjemahkannya menjadi ruang yang terasa tenang, personal, dan relevan untuk waktu yang panjang",
     "cta": "Kenali Madina Build"
   },
   "closing": {
     "eyebrow": "MULAI DARI SINI",
     "title": "Ruang yang Anda bayangkan,",
     "titleLine2": "bisa dimulai dari",
-    "titleEmphasis": "satu percakapan.",
-    "desc": "Kirim foto dan ukuran kasar ruang Anda. Tim kami akan membantu memetakan langkah berikutnya.",
-    "cta": "Ceritakan ruang Anda",
-    "note": "Tidak perlu gambar teknis untuk memulai."
+    "titleEmphasis": "satu percakapan",
+    "desc": "Kirim foto dan ukuran kasar ruang Anda, tim kami akan membantu memetakan langkah berikutnya",
+    "cta": "Ceritakan ruang Anda"
   },
   "footer": {
     "tagline": "Interior yang lebih rapi, fungsional, dan terasa dekat dengan cara Anda hidup.",

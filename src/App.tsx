@@ -64,10 +64,13 @@ interface PrincipleItem {
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
     <a className={`brand ${light ? "brand-light" : ""}`} href="#top" aria-label="RUANG MADINA">
-      <svg viewBox="0 0 42 46" aria-hidden="true">
-        <path d="M5 42V21C5 11.6 12.2 4 21 4s16 7.6 16 17v21" />
-        <path d="M15 42V16h7.2c6.1 0 9.8 2.9 9.8 8 0 4-2.7 6.7-7.1 7.5L34 42" />
-      </svg>
+      <img
+        className="brand-logo"
+        src="/logo.png"
+        alt="RUANG MADINA"
+        width={30}
+        height={36}
+      />
       <span>
         <strong>RUANG</strong>
         <em>MADINA</em>
@@ -273,7 +276,7 @@ export default function App() {
                   <div className="project-shade" />
                   <div className="project-meta">
                     <span>
-                      {project.category} · {project.place}
+                      {project.category}
                     </span>
                     <h3>{project.title}</h3>
                   </div>
@@ -499,7 +502,7 @@ export default function App() {
             </h2>
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
-            <a href="https://MADINAbuild.com" target="_blank" rel="noreferrer">
+            <a href="https://madinabuild.com" target="_blank" rel="noreferrer">
               {t("about.cta")} <Arrow />
             </a>
           </div>
@@ -520,7 +523,6 @@ export default function App() {
           <a className="primary-button" href={mainWhatsappUrl} target="_blank" rel="noreferrer">
             {t("closing.cta")} <Arrow />
           </a>
-          <small>{t("closing.note")}</small>
         </div>
       </section>
 
@@ -547,8 +549,8 @@ export default function App() {
           </div>
           <div>
             <p className="footer-label">{t("footer.connect")}</p>
-            <a href="https://MADINAbuild.com" target="_blank" rel="noreferrer">
-              MADINAbuild.com
+            <a href="https://madinabuild.com" target="_blank" rel="noreferrer">
+              madinabuild.com
             </a>
           </div>
         </div>

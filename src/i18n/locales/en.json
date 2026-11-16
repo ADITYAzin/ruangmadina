@@ -10,7 +10,7 @@
   "hero": {
     "eyebrow": "INTERIOR & CUSTOM FURNITURE · SIDOARJO",
     "title": "RUANG MADINA",
-    "copy": "We design neat, functional, and peaceful interiors—tailor-made to embrace how your family truly lives.",
+    "copy": "We design neat, functional, and peaceful interiors—tailor-made to embrace how your family truly lives",
     "cta": "Consult Here",
     "scrollHint": "EXPLORE"
   },
@@ -27,33 +27,33 @@
   "projects": {
     "eyebrow": "SELECTED WORKS",
     "title": "Details crafted",
-    "titleEmphasis": "to be lived in.",
-    "desc": "Not merely picturesque in photos. Every corner is crafted to fulfill real daily needs, from bustling mornings to quiet gatherings.",
+    "titleEmphasis": "to be lived in",
+    "desc": "Not merely picturesque in photos, every corner is crafted to fulfill real daily needs, from bustling mornings to quiet gatherings",
     "askProject": "Inquire about {{title}}",
     "photoNote": "Inspiration imagery reflects design intent and craftsmanship character. Client projects are presented respecting privacy.",
     "items": [
       {
         "title": "Seamless flow kitchen",
         "category": "Kitchen set",
-        "place": "Sidoarjo"
+        "place": ""
       },
       {
         "title": "A serene living sanctuary",
         "category": "Living area",
-        "place": "Surabaya"
+        "place": ""
       },
       {
-        "title": "Storage without clutter",
+        "title": "Functional storage",
         "category": "Built-in wardrobe",
-        "place": "East Java"
+        "place": ""
       }
     ]
   },
   "process": {
     "eyebrow": "OUR PROCESS",
     "title": "Clarity from the start,",
-    "titleEmphasis": "peace of mind throughout.",
-    "desc": "Six thoughtful steps to keep budget, dimensions, and project timeline precisely on track.",
+    "titleEmphasis": "peace of mind throughout",
+    "desc": "Six thoughtful steps to keep budget, dimensions, and project timeline precisely on track",
     "steps": [
       {
         "number": "01",
@@ -89,11 +89,11 @@
   },
   "principles": {
     "eyebrow": "DESIGN PRINCIPLES",
-    "kicker": "A good space is about much more than appearance.",
-    "title": "It calms your routine,",
+    "kicker": "A good space is about much more than appearance",
+    "title": "Simplify daily life,",
     "titleLine2": "safeguards your privacy, and creates",
     "titleLine3": "a home for",
-    "titleEmphasis": "what truly matters.",
+    "titleEmphasis": "what truly matters",
     "items": [
       {
         "icon": "path",
@@ -125,8 +125,8 @@
   "services": {
     "eyebrow": "SERVICES & ESTIMATIONS",
     "title": "Starting from one room,",
-    "titleEmphasis": "growing with your home.",
-    "desc": "We guide you in understanding the scope and cost components before breaking ground.",
+    "titleEmphasis": "growing with your home",
+    "desc": "We guide you in understanding the scope and cost components before breaking ground",
     "serviceTag": "Service",
     "byRoom": "By Room Count",
     "byArea": "By Building Floor Area",
@@ -196,7 +196,7 @@
     "eyebrow": "KITCHEN SET ESTIMATOR",
     "heading": "Have a kitchen wall around",
     "unit": "meters?",
-    "desc": "Slide to give us an initial idea. Final estimation follows accurate site measurements, configuration, and design details.",
+    "desc": "Slide to give us an initial idea, final estimation follows accurate site measurements, configuration, and design details",
     "ariaLabel": "Estimated cabinet length",
     "cta": "Request detailed estimate",
     "note": "Final investment is not determined solely by cabinet length. Our team will transparently break down all components upon understanding your needs.",
@@ -207,20 +207,19 @@
     "badge1": "DESIGNED WITH INTENTION",
     "badge2": "CRAFTED WITH PRECISION",
     "eyebrow": "ABOUT RUANG MADINA",
-    "title": "Not merely filling spaces.",
-    "titleEmphasis": "Understanding life.",
-    "p1": "RUANG MADINA is the interior and custom furniture division of Madina Build. We believe a peaceful home begins by listening: how you move, store, gather, and rest.",
-    "p2": "From there, we translate your lifestyle into spaces that feel serene, personal, and enduring for years to come.",
+    "title": "Beginning with listening,",
+    "titleEmphasis": "crafted to comfort",
+    "p1": "RUANG MADINA is the interior and custom furniture division of Madina Build. We believe a peaceful home begins by listening: how you move, store, gather, and rest",
+    "p2": "From there, we translate your lifestyle into spaces that feel serene, personal, and enduring for years to come",
     "cta": "Discover Madina Build"
   },
   "closing": {
     "eyebrow": "BEGIN HERE",
     "title": "The space you envision,",
     "titleLine2": "can begin from",
-    "titleEmphasis": "a single conversation.",
-    "desc": "Send photos and rough dimensions of your room. Our team will help map out the next steps.",
-    "cta": "Share your space",
-    "note": "No technical architectural drawings required to get started."
+    "titleEmphasis": "a single conversation",
+    "desc": "Send photos and rough dimensions of your room, our team will help map out the next steps",
+    "cta": "Share your space"
   },
   "footer": {
     "tagline": "Interiors that are neater, purposeful, and deeply connected to how you live.",
