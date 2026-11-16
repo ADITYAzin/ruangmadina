@@ -3,13 +3,11 @@ import { useTranslation } from "react-i18next";
 import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 
-const heroImage =
-  "https://images.unsplash.com/photo-1760067538612-c0ecd3bc3d3a?auto=format&fit=crop&w=2000&q=88";
+const heroImage = "/livingroom.png";
 
 const projectMetadata = [
   {
-    image:
-      "https://images.unsplash.com/photo-1771888703722-ee7ad9143a67?auto=format&fit=crop&w=1100&q=85",
+    image: "/2.png",
     className: "project-wide",
   },
   {
@@ -18,8 +16,7 @@ const projectMetadata = [
     className: "project-tall",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1752407828514-660d6945d392?auto=format&fit=crop&w=900&q=85",
+    image: "/1.png",
     className: "",
   },
 ];
@@ -270,9 +267,6 @@ export default function App() {
           <div className="project-grid">
             {projectList.map((project, idx) => {
               const meta = projectMetadata[idx] || projectMetadata[0];
-              const projectWa = `${waBaseUrl}?text=${encodeURIComponent(
-                t("projects.askProject", { title: project.title })
-              )}`;
               return (
                 <article className={`project-card ${meta.className}`} key={project.title}>
                   <img src={meta.image} alt={project.title} />
@@ -282,14 +276,6 @@ export default function App() {
                       {project.category} · {project.place}
                     </span>
                     <h3>{project.title}</h3>
-                    <a
-                      href={projectWa}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={t("projects.askProject", { title: project.title })}
-                    >
-                      <Arrow />
-                    </a>
                   </div>
                 </article>
               );
@@ -495,8 +481,8 @@ export default function App() {
         <div className="shell about-grid">
           <div className="about-image">
             <img
-              src="https://images.unsplash.com/photo-1765371514331-9d4e3228eed9?auto=format&fit=crop&w=1100&q=85"
-              alt="Detail kabinet kayu yang hangat dan presisi"
+              src="https://images.unsplash.com/photo-1636029697866-214ee5315764?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+              alt="Detail kabinet ka  yu yang hangat dan presisi"
             />
             <span>
               {t("about.badge1")}
