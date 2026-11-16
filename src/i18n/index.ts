@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import idTranslations from "./locales/id.json";
 import enTranslations from "./locales/en.json";
 
-const savedLang = typeof window !== "undefined" ? localStorage.getItem("ruangmadina_lang") : null;
+const savedLang = typeof window !== "undefined" ? localStorage.getItem("ruangMADINA_lang") : null;
 
 i18n.use(initReactI18next).init({
   resources: {

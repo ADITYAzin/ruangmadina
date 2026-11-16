@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-const LANG_KEY = "ruangmadina_lang";
+const LANG_KEY = "ruangMADINA_lang";
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { detectUserGeolocation } from "../utils/geolocation";
 
-const STORAGE_KEY = "ruangmadina_lang_confirmed";
-const LANG_KEY = "ruangmadina_lang";
+const STORAGE_KEY = "ruangMADINA_lang_confirmed";
+const LANG_KEY = "ruangMADINA_lang";
 
 export default function LanguageModal() {
   const { t, i18n } = useTranslation();

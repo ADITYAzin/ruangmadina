@@ -9,7 +9,7 @@
   },
   "hero": {
     "eyebrow": "INTERIOR & FURNITURE CUSTOM · SIDOARJO",
-    "title": "Ruang Madina",
+    "title": "RUANG MADINA",
     "copy": "Kami merancang interior yang rapi, fungsional, dan nyaman—dibuat khusus mengikuti cara keluarga Anda hidup.",
     "cta": "Konsultasi Disini",
     "scrollHint": "JELAJAHI"
@@ -147,7 +147,7 @@
         "exampleText": "Dapur dinding 4 m = 8 m lari (4 m bawah + 4 m atas) = Rp20 jt (Esensial).",
         "scope": "Termasuk kabinet dan pemasangan. Top table, backsplash, dan sink terpisah.",
         "cta": "Konsultasi kitchen set",
-        "waQuery": "Halo Ruang Madina, saya ingin berkonsultasi tentang kitchen set."
+        "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang kitchen set."
       },
       {
         "number": "02",
@@ -169,7 +169,7 @@
         "exampleText": "Bidang muka dihitung dari tinggi × lebar tampak depan lemari.",
         "scope": "Biaya sudah termasuk perakitan dan pemasangan built-in di lokasi.",
         "cta": "Konsultasi furniture custom",
-        "waQuery": "Halo Ruang Madina, saya ingin berkonsultasi tentang furniture custom."
+        "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang furniture custom."
       },
       {
         "number": "03",
@@ -188,7 +188,7 @@
         "exampleText": "Gambar 3D visual, denah tata ruang, gambar kerja teknis, dan RAB.",
         "scope": "Perencanaan desain dapat dilakukan mandiri sebelum masuk tahap produksi fisik.",
         "cta": "Konsultasi paket desain",
-        "waQuery": "Halo Ruang Madina, saya ingin berkonsultasi tentang paket desain interior."
+        "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang paket desain interior."
       }
     ]
   },
@@ -200,16 +200,16 @@
     "ariaLabel": "Perkiraan panjang kabinet",
     "cta": "Minta estimasi terperinci",
     "note": "Nilai akhir tidak ditentukan hanya dari panjang kabinet. Tim kami akan menjelaskan seluruh komponen secara transparan setelah memahami kebutuhan Anda.",
-    "waQueryWithLength": "Halo Ruang Madina, saya ingin berkonsultasi tentang interior rumah dengan perkiraan panjang kabinet {{length}} meter.",
-    "waQueryDefault": "Halo Ruang Madina, saya ingin berkonsultasi tentang interior rumah."
+    "waQueryWithLength": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior rumah dengan perkiraan panjang kabinet {{length}} meter.",
+    "waQueryDefault": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior rumah."
   },
   "about": {
     "badge1": "DIRANCANG DENGAN NIAT",
     "badge2": "DIBUAT DENGAN TELITI",
-    "eyebrow": "TENTANG Ruang Madina",
+    "eyebrow": "TENTANG RUANG MADINA",
     "title": "Bukan mengisi ruang.",
     "titleEmphasis": "Memahami kehidupan.",
-    "p1": "Ruang Madina adalah layanan interior dan furniture custom dari Madina Build. Kami percaya rumah yang nyaman berawal dari mendengarkan: bagaimana Anda bergerak, menyimpan, berkumpul, dan beristirahat.",
+    "p1": "RUANG MADINA adalah layanan interior dan furniture custom dari Madina Build. Kami percaya rumah yang nyaman berawal dari mendengarkan: bagaimana Anda bergerak, menyimpan, berkumpul, dan beristirahat.",
     "p2": "Dari sana, kami menerjemahkannya menjadi ruang yang terasa tenang, personal, dan relevan untuk waktu yang panjang.",
     "cta": "Kenali Madina Build"
   },
@@ -231,12 +231,12 @@
     "city": "Sidoarjo, Jawa Timur",
     "workingHours": "Senin—Sabtu, 09.00—17.00",
     "copyright": "© {{year}} PT Madina Build International",
-    "brandLocation": "Ruang Madina · Sidoarjo",
+    "brandLocation": "RUANG MADINA · Sidoarjo",
     "backToTop": "Kembali ke atas ↑"
   },
   "modal": {
     "title": "Pilih Bahasa",
-    "subtitle": "Selamat datang di Ruang Madina. Silakan pilih bahasa yang Anda gunakan.",
+    "subtitle": "Selamat datang di RUANG MADINA. Silakan pilih bahasa yang Anda gunakan.",
     "selectLabel": "Bahasa Pilihan",
     "chooseBtn": "Pilih",
     "idOption": "Bahasa Indonesia",

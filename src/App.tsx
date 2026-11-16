@@ -7,12 +7,12 @@ const heroImage = "/livingroom.png";
 
 const projectMetadata = [
   {
-    image: "/2.png",
+    image: "/4.jpg",
     className: "project-wide",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1760067538299-3f58e7a99fc5?auto=format&fit=crop&w=900&q=85",
+      "/3.jpg",
     className: "project-tall",
   },
   {
@@ -63,14 +63,14 @@ interface PrincipleItem {
 
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
-    <a className={`brand ${light ? "brand-light" : ""}`} href="#top" aria-label="Ruang Madina">
+    <a className={`brand ${light ? "brand-light" : ""}`} href="#top" aria-label="RUANG MADINA">
       <svg viewBox="0 0 42 46" aria-hidden="true">
         <path d="M5 42V21C5 11.6 12.2 4 21 4s16 7.6 16 17v21" />
         <path d="M15 42V16h7.2c6.1 0 9.8 2.9 9.8 8 0 4-2.7 6.7-7.1 7.5L34 42" />
       </svg>
       <span>
         <strong>RUANG</strong>
-        <em>Madina</em>
+        <em>MADINA</em>
       </span>
     </a>
   );
@@ -499,7 +499,7 @@ export default function App() {
             </h2>
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
-            <a href="https://Madinabuild.com" target="_blank" rel="noreferrer">
+            <a href="https://MADINAbuild.com" target="_blank" rel="noreferrer">
               {t("about.cta")} <Arrow />
             </a>
           </div>
@@ -547,8 +547,8 @@ export default function App() {
           </div>
           <div>
             <p className="footer-label">{t("footer.connect")}</p>
-            <a href="https://Madinabuild.com" target="_blank" rel="noreferrer">
-              Madinabuild.com
+            <a href="https://MADINAbuild.com" target="_blank" rel="noreferrer">
+              MADINAbuild.com
             </a>
           </div>
         </div>
