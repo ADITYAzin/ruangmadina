@@ -323,6 +323,7 @@ a:hover .arrow {
 
 .projects-section {
   background: var(--sand);
+  border-top: 1px solid rgba(139, 110, 82, 0.16);
 }
 .split-heading {
   display: grid;
@@ -511,6 +512,118 @@ a:hover .arrow {
   width: 380px;
   color: rgba(250, 248, 244, 0.58);
   font-size: 13px;
+}
+
+.sectors-section {
+  background: var(--warm-white);
+  border-top: 1px solid rgba(139, 110, 82, 0.16);
+}
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.sector-card {
+  position: relative;
+  overflow: hidden;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--ink);
+  border: 1px solid rgba(139, 110, 82, 0.28);
+  box-shadow: 0 10px 28px rgba(26, 22, 18, 0.08);
+  transition: transform 0.45s cubic-bezier(0.2, 0.6, 0.2, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+}
+.sector-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(26, 22, 18, 0.16);
+  border-color: rgba(184, 151, 90, 0.65);
+}
+.sector-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.sector-card:hover img {
+  transform: scale(1.055);
+}
+.sector-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 22, 18, 0.1) 0%,
+    rgba(26, 22, 18, 0.35) 45%,
+    rgba(26, 22, 18, 0.86) 80%,
+    rgba(26, 22, 18, 0.97) 100%
+  );
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+.sector-card:hover .sector-shade {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 22, 18, 0.08) 0%,
+    rgba(26, 22, 18, 0.3) 40%,
+    rgba(26, 22, 18, 0.84) 78%,
+    rgba(26, 22, 18, 0.96) 100%
+  );
+}
+.sector-meta {
+  position: relative;
+  z-index: 2;
+  padding: 32px 28px 28px;
+  color: var(--warm-white);
+  display: flex;
+  flex-direction: column;
+}
+.sector-meta h3 {
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 600;
+  color: var(--warm-white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.sector-desc {
+  color: rgba(250, 248, 244, 0.82);
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.sector-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-family: var(--label);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.25s ease, transform 0.25s ease;
+  width: fit-content;
+}
+.sector-action .arrow {
+  stroke: var(--gold);
+  transition: transform 0.25s ease, stroke 0.25s ease;
+}
+.sector-card:hover .sector-action {
+  color: var(--warm-white);
+}
+.sector-card:hover .sector-action .arrow {
+  stroke: var(--warm-white);
+  transform: translateX(4px);
+}
+.photo-note-center {
+  text-align: center;
+  margin-top: 32px;
 }
 
 .services-section {
@@ -980,6 +1093,12 @@ footer {
   .service-grid {
     grid-template-columns: 1fr;
   }
+  .sectors-grid {
+    grid-template-columns: 1fr;
+  }
+  .sector-card {
+    height: 400px;
+  }
   .service-card {
     min-height: 410px;
   }
@@ -1094,6 +1213,15 @@ footer {
   .project-meta h3 {
     font-size: 27px;
     max-width: 230px;
+  }
+  .sector-card {
+    height: 380px;
+  }
+  .sector-meta {
+    padding: 24px 20px 22px;
+  }
+  .sector-meta h3 {
+    font-size: 24px;
   }
   .steps-grid {
     grid-template-columns: 1fr;

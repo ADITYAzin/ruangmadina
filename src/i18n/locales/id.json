@@ -2,6 +2,7 @@
   "nav": {
     "works": "Karya",
     "process": "Cara kerja",
+    "sectors": "Sektor",
     "services": "Layanan",
     "about": "Tentang kami",
     "consultation": "Konsultasi",
@@ -122,6 +123,38 @@
       }
     ]
   },
+  "sectors": {
+    "eyebrow": "RUANG LINGKUP & SEKTOR",
+    "title": "Karakter ruang yang",
+    "titleEmphasis": "siap kami wujudkan",
+    "desc": "Merancang interior custom yang fungsional dan berkarakter—untuk hunian pribadi, ruang usaha, hingga villa peristirahatan.",
+    "items": [
+      {
+        "id": "residential",
+        "title": "Rumah Tinggal & Apartemen",
+        "desc": "Hunian rapi, hangat, dan fungsional yang disesuaikan dengan ritme hidup keluarga.",
+        "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "cta": "Konsultasi Residential",
+        "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior hunian (rumah/apartemen)."
+      },
+      {
+        "id": "commercial",
+        "title": "Cafe, Restoran & Kantor",
+        "desc": "Ruang usaha yang memikat pelanggan sekaligus efisien untuk alur operasional bisnis.",
+        "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "cta": "Konsultasi Commercial",
+        "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior ruang komersial (cafe/kantor/retail)."
+      },
+      {
+        "id": "villa",
+        "title": "Villa & Vacation House",
+        "desc": "Suasana peristirahatan yang tenang dengan sentuhan material alami dan keselarasan alam.",
+        "image": "https://plus.unsplash.com/premium_photo-1661874816704-3e5399637b5e?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "cta": "Konsultasi Villa",
+        "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior villa & hospitality."
+      }
+    ]
+  },
   "services": {
     "eyebrow": "LAYANAN & ESTIMASI",
     "title": "Mulai dari satu ruang,",
@@ -137,11 +170,26 @@
         "basis": "Per meter lari (m')",
         "basisNote": "Kabinet atas dan bawah dihitung terpisah",
         "tiers": [
-          { "name": "Esensial", "price": "Rp2,5 jt / m'" },
-          { "name": "Premium", "price": "Rp3,0 jt / m'" },
-          { "name": "Signature", "price": "Rp3,7 jt / m'" },
-          { "name": "Duco Minimalis", "price": "Rp4,4 jt / m'" },
-          { "name": "Duco Classic", "price": "Rp5,4 jt / m'" }
+          {
+            "name": "Esensial",
+            "price": "Rp2,5 jt / m'"
+          },
+          {
+            "name": "Premium",
+            "price": "Rp3,0 jt / m'"
+          },
+          {
+            "name": "Signature",
+            "price": "Rp3,7 jt / m'"
+          },
+          {
+            "name": "Duco Minimalis",
+            "price": "Rp4,4 jt / m'"
+          },
+          {
+            "name": "Duco Classic",
+            "price": "Rp5,4 jt / m'"
+          }
         ],
         "exampleLabel": "Contoh hitungan",
         "exampleText": "Dapur dinding 4 m = 8 m lari (4 m bawah + 4 m atas) = Rp20 jt (Esensial).",
@@ -178,10 +226,21 @@
         "basisNote": "Tahap perencanaan pra-produksi",
         "designPrices": {
           "rooms": [
-            { "label": "1 Ruangan", "price": "Rp3,0 jt" },
-            { "label": "2 Ruangan", "price": "Rp5,0 jt" }
+            {
+              "label": "1 Ruangan",
+              "price": "Rp3,0 jt"
+            },
+            {
+              "label": "2 Ruangan",
+              "price": "Rp5,0 jt"
+            }
           ],
-          "areaPackages": ["Rp10 jt", "Rp13 jt", "Rp20 jt", "Rp25 jt"],
+          "areaPackages": [
+            "Rp10 jt",
+            "Rp13 jt",
+            "Rp20 jt",
+            "Rp25 jt"
+          ],
           "areaDesc": "Disesuaikan dengan luasan total bangunan."
         },
         "exampleLabel": "Output kerja",

@@ -43,6 +43,17 @@ interface ServiceItem {
   waQuery: string;
 }
 
+interface SectorItem {
+  id: string;
+  tag?: string;
+  title: string;
+  desc: string;
+  tags?: string[];
+  image: string;
+  cta: string;
+  waQuery: string;
+}
+
 interface ProjectItem {
   title: string;
   category: string;
@@ -154,6 +165,11 @@ export default function App() {
     ? (rawPrinciples as PrincipleItem[])
     : [];
 
+  const rawSectors = t("sectors.items", { returnObjects: true });
+  const sectorsList: SectorItem[] = Array.isArray(rawSectors)
+    ? (rawSectors as SectorItem[])
+    : [];
+
   const rawServices = t("services.items", { returnObjects: true });
   const servicesList: ServiceItem[] = Array.isArray(rawServices) ? (rawServices as ServiceItem[]) : [];
 
@@ -166,6 +182,9 @@ export default function App() {
         <nav className="nav shell" aria-label="Navigasi utama">
           <ArchLogo />
           <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
+            <a href="#sektor" onClick={closeMenu}>
+              {t("nav.sectors")}
+            </a>
             <a href="#karya" onClick={closeMenu}>
               {t("nav.works")}
             </a>
@@ -250,6 +269,40 @@ export default function App() {
           <div>
             <b>{t("trust.customTitle")}</b>
             <span>{t("trust.customSub")}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="section sectors-section" id="sektor">
+        <div className="shell">
+          <div className="section-heading centered">
+            <p className="eyebrow">{t("sectors.eyebrow")}</p>
+            <h2>
+              {t("sectors.title")}
+              <br />
+              <i>{t("sectors.titleEmphasis")}</i>
+            </h2>
+            <p>{t("sectors.desc")}</p>
+          </div>
+          <div className="sectors-grid">
+            {sectorsList.map((sector) => (
+              <article className="sector-card" key={sector.id}>
+                <img src={sector.image} alt={sector.title} loading="lazy" />
+                <div className="sector-shade" />
+                <div className="sector-meta">
+                  <h3>{sector.title}</h3>
+                  <a
+                    className="sector-action"
+                    href={`${waBaseUrl}?text=${encodeURIComponent(sector.waQuery)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>{sector.cta}</span>
+                    <Arrow />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -534,6 +587,7 @@ export default function App() {
           </div>
           <div>
             <p className="footer-label">{t("footer.explore")}</p>
+            <a href="#sektor">{t("nav.sectors")}</a>
             <a href="#karya">{t("nav.works")}</a>
             <a href="#cara-kerja">{t("nav.process")}</a>
             <a href="#layanan">{t("nav.services")}</a>

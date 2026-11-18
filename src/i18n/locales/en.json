@@ -2,6 +2,7 @@
   "nav": {
     "works": "Works",
     "process": "Process",
+    "sectors": "Typologies",
     "services": "Services",
     "about": "About us",
     "consultation": "Consultation",
@@ -122,6 +123,38 @@
       }
     ]
   },
+  "sectors": {
+    "eyebrow": "PROJECT TYPOLOGIES",
+    "title": "Spaces shaped for",
+    "titleEmphasis": "how you live & grow",
+    "desc": "Bespoke interior crafting tailored to your space—from private residences and commercial venues to getaway villas.",
+    "items": [
+      {
+        "id": "residential",
+        "title": "Houses & Apartments",
+        "desc": "Warm, orderly, and functional living spaces tailored to your family's daily lifestyle.",
+        "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "cta": "Consult Residential",
+        "waQuery": "Hello RUANG MADINA, I am interested in interior consultation for a residential project."
+      },
+      {
+        "id": "commercial",
+        "title": "Cafes, Eateries & Offices",
+        "desc": "Engaging spaces designed to captivate customers and streamline business operations.",
+        "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "cta": "Consult Commercial",
+        "waQuery": "Hello RUANG MADINA, I am interested in interior consultation for a commercial space."
+      },
+      {
+        "id": "villa",
+        "title": "Villas & Vacation Homes",
+        "desc": "Serene getaway sanctuaries crafted with natural textures and harmonious outdoor flow.",
+        "image": "https://plus.unsplash.com/premium_photo-1661874816704-3e5399637b5e?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "cta": "Consult Villa",
+        "waQuery": "Hello RUANG MADINA, I am interested in interior consultation for a villa/hospitality project."
+      }
+    ]
+  },
   "services": {
     "eyebrow": "SERVICES & ESTIMATIONS",
     "title": "Starting from one room,",
@@ -137,11 +170,26 @@
         "basis": "Per linear meter (m')",
         "basisNote": "Upper and lower cabinetry calculated separately",
         "tiers": [
-          { "name": "Essential", "price": "IDR 2.5M / m'" },
-          { "name": "Premium", "price": "IDR 3.0M / m'" },
-          { "name": "Signature", "price": "IDR 3.7M / m'" },
-          { "name": "Duco Minimalist", "price": "IDR 4.4M / m'" },
-          { "name": "Duco Classic", "price": "IDR 5.4M / m'" }
+          {
+            "name": "Essential",
+            "price": "IDR 2.5M / m'"
+          },
+          {
+            "name": "Premium",
+            "price": "IDR 3.0M / m'"
+          },
+          {
+            "name": "Signature",
+            "price": "IDR 3.7M / m'"
+          },
+          {
+            "name": "Duco Minimalist",
+            "price": "IDR 4.4M / m'"
+          },
+          {
+            "name": "Duco Classic",
+            "price": "IDR 5.4M / m'"
+          }
         ],
         "exampleLabel": "Calculation example",
         "exampleText": "4 m wall kitchen = 8 linear meters (4 m lower + 4 m upper) = IDR 20M (Essential).",
@@ -178,10 +226,21 @@
         "basisNote": "Pre-production planning phase",
         "designPrices": {
           "rooms": [
-            { "label": "1 Room", "price": "IDR 3.0M" },
-            { "label": "2 Rooms", "price": "IDR 5.0M" }
+            {
+              "label": "1 Room",
+              "price": "IDR 3.0M"
+            },
+            {
+              "label": "2 Rooms",
+              "price": "IDR 5.0M"
+            }
           ],
-          "areaPackages": ["IDR 10M", "IDR 13M", "IDR 20M", "IDR 25M"],
+          "areaPackages": [
+            "IDR 10M",
+            "IDR 13M",
+            "IDR 20M",
+            "IDR 25M"
+          ],
           "areaDesc": "Scaled according to total building floor area."
         },
         "exampleLabel": "Deliverables",
