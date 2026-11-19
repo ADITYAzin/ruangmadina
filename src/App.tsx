@@ -139,21 +139,81 @@ function PrincipleIcon({ type }: { type: string }) {
   );
 }
 
+interface OptionItem {
+  id: string;
+  label: string;
+}
+
 export default function App() {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [length, setLength] = useState(4);
+  const [activeServiceTab, setActiveServiceTab] = useState<"services" | "calculator">("services");
+  const [estSpace, setEstSpace] = useState<string>("residential");
+  const [estNeed, setEstNeed] = useState<string>("kitchen");
+  const [estKitchenConfig, setEstKitchenConfig] = useState<string>("both");
+  const [estScaleIdx, setEstScaleIdx] = useState<number>(0);
+  const [estTierIdx, setEstTierIdx] = useState<number>(0);
 
   const waBaseUrl = "https://wa.me/628113330232";
   const defaultWaQuery = t("calculator.waQueryDefault");
   const mainWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(defaultWaQuery)}`;
 
-  const dynamicWaQuery = length
-    ? t("calculator.waQueryWithLength", { length })
-    : defaultWaQuery;
-  const calculatorWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(dynamicWaQuery)}`;
-
   const closeMenu = () => setMenuOpen(false);
+
+  const rawSpaces = t("estimator.spaces", { returnObjects: true });
+  const estSpaces: OptionItem[] = Array.isArray(rawSpaces) ? (rawSpaces as OptionItem[]) : [];
+
+  const rawNeeds = t("estimator.needs", { returnObjects: true });
+  const estNeeds: OptionItem[] = Array.isArray(rawNeeds) ? (rawNeeds as OptionItem[]) : [];
+
+  const rawKitchenConfigs = t("estimator.kitchenConfig", { returnObjects: true });
+  const estKitchenConfigs: OptionItem[] = Array.isArray(rawKitchenConfigs)
+    ? (rawKitchenConfigs as OptionItem[])
+    : [];
+
+  const rawUnitOptions = t("estimator.unitOptions", { returnObjects: true });
+  const unitOptions: string[] = Array.isArray(rawUnitOptions) ? (rawUnitOptions as string[]) : [];
+
+  const rawRoomOptions = t("estimator.roomOptions", { returnObjects: true });
+  const roomOptions: string[] = Array.isArray(rawRoomOptions) ? (rawRoomOptions as string[]) : [];
+
+  const rawTiers = t("estimator.tiers", { returnObjects: true });
+  const tierOptions: string[] = Array.isArray(rawTiers) ? (rawTiers as string[]) : [];
+
+  const selectedSpaceLabel =
+    estSpaces.find((item) => item.id === estSpace)?.label || estSpaces[0]?.label || "Residential";
+  const selectedNeedLabel =
+    estNeeds.find((item) => item.id === estNeed)?.label || estNeeds[0]?.label || "Kitchen Set";
+  const selectedKitchenConfigLabel =
+    estKitchenConfigs.find((item) => item.id === estKitchenConfig)?.label || "";
+
+  let selectedScaleLabel = "";
+  if (estNeed === "kitchen") {
+    selectedScaleLabel = `${length} m (${selectedKitchenConfigLabel})`;
+  } else if (estNeed === "furniture") {
+    selectedScaleLabel = unitOptions[estScaleIdx] || unitOptions[0] || "";
+  } else {
+    selectedScaleLabel = roomOptions[estScaleIdx] || roomOptions[0] || "";
+  }
+
+  const selectedTierLabel = tierOptions[estTierIdx] || tierOptions[0] || "";
+
+  const estimatorWaQuery = t("estimator.waMessage", {
+    space: selectedSpaceLabel,
+    need: selectedNeedLabel,
+    scale: selectedScaleLabel,
+    tier: selectedTierLabel,
+  });
+  const estimatorWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(estimatorWaQuery)}`;
+
+  const handleOpenCalculatorFromWa = (categoryId: string) => {
+    if (estSpaces.some((item) => item.id === categoryId)) {
+      setEstSpace(categoryId);
+    }
+    setActiveServiceTab("calculator");
+    document.getElementById("layanan")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const rawProjects = t("projects.items", { returnObjects: true });
   const projectList: ProjectItem[] = Array.isArray(rawProjects) ? (rawProjects as ProjectItem[]) : [];
@@ -406,7 +466,31 @@ export default function App() {
             </h2>
             <p>{t("services.desc")}</p>
           </div>
-          <div className="service-grid">
+
+          <div className="services-tabs" role="tablist" aria-label={t("services.eyebrow")}>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeServiceTab === "services"}
+              className={`services-tab ${activeServiceTab === "services" ? "active" : ""}`}
+              onClick={() => setActiveServiceTab("services")}
+            >
+              {t("estimator.tabServices")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeServiceTab === "calculator"}
+              className={`services-tab ${activeServiceTab === "calculator" ? "active" : ""}`}
+              onClick={() => setActiveServiceTab("calculator")}
+            >
+              {t("estimator.tabCalculator")}
+            </button>
+          </div>
+
+          {activeServiceTab === "services" ? (
+            <>
+              <div className="service-grid">
             {servicesList.map((service) => (
               <article className="service-card" key={service.number}>
                 <div className="service-card-top">
@@ -500,37 +584,133 @@ export default function App() {
             ))}
           </div>
 
-          <div className="calculator">
-            <div className="calculator-copy">
-              <p className="eyebrow light">{t("calculator.eyebrow")}</p>
-              <h3>
-                {t("calculator.heading")}
-                <br />
-                <i>{length} {t("calculator.unit")}</i>
-              </h3>
-              <p>{t("calculator.desc")}</p>
-            </div>
-            <div className="calculator-control">
-              <div className="range-labels">
-                <span>2 m</span>
-                <strong>{length} m</strong>
-                <span>8 m</span>
-              </div>
-              <input
-                type="range"
-                min="2"
-                max="8"
-                step="0.5"
-                value={length}
-                onChange={(event) => setLength(Number(event.target.value))}
-                aria-label={t("calculator.ariaLabel")}
-              />
-              <a className="light-button" href={calculatorWhatsappUrl} target="_blank" rel="noreferrer">
-                {t("calculator.cta")} <Arrow />
-              </a>
-            </div>
+          <div className="services-bridge">
+            <span>{t("estimator.bridgeText")}</span>
+            <button
+              type="button"
+              className="services-bridge-btn"
+              onClick={() => setActiveServiceTab("calculator")}
+            >
+              <span>{t("estimator.bridgeCta")}</span>
+              <Arrow />
+            </button>
           </div>
-          <p className="estimate-note">{t("calculator.note")}</p>
+            </>
+          ) : (
+            <div className="estimator-card">
+              <div className="estimator-info">
+                <h3>{t("estimator.title")}</h3>
+                <p>{t("estimator.subtitle")}</p>
+                <a
+                  className="primary-button estimator-cta"
+                  href={estimatorWhatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>{t("estimator.cta")}</span>
+                  <Arrow />
+                </a>
+              </div>
+
+              <div className="estimator-controls">
+                <div className="estimator-group">
+                  <span className="estimator-label">{t("estimator.spaceLabel")}</span>
+                  <div className="estimator-pills">
+                    {estSpaces.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={`estimator-pill ${estSpace === item.id ? "active" : ""}`}
+                        onClick={() => setEstSpace(item.id)}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="estimator-group">
+                  <span className="estimator-label">{t("estimator.needLabel")}</span>
+                  <div className="estimator-pills">
+                    {estNeeds.map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={`estimator-pill ${estNeed === item.id ? "active" : ""}`}
+                        onClick={() => {
+                          setEstNeed(item.id);
+                          setEstScaleIdx(0);
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="estimator-group">
+                  <span className="estimator-label">{t("estimator.scaleLabel")}</span>
+                  {estNeed === "kitchen" ? (
+                    <div className="estimator-kitchen-scale">
+                      <div className="estimator-slider-row">
+                        <input
+                          type="range"
+                          min="2"
+                          max="8"
+                          step="0.5"
+                          value={length}
+                          onChange={(event) => setLength(Number(event.target.value))}
+                          aria-label={t("calculator.ariaLabel")}
+                        />
+                        <strong className="estimator-length-val">{length} m</strong>
+                      </div>
+                      <div className="estimator-pills">
+                        {estKitchenConfigs.map((cfg) => (
+                          <button
+                            key={cfg.id}
+                            type="button"
+                            className={`estimator-pill ${estKitchenConfig === cfg.id ? "active" : ""}`}
+                            onClick={() => setEstKitchenConfig(cfg.id)}
+                          >
+                            {cfg.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="estimator-pills">
+                      {(estNeed === "furniture" ? unitOptions : roomOptions).map((opt, idx) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          className={`estimator-pill ${estScaleIdx === idx ? "active" : ""}`}
+                          onClick={() => setEstScaleIdx(idx)}
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="estimator-group">
+                  <span className="estimator-label">{t("estimator.tierLabel")}</span>
+                  <div className="estimator-pills">
+                    {tierOptions.map((tier, idx) => (
+                      <button
+                        key={tier}
+                        type="button"
+                        className={`estimator-pill ${estTierIdx === idx ? "active" : ""}`}
+                        onClick={() => setEstTierIdx(idx)}
+                      >
+                        {tier}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -616,7 +796,7 @@ export default function App() {
         </div>
       </footer>
 
-      <FloatingWhatsApp />
+      <FloatingWhatsApp onOpenCalculator={handleOpenCalculatorFromWa} />
     </main>
   );
 }

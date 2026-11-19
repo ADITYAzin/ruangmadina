@@ -13,9 +13,13 @@ interface WaTopic {
   waTemplate: string;
 }
 
+interface FloatingWhatsAppProps {
+  onOpenCalculator?: (categoryId: string) => void;
+}
+
 const WA_BASE_URL = "https://wa.me/628113330232";
 
-export default function FloatingWhatsApp() {
+export default function FloatingWhatsApp({ onOpenCalculator }: FloatingWhatsAppProps) {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCatId, setSelectedCatId] = useState<string>("residential");
@@ -118,26 +122,52 @@ export default function FloatingWhatsApp() {
           <div className="fwa-step-group">
             <span className="fwa-step-label">{t("floatingWa.topicLabel")}</span>
             <div className="fwa-topic-list">
-              {topics.map((topic) => (
-                <a
-                  key={topic.id}
-                  href={buildWaUrl(topic.waTemplate)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="fwa-topic-item"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <div className="fwa-topic-copy">
-                    <div className="fwa-topic-head">
-                      <strong>{topic.title}</strong>
+              {topics.map((topic) => {
+                if (topic.id === "estimate" && onOpenCalculator) {
+                  return (
+                    <button
+                      key={topic.id}
+                      type="button"
+                      className="fwa-topic-item"
+                      onClick={() => {
+                        setIsOpen(false);
+                        onOpenCalculator(activeCategory.id);
+                      }}
+                    >
+                      <div className="fwa-topic-copy">
+                        <div className="fwa-topic-head">
+                          <strong>{topic.title}</strong>
+                        </div>
+                        <p>{topic.desc}</p>
+                      </div>
+                      <svg className="fwa-topic-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </button>
+                  );
+                }
+
+                return (
+                  <a
+                    key={topic.id}
+                    href={buildWaUrl(topic.waTemplate)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="fwa-topic-item"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <div className="fwa-topic-copy">
+                      <div className="fwa-topic-head">
+                        <strong>{topic.title}</strong>
+                      </div>
+                      <p>{topic.desc}</p>
                     </div>
-                    <p>{topic.desc}</p>
-                  </div>
-                  <svg className="fwa-topic-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </a>
-              ))}
+                    <svg className="fwa-topic-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

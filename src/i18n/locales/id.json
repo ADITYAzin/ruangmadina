@@ -262,6 +262,38 @@
     "waQueryWithLength": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior rumah dengan perkiraan panjang kabinet {{length}} meter.",
     "waQueryDefault": "Halo RUANG MADINA, saya ingin berkonsultasi tentang interior rumah."
   },
+  "estimator": {
+    "tabServices": "Layanan",
+    "tabCalculator": "Kalkulator",
+    "bridgeText": "Sudah punya gambaran ukuran ruang?",
+    "bridgeCta": "Hitung di Kalkulator",
+    "title": "Estimasi Kebutuhan Ruang",
+    "subtitle": "Pilih 4 poin di bawah, rincian biaya kami kirim via WhatsApp.",
+    "spaceLabel": "1. Tipe Ruang",
+    "spaces": [
+      { "id": "residential", "label": "Residential" },
+      { "id": "commercial", "label": "Commercial" },
+      { "id": "villa", "label": "Villa" }
+    ],
+    "needLabel": "2. Kebutuhan",
+    "needs": [
+      { "id": "kitchen", "label": "Kitchen Set" },
+      { "id": "furniture", "label": "Furniture Custom" },
+      { "id": "design", "label": "Paket Desain" },
+      { "id": "full", "label": "Full Interior" }
+    ],
+    "scaleLabel": "3. Perkiraan Ukuran",
+    "kitchenConfig": [
+      { "id": "lower", "label": "Bawah Saja" },
+      { "id": "both", "label": "Atas & Bawah" }
+    ],
+    "unitOptions": ["1 Unit", "2–3 Unit", "4+ Unit"],
+    "roomOptions": ["1 Ruang", "2–3 Ruang", "Satu Bangunan"],
+    "tierLabel": "4. Kelas Material",
+    "tiers": ["Esensial", "Premium / Signature", "Duco", "Minta Saran"],
+    "cta": "Kirim & Hitung via WhatsApp",
+    "waMessage": "Halo RUANG MADINA, saya ingin minta estimasi awal:\n• Tipe: {{space}}\n• Kebutuhan: {{need}}\n• Ukuran: {{scale}}\n• Kelas: {{tier}}"
+  },
   "about": {
     "badge1": "DIRANCANG DENGAN NIAT",
     "badge2": "DIBUAT DENGAN TELITI",
@@ -305,41 +337,41 @@
     "ariaOpen": "Buka menu konsultasi WhatsApp",
     "ariaClose": "Tutup menu konsultasi WhatsApp",
     "eyebrow": "KONSULTASI WHATSAPP",
-    "title": "Bantu kami memahami kebutuhan ruang Anda",
-    "categoryLabel": "1. Pilih Tipe Ruang:",
+    "title": "Mulai diskusi sesuai kebutuhan",
+    "categoryLabel": "1. Tipe Ruang:",
     "categories": [
       { "id": "residential", "label": "Residential" },
       { "id": "commercial", "label": "Commercial" },
       { "id": "villa", "label": "Villa" }
     ],
-    "topicLabel": "2. Pilih Topik Diskusi:",
+    "topicLabel": "2. Pilih Topik:",
     "topics": [
       {
         "id": "estimate",
-        "title": "Tanya Estimasi Biaya Awal",
-        "desc": "Cek kisaran harga kitchen set atau furniture custom",
-        "waTemplate": "Halo RUANG MADINA, saya ingin tanya estimasi biaya awal untuk ruang kategori {{category}}. Boleh dibantu infonya?"
+        "title": "Tanya Estimasi Biaya",
+        "desc": "Isi simulasi ukuran di kalkulator",
+        "waTemplate": "Halo RUANG MADINA, saya ingin tanya estimasi biaya awal untuk kategori {{category}}."
       },
       {
         "id": "photo",
-        "title": "Kirim Foto & Ukuran Kasar",
-        "desc": "Sudah punya foto/ukuran ruang untuk dihitung penawaran awal",
-        "waTemplate": "Halo RUANG MADINA, saya sudah punya foto dan ukuran kasar ruangan (kategori {{category}}), ingin minta hitungan estimasi awalnya."
+        "title": "Kirim Foto & Ukuran",
+        "desc": "Dapat penawaran awal via WhatsApp",
+        "waTemplate": "Halo RUANG MADINA, saya punya foto & ukuran kasar ({{category}}), ingin minta estimasi awal."
       },
       {
         "id": "design",
-        "title": "Konsultasi Desain 3D & Tata Ruang",
-        "desc": "Rencanakan konsep visual 3D & RAB sebelum produksi",
-        "waTemplate": "Halo RUANG MADINA, saya ingin konsultasi Paket Desain Interior 3D untuk ruang kategori {{category}}."
+        "title": "Konsultasi Desain 3D",
+        "desc": "Konsep tata ruang & RAB",
+        "waTemplate": "Halo RUANG MADINA, saya ingin konsultasi Paket Desain 3D ({{category}})."
       },
       {
         "id": "survey",
-        "title": "Jadwalkan Survei & Ukur Lokasi",
-        "desc": "Atur kunjungan tim untuk ukur langsung ke lokasi",
-        "waTemplate": "Halo RUANG MADINA, saya ingin menjadwalkan survei dan pengukuran langsung ke lokasi untuk proyek {{category}}."
+        "title": "Jadwalkan Survei",
+        "desc": "Ukur langsung ke lokasi",
+        "waTemplate": "Halo RUANG MADINA, saya ingin jadwalkan survei lokasi untuk proyek {{category}}."
       }
     ],
-    "directCta": "Atau mulai chat umum langsung",
-    "directQuery": "Halo RUANG MADINA, saya ingin berkonsultasi mengenai pengerjaan interior ({{category}})."
+    "directCta": "Atau chat langsung",
+    "directQuery": "Halo RUANG MADINA, saya ingin konsultasi interior ({{category}})."
   }
 }
