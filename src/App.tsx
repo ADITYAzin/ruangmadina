@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 
@@ -614,6 +615,8 @@ export default function App() {
           <a href="#top">{t("footer.backToTop")}</a>
         </div>
       </footer>
+
+      <FloatingWhatsApp />
     </main>
   );
 }

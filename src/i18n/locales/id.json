@@ -299,5 +299,47 @@
     "chooseBtn": "Pilih",
     "idOption": "Bahasa Indonesia",
     "enOption": "English"
+  },
+  "floatingWa": {
+    "triggerLabel": "Konsultasi Cepat",
+    "ariaOpen": "Buka menu konsultasi WhatsApp",
+    "ariaClose": "Tutup menu konsultasi WhatsApp",
+    "eyebrow": "KONSULTASI WHATSAPP",
+    "title": "Bantu kami memahami kebutuhan ruang Anda",
+    "categoryLabel": "1. Pilih Tipe Ruang:",
+    "categories": [
+      { "id": "residential", "label": "Residential" },
+      { "id": "commercial", "label": "Commercial" },
+      { "id": "villa", "label": "Villa" }
+    ],
+    "topicLabel": "2. Pilih Topik Diskusi:",
+    "topics": [
+      {
+        "id": "estimate",
+        "title": "Tanya Estimasi Biaya Awal",
+        "desc": "Cek kisaran harga kitchen set atau furniture custom",
+        "waTemplate": "Halo RUANG MADINA, saya ingin tanya estimasi biaya awal untuk ruang kategori {{category}}. Boleh dibantu infonya?"
+      },
+      {
+        "id": "photo",
+        "title": "Kirim Foto & Ukuran Kasar",
+        "desc": "Sudah punya foto/ukuran ruang untuk dihitung penawaran awal",
+        "waTemplate": "Halo RUANG MADINA, saya sudah punya foto dan ukuran kasar ruangan (kategori {{category}}), ingin minta hitungan estimasi awalnya."
+      },
+      {
+        "id": "design",
+        "title": "Konsultasi Desain 3D & Tata Ruang",
+        "desc": "Rencanakan konsep visual 3D & RAB sebelum produksi",
+        "waTemplate": "Halo RUANG MADINA, saya ingin konsultasi Paket Desain Interior 3D untuk ruang kategori {{category}}."
+      },
+      {
+        "id": "survey",
+        "title": "Jadwalkan Survei & Ukur Lokasi",
+        "desc": "Atur kunjungan tim untuk ukur langsung ke lokasi",
+        "waTemplate": "Halo RUANG MADINA, saya ingin menjadwalkan survei dan pengukuran langsung ke lokasi untuk proyek {{category}}."
+      }
+    ],
+    "directCta": "Atau mulai chat umum langsung",
+    "directQuery": "Halo RUANG MADINA, saya ingin berkonsultasi mengenai pengerjaan interior ({{category}})."
   }
 }

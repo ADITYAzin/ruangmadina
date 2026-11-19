@@ -299,5 +299,51 @@
     "chooseBtn": "Choose",
     "idOption": "Bahasa Indonesia",
     "enOption": "English"
+  },
+  "floatingWa": {
+    "triggerLabel": "Quick Consultation",
+    "ariaOpen": "Open WhatsApp consultation menu",
+    "ariaClose": "Close WhatsApp consultation menu",
+    "eyebrow": "WHATSAPP CONCIERGE",
+    "title": "Help us understand your space needs",
+    "categoryLabel": "1. Select Space Type:",
+    "categories": [
+      { "id": "residential", "label": "Residential" },
+      { "id": "commercial", "label": "Commercial" },
+      { "id": "villa", "label": "Villa" }
+    ],
+    "topicLabel": "2. Choose Discussion Topic:",
+    "topics": [
+      {
+        "id": "estimate",
+        "step": "Step 01",
+        "title": "Ask for Initial Cost Estimate",
+        "desc": "Check price range for kitchen sets or custom furniture",
+        "waTemplate": "Hello RUANG MADINA, I would like to ask for an initial cost estimate for a {{category}} project. Could you share the details?"
+      },
+      {
+        "id": "photo",
+        "step": "Step 02",
+        "title": "Send Room Photos & Rough Dimensions",
+        "desc": "Get an initial quotation from your photos and dimensions",
+        "waTemplate": "Hello RUANG MADINA, I have photos and rough dimensions of my space ({{category}}) and would like to request an initial quotation."
+      },
+      {
+        "id": "design",
+        "step": "Step 03",
+        "title": "3D Design & Layout Consultation",
+        "desc": "Plan 3D visuals, layout, and budget before production",
+        "waTemplate": "Hello RUANG MADINA, I would like to consult about the 3D Interior Design Package for my {{category}} space."
+      },
+      {
+        "id": "survey",
+        "step": "Step 04",
+        "title": "Schedule Site Survey & Measurement",
+        "desc": "Arrange an on-site visit and measurement by our team",
+        "waTemplate": "Hello RUANG MADINA, I would like to schedule an on-site survey and measurement for my {{category}} project."
+      }
+    ],
+    "directCta": "Or start a general chat directly",
+    "directQuery": "Hello RUANG MADINA, I would like to consult regarding an interior project ({{category}})."
   }
 }
