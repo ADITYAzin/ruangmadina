@@ -155,6 +155,30 @@
       }
     ]
   },
+  "testimonials": {
+    "eyebrow": "CLIENT STORIES",
+    "title": "Real experiences from",
+    "titleEmphasis": "completed homes",
+    "playLabel": "Play testimonial video",
+    "items": [
+      {
+        "label": "Testimonial 01",
+        "title": "Ruang Madina client project story"
+      },
+      {
+        "label": "Testimonial 02",
+        "title": "From initial design to installation"
+      },
+      {
+        "label": "Testimonial 03",
+        "title": "Impressions after project handover"
+      },
+      {
+        "label": "Testimonial 04",
+        "title": "Workmanship & finishing review"
+      }
+    ]
+  },
   "services": {
     "eyebrow": "SERVICES & ESTIMATIONS",
     "title": "Starting from one room,",

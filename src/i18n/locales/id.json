@@ -155,6 +155,30 @@
       }
     ]
   },
+  "testimonials": {
+    "eyebrow": "CERITA KLIEN",
+    "title": "Pengalaman nyata dari",
+    "titleEmphasis": "rumah yang telah selesai",
+    "playLabel": "Putar video testimoni",
+    "items": [
+      {
+        "label": "Testimoni 01",
+        "title": "Cerita pengerjaan klien Ruang Madina"
+      },
+      {
+        "label": "Testimoni 02",
+        "title": "Pengalaman desain hingga instalasi"
+      },
+      {
+        "label": "Testimoni 03",
+        "title": "Kesan setelah serah terima ruang"
+      },
+      {
+        "label": "Testimoni 04",
+        "title": "Review hasil pengerjaan & kerapian"
+      }
+    ]
+  },
   "services": {
     "eyebrow": "LAYANAN & ESTIMASI",
     "title": "Mulai dari satu ruang,",

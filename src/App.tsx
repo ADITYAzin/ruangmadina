@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import LiteYouTube from "./components/LiteYouTube";
 import { buildWhatsAppUrl, trackMetaEvent, trackWhatsAppLead } from "./utils/metaPixel";
 
 const heroImage = "/livingroom.webp";
@@ -79,6 +80,18 @@ interface CraftCardItem {
 }
 
 const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/2.webp"];
+
+const testimonialVideoIds = [
+  "EUW6GfB0i0E",
+  "2kITp9tJSZg",
+  "BFrOG7luKBE",
+  "7YxHoKJ72XQ",
+];
+
+interface TestimonialItem {
+  label: string;
+  title: string;
+}
 
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
@@ -161,6 +174,35 @@ export default function App() {
   const [estKitchenConfig, setEstKitchenConfig] = useState<string>("both");
   const [estScaleIdx, setEstScaleIdx] = useState<number>(0);
   const [estTierIdx, setEstTierIdx] = useState<number>(0);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const testimonialTrackRef = useRef<HTMLDivElement>(null);
+
+  const scrollTestimonialTo = (index: number) => {
+    const track = testimonialTrackRef.current;
+    if (!track) return;
+    const clamped = Math.max(0, Math.min(testimonialVideoIds.length - 1, index));
+    const card = track.children[clamped] as HTMLElement | undefined;
+    if (card) {
+      track.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+      setActiveTestimonial(clamped);
+    }
+  };
+
+  const handleTestimonialScroll = () => {
+    const track = testimonialTrackRef.current;
+    if (!track) return;
+    const children = Array.from(track.children) as HTMLElement[];
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    for (let i = 0; i < children.length; i++) {
+      const diff = Math.abs(children[i].offsetLeft - track.scrollLeft);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = i;
+      }
+    }
+    setActiveTestimonial(closestIdx);
+  };
 
   const waBaseUrl = "https://wa.me/628113330232";
   const defaultWaQuery = t("calculator.waQueryDefault");
@@ -249,6 +291,11 @@ export default function App() {
   const rawCraftCards = t("craft.cards", { returnObjects: true });
   const craftCardsList: CraftCardItem[] = Array.isArray(rawCraftCards)
     ? (rawCraftCards as CraftCardItem[])
+    : [];
+
+  const rawTestimonials = t("testimonials.items", { returnObjects: true });
+  const testimonialsList: TestimonialItem[] = Array.isArray(rawTestimonials)
+    ? (rawTestimonials as TestimonialItem[])
     : [];
 
   return (
@@ -516,6 +563,87 @@ export default function App() {
                   <p>{principle.text}</p>
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section testimonials-section" id="testimoni">
+        <div className="shell">
+          <div className="testimonials-head">
+            <div>
+              <p className="eyebrow">{t("testimonials.eyebrow")}</p>
+              <h2>
+                {t("testimonials.title")}
+                <br />
+                <i>{t("testimonials.titleEmphasis")}</i>
+              </h2>
+            </div>
+
+            <div className="testimonials-controls">
+              <span className="testimonials-counter">
+                0{activeTestimonial + 1} / 0{testimonialVideoIds.length}
+              </span>
+              <div className="testimonials-nav">
+                <button
+                  type="button"
+                  className="slider-btn"
+                  onClick={() => scrollTestimonialTo(activeTestimonial - 1)}
+                  disabled={activeTestimonial === 0}
+                  aria-label="Previous testimonial"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 12H5M11 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="slider-btn"
+                  onClick={() => scrollTestimonialTo(activeTestimonial + 1)}
+                  disabled={activeTestimonial >= testimonialVideoIds.length - 1}
+                  aria-label="Next testimonial"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="testimonials-track"
+            ref={testimonialTrackRef}
+            onScroll={handleTestimonialScroll}
+          >
+            {testimonialVideoIds.map((videoId, idx) => {
+              const item = testimonialsList[idx];
+              const title = item?.title || `Testimoni ${idx + 1}`;
+              return (
+                <article className="testimonial-card" key={videoId}>
+                  <LiteYouTube
+                    videoId={videoId}
+                    title={title}
+                    playLabel={t("testimonials.playLabel")}
+                  />
+                  <div className="testimonial-meta">
+                    <span>{item?.label || `0${idx + 1}`}</span>
+                    <h3>{title}</h3>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="testimonials-dots" aria-label="Slide indicators">
+            {testimonialVideoIds.map((videoId, idx) => (
+              <button
+                key={videoId}
+                type="button"
+                className={`slider-dot ${activeTestimonial === idx ? "active" : ""}`}
+                onClick={() => scrollTestimonialTo(idx)}
+                aria-label={`Slide ${idx + 1}`}
+              />
             ))}
           </div>
         </div>
