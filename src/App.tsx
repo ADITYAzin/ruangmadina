@@ -5,20 +5,19 @@ import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import { buildWhatsAppUrl, trackMetaEvent, trackWhatsAppLead } from "./utils/metaPixel";
 
-const heroImage = "/livingroom.png";
+const heroImage = "/livingroom.webp";
 
 const projectMetadata = [
   {
-    image: "/4.jpg",
+    image: "/4.webp",
     className: "project-wide",
   },
   {
-    image:
-      "/3.jpg",
+    image: "/3.webp",
     className: "project-tall",
   },
   {
-    image: "/1.png",
+    image: "/1.webp",
     className: "",
   },
 ];
@@ -79,14 +78,14 @@ interface CraftCardItem {
   title: string;
 }
 
-const craftImages = ["/person-rm.png", "/rm-object.png", "/2.png"];
+const craftImages = ["/person-rm.webp", "/rm-object.webp", "/2.webp"];
 
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
     <a className={`brand ${light ? "brand-light" : ""}`} href="#top" aria-label="RUANG MADINA">
       <img
         className="brand-logo"
-        src="/logo.png"
+        src="/logo.webp"
         alt="RUANG MADINA"
         width={30}
         height={36}
@@ -313,6 +312,7 @@ export default function App() {
         <img
           src={heroImage}
           alt="Interior ruang keluarga hangat dengan material kayu dan cahaya alami"
+          fetchPriority="high"
         />
         <div className="hero-overlay" />
         <div className="hero-content shell">
@@ -340,7 +340,7 @@ export default function App() {
           <div className="trust-parent">
             <img
               className="trust-parent-logo"
-              src="/madina-build-logo.png"
+              src="/madina-build-logo.webp"
               alt="Madina Build"
               width={96}
               height={96}
@@ -798,8 +798,9 @@ export default function App() {
         <div className="shell about-grid">
           <div className="about-image">
             <img
-              src="/person-rm.png"
-              alt="Detail kabinet ka  yu yang hangat dan presisi"
+              src="/person-rm.webp"
+              alt="Detail kabinet kayu yang hangat dan presisi"
+              loading="lazy"
             />
             <span>
               {t("about.badge1")}
