@@ -74,6 +74,13 @@ interface PrincipleItem {
   text: string;
 }
 
+interface CraftCardItem {
+  tag: string;
+  title: string;
+}
+
+const craftImages = ["/person-rm.png", "/rm-object.png", "/2.png"];
+
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
     <a className={`brand ${light ? "brand-light" : ""}`} href="#top" aria-label="RUANG MADINA">
@@ -239,6 +246,11 @@ export default function App() {
 
   const rawServices = t("services.items", { returnObjects: true });
   const servicesList: ServiceItem[] = Array.isArray(rawServices) ? (rawServices as ServiceItem[]) : [];
+
+  const rawCraftCards = t("craft.cards", { returnObjects: true });
+  const craftCardsList: CraftCardItem[] = Array.isArray(rawCraftCards)
+    ? (rawCraftCards as CraftCardItem[])
+    : [];
 
   return (
     <main id="top">
@@ -425,6 +437,34 @@ export default function App() {
             })}
           </div>
           <p className="photo-note">{t("projects.photoNote")}</p>
+        </div>
+      </section>
+
+      <section className="section craft-section" id="dibalik-pengerjaan">
+        <div className="shell">
+          <div className="craft-header">
+            <p className="eyebrow">{t("craft.eyebrow")}</p>
+            <h2>
+              {t("craft.title")} <i>{t("craft.titleEmphasis")}</i>
+            </h2>
+          </div>
+
+          <div className="craft-grid">
+            {craftCardsList.map((card, idx) => (
+              <article className="craft-card" key={card.title}>
+                <img
+                  src={craftImages[idx] || craftImages[0]}
+                  alt={card.title}
+                  loading="lazy"
+                />
+                <div className="craft-shade" />
+                <div className="craft-meta">
+                  <span>{card.tag}</span>
+                  <h3>{card.title}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

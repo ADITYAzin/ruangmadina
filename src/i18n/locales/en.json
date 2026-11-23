@@ -304,6 +304,25 @@
     "p2": "From there, we translate your lifestyle into spaces that feel serene, personal, and enduring for years to come",
     "cta": "Discover Madina Build"
   },
+  "craft": {
+    "eyebrow": "BEHIND OUR CRAFT",
+    "title": "Built in-house,",
+    "titleEmphasis": "without shortcuts",
+    "cards": [
+      {
+        "tag": "SIDOARJO WORKSHOP",
+        "title": "Dedicated fabrication team"
+      },
+      {
+        "tag": "MATERIALS & DETAIL",
+        "title": "Precision down to the finish"
+      },
+      {
+        "tag": "INSTALLATION & QC",
+        "title": "Clean final fit"
+      }
+    ]
+  },
   "closing": {
     "eyebrow": "BEGIN HERE",
     "title": "The space you envision,",

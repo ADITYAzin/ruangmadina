@@ -304,6 +304,25 @@
     "p2": "Dari sana, kami menerjemahkannya menjadi ruang yang terasa tenang, personal, dan relevan untuk waktu yang panjang",
     "cta": "Kenali Madina Build"
   },
+  "craft": {
+    "eyebrow": "DIBALIK PENGERJAAN KAMI",
+    "title": "Dikerjakan langsung,",
+    "titleEmphasis": "tanpa perantara",
+    "cards": [
+      {
+        "tag": "WORKSHOP SIDOARJO",
+        "title": "Tim produksi sendiri"
+      },
+      {
+        "tag": "MATERIAL & DETAIL",
+        "title": "Presisi hingga finishing"
+      },
+      {
+        "tag": "INSTALASI & QC",
+        "title": "Rapi hingga terpasang"
+      }
+    ]
+  },
   "closing": {
     "eyebrow": "MULAI DARI SINI",
     "title": "Ruang yang Anda bayangkan,",

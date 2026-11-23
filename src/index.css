@@ -1114,6 +1114,64 @@ input[type="range"] {
   border-bottom: 1px solid var(--terracotta);
 }
 
+.craft-section {
+  background: var(--sand);
+  border-top: 1px solid rgba(139, 110, 82, 0.16);
+}
+.craft-header {
+  max-width: 680px;
+}
+.craft-header h2 {
+  margin-top: 18px;
+}
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 44px;
+}
+.craft-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #e6dfd3;
+}
+.craft-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.craft-card:hover img {
+  transform: scale(1.03);
+}
+.craft-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 22, 18, 0) 45%, rgba(26, 22, 18, 0.78) 100%);
+  pointer-events: none;
+}
+.craft-meta {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 24px;
+  color: var(--warm-white);
+}
+.craft-meta span {
+  display: block;
+  font-family: var(--label);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #d3b477;
+  margin-bottom: 6px;
+}
+.craft-meta h3 {
+  font-size: 28px;
+  line-height: 1.1;
+}
+
 .closing {
   position: relative;
   padding: 115px 0;
@@ -1271,6 +1329,9 @@ footer {
   }
   .about-grid {
     gap: 65px;
+  }
+  .craft-grid {
+    grid-template-columns: 1fr;
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
