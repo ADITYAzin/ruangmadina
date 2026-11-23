@@ -1115,7 +1115,7 @@ input[type="range"] {
 }
 
 .craft-section {
-  background: var(--sand);
+  background: var(--warm-white);
   border-top: 1px solid rgba(139, 110, 82, 0.16);
 }
 .craft-header {
@@ -1132,7 +1132,7 @@ input[type="range"] {
 }
 .craft-card {
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #e6dfd3;
 }

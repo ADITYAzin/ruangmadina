@@ -78,7 +78,7 @@ interface CraftCardItem {
   title: string;
 }
 
-const craftImages = ["/person-rm.webp", "/rm-object.webp", "/2.webp"];
+const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/2.webp"];
 
 function ArchLogo({ light = false }: { light?: boolean }) {
   return (
