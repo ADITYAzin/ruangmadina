@@ -330,12 +330,11 @@ export default function App() {
               className="trust-parent-logo"
               src="/madina-build-logo.png"
               alt="Madina Build"
-              width={42}
-              height={42}
+              width={96}
+              height={96}
             />
             <p>
               {t("trust.partOf")} <strong>Madina Build</strong>
-              <br />
               <small>{t("trust.company")}</small>
             </p>
           </div>
