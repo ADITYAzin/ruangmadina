@@ -326,7 +326,13 @@ export default function App() {
       <section className="trust-bar" id="trust">
         <div className="shell trust-grid">
           <div className="trust-parent">
-            <span className="mini-arch">R</span>
+            <img
+              className="trust-parent-logo"
+              src="/madina-build-logo.png"
+              alt="Madina Build"
+              width={42}
+              height={42}
+            />
             <p>
               {t("trust.partOf")} <strong>Madina Build</strong>
               <br />

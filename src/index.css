@@ -303,16 +303,11 @@ a:hover .arrow {
   font-family: var(--sans);
   font-size: 10px;
 }
-.mini-arch {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 43px;
-  border: 1px solid var(--gold);
-  border-radius: 20px 20px 0 0;
-  color: var(--terracotta) !important;
-  font-family: var(--serif);
-  font-size: 22px !important;
+.trust-parent-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .trust-divider {
   width: 1px;
