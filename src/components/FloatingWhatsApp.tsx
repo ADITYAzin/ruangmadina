@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { buildWhatsAppUrl, trackWhatsAppLead } from "../utils/metaPixel";
 
 interface WaCategory {
   id: string;
@@ -64,7 +65,7 @@ export default function FloatingWhatsApp({ onOpenCalculator }: FloatingWhatsAppP
 
   const buildWaUrl = (template: string) => {
     const message = template.replace("{{category}}", activeCategory.label);
-    return `${WA_BASE_URL}?text=${encodeURIComponent(message)}`;
+    return buildWhatsAppUrl(WA_BASE_URL, message);
   };
 
   const directWaUrl = buildWaUrl(t("floatingWa.directQuery"));
@@ -154,7 +155,14 @@ export default function FloatingWhatsApp({ onOpenCalculator }: FloatingWhatsAppP
                     target="_blank"
                     rel="noreferrer"
                     className="fwa-topic-item"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      trackWhatsAppLead({
+                        source: `floating_wa_${topic.id}`,
+                        category: activeCategory.id,
+                        intentTier: topic.id === "survey" || topic.id === "photo" ? "high" : "general",
+                      });
+                    }}
                   >
                     <div className="fwa-topic-copy">
                       <div className="fwa-topic-head">
@@ -178,7 +186,13 @@ export default function FloatingWhatsApp({ onOpenCalculator }: FloatingWhatsAppP
             target="_blank"
             rel="noreferrer"
             className="fwa-direct-link"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              setIsOpen(false);
+              trackWhatsAppLead({
+                source: "floating_wa_direct",
+                category: activeCategory.id,
+              });
+            }}
           >
             <span>{t("floatingWa.directCta")}</span>
             <svg className="arrow" viewBox="0 0 24 24" aria-hidden="true">

@@ -355,7 +355,7 @@
       {
         "id": "photo",
         "title": "Kirim Foto & Ukuran",
-        "desc": "Dapat penawaran awal via WhatsApp",
+        "desc": "Dapatkan estimasi harga",
         "waTemplate": "Halo RUANG MADINA, saya punya foto & ukuran kasar ({{category}}), ingin minta estimasi awal."
       },
       {

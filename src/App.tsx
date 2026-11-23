@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import { buildWhatsAppUrl, trackMetaEvent, trackWhatsAppLead } from "./utils/metaPixel";
 
 const heroImage = "/livingroom.png";
 
@@ -157,7 +158,7 @@ export default function App() {
 
   const waBaseUrl = "https://wa.me/628113330232";
   const defaultWaQuery = t("calculator.waQueryDefault");
-  const mainWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(defaultWaQuery)}`;
+  const mainWhatsappUrl = buildWhatsAppUrl(waBaseUrl, defaultWaQuery);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -205,13 +206,18 @@ export default function App() {
     scale: selectedScaleLabel,
     tier: selectedTierLabel,
   });
-  const estimatorWhatsappUrl = `${waBaseUrl}?text=${encodeURIComponent(estimatorWaQuery)}`;
+  const estimatorWhatsappUrl = buildWhatsAppUrl(waBaseUrl, estimatorWaQuery);
+
+  const openCalculatorTab = () => {
+    setActiveServiceTab("calculator");
+    trackMetaEvent("ViewContent", { content_name: "estimator_calculator" });
+  };
 
   const handleOpenCalculatorFromWa = (categoryId: string) => {
     if (estSpaces.some((item) => item.id === categoryId)) {
       setEstSpace(categoryId);
     }
-    setActiveServiceTab("calculator");
+    openCalculatorTab();
     document.getElementById("layanan")?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -266,7 +272,10 @@ export default function App() {
               href={mainWhatsappUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu();
+                trackWhatsAppLead({ source: "nav_cta" });
+              }}
             >
               {t("nav.consultation")} <Arrow />
             </a>
@@ -298,7 +307,13 @@ export default function App() {
           <p className="eyebrow light">{t("hero.eyebrow")}</p>
           <h1>{t("hero.title")}</h1>
           <p className="hero-copy">{t("hero.copy")}</p>
-          <a className="primary-button" href={mainWhatsappUrl} target="_blank" rel="noreferrer">
+          <a
+            className="primary-button"
+            href={mainWhatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackWhatsAppLead({ source: "hero_cta" })}
+          >
             {t("hero.cta")} <Arrow />
           </a>
         </div>
@@ -354,9 +369,15 @@ export default function App() {
                   <h3>{sector.title}</h3>
                   <a
                     className="sector-action"
-                    href={`${waBaseUrl}?text=${encodeURIComponent(sector.waQuery)}`}
+                    href={buildWhatsAppUrl(waBaseUrl, sector.waQuery)}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() =>
+                      trackWhatsAppLead({
+                        source: `sector_${sector.id}`,
+                        category: sector.id,
+                      })
+                    }
                   >
                     <span>{sector.cta}</span>
                     <Arrow />
@@ -482,7 +503,7 @@ export default function App() {
               role="tab"
               aria-selected={activeServiceTab === "calculator"}
               className={`services-tab ${activeServiceTab === "calculator" ? "active" : ""}`}
-              onClick={() => setActiveServiceTab("calculator")}
+              onClick={openCalculatorTab}
             >
               {t("estimator.tabCalculator")}
             </button>
@@ -491,110 +512,116 @@ export default function App() {
           {activeServiceTab === "services" ? (
             <>
               <div className="service-grid">
-            {servicesList.map((service) => (
-              <article className="service-card" key={service.number}>
-                <div className="service-card-top">
-                  <div className="service-badge">
-                    <span className="service-number">{service.number}</span>
-                    <span className="service-tag">{t("services.serviceTag")}</span>
-                  </div>
-                  <h3>{service.title}</h3>
-                  <div className="service-basis-wrap">
-                    <strong className="service-basis">{service.basis}</strong>
-                    <span className="service-basis-note">{service.basisNote}</span>
-                  </div>
-                </div>
-
-                <div className="service-card-body">
-                  {service.tiers && (
-                    <div className="service-price-list">
-                      {service.tiers.map((tier) => (
-                        <div className="price-row" key={tier.name}>
-                          <span className="price-name">{tier.name}</span>
-                          <span className="price-dots" />
-                          <span className="price-val">{tier.price}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {service.customPrices && (
-                    <div className="service-custom-pricing">
-                      <div className="custom-price-featured">
-                        <span className="custom-item-name">{service.customPrices[0].title}</span>
-                        <div className="custom-price-highlight">
-                          <span className="price-val">{service.customPrices[0].price}</span>
-                          <span className="custom-unit">/ {service.customPrices[0].unit}</span>
-                        </div>
+                {servicesList.map((service) => (
+                  <article className="service-card" key={service.number}>
+                    <div className="service-card-top">
+                      <div className="service-badge">
+                        <span className="service-number">{service.number}</span>
+                        <span className="service-tag">{t("services.serviceTag")}</span>
                       </div>
-                      <div className="custom-other-box">
-                        <span className="custom-item-name">{service.customPrices[1].title}</span>
-                        <p className="custom-desc">{service.customPrices[1].desc}</p>
+                      <h3>{service.title}</h3>
+                      <div className="service-basis-wrap">
+                        <strong className="service-basis">{service.basis}</strong>
+                        <span className="service-basis-note">{service.basisNote}</span>
                       </div>
                     </div>
-                  )}
 
-                  {service.designPrices && (
-                    <div className="service-design-pricing">
-                      <div className="design-subgroup">
-                        <span className="design-label">{t("services.byRoom")}</span>
-                        <div className="design-rows">
-                          {service.designPrices.rooms.map((room) => (
-                            <div className="price-row" key={room.label}>
-                              <span className="price-name">{room.label}</span>
+                    <div className="service-card-body">
+                      {service.tiers && (
+                        <div className="service-price-list">
+                          {service.tiers.map((tier) => (
+                            <div className="price-row" key={tier.name}>
+                              <span className="price-name">{tier.name}</span>
                               <span className="price-dots" />
-                              <span className="price-val">{room.price}</span>
+                              <span className="price-val">{tier.price}</span>
                             </div>
                           ))}
                         </div>
-                      </div>
-                      <div className="design-subgroup">
-                        <span className="design-label">{t("services.byArea")}</span>
-                        <div className="design-tags">
-                          {service.designPrices.areaPackages.map((pkg) => (
-                            <span key={pkg} className="design-tag">
-                              {pkg}
-                            </span>
-                          ))}
+                      )}
+
+                      {service.customPrices && (
+                        <div className="service-custom-pricing">
+                          <div className="custom-price-featured">
+                            <span className="custom-item-name">{service.customPrices[0].title}</span>
+                            <div className="custom-price-highlight">
+                              <span className="price-val">{service.customPrices[0].price}</span>
+                              <span className="custom-unit">/ {service.customPrices[0].unit}</span>
+                            </div>
+                          </div>
+                          <div className="custom-other-box">
+                            <span className="custom-item-name">{service.customPrices[1].title}</span>
+                            <p className="custom-desc">{service.customPrices[1].desc}</p>
+                          </div>
                         </div>
-                        <span className="design-subnote">{service.designPrices.areaDesc}</span>
-                      </div>
+                      )}
+
+                      {service.designPrices && (
+                        <div className="service-design-pricing">
+                          <div className="design-subgroup">
+                            <span className="design-label">{t("services.byRoom")}</span>
+                            <div className="design-rows">
+                              {service.designPrices.rooms.map((room) => (
+                                <div className="price-row" key={room.label}>
+                                  <span className="price-name">{room.label}</span>
+                                  <span className="price-dots" />
+                                  <span className="price-val">{room.price}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="design-subgroup">
+                            <span className="design-label">{t("services.byArea")}</span>
+                            <div className="design-tags">
+                              {service.designPrices.areaPackages.map((pkg) => (
+                                <span key={pkg} className="design-tag">
+                                  {pkg}
+                                </span>
+                              ))}
+                            </div>
+                            <span className="design-subnote">{service.designPrices.areaDesc}</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
 
-                <div className="service-card-bottom">
-                  <div className="service-note-box">
-                    <p className="note-example">
-                      <b>{service.exampleLabel}:</b> {service.exampleText}
-                    </p>
-                    <p className="note-scope">{service.scope}</p>
-                  </div>
-                  <a
-                    className="service-card-action"
-                    href={`${waBaseUrl}?text=${encodeURIComponent(service.waQuery)}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span>{service.cta}</span>
-                    <Arrow />
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
+                    <div className="service-card-bottom">
+                      <div className="service-note-box">
+                        <p className="note-example">
+                          <b>{service.exampleLabel}:</b> {service.exampleText}
+                        </p>
+                        <p className="note-scope">{service.scope}</p>
+                      </div>
+                      <a
+                        className="service-card-action"
+                        href={buildWhatsAppUrl(waBaseUrl, service.waQuery)}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() =>
+                          trackWhatsAppLead({
+                            source: `service_${service.number}`,
+                            category: service.title,
+                          })
+                        }
+                      >
+                        <span>{service.cta}</span>
+                        <Arrow />
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
 
-          <div className="services-bridge">
-            <span>{t("estimator.bridgeText")}</span>
-            <button
-              type="button"
-              className="services-bridge-btn"
-              onClick={() => setActiveServiceTab("calculator")}
-            >
-              <span>{t("estimator.bridgeCta")}</span>
-              <Arrow />
-            </button>
-          </div>
+              <div className="services-bridge">
+                <span>{t("estimator.bridgeText")}</span>
+                <button
+                  type="button"
+                  className="services-bridge-btn"
+                  onClick={openCalculatorTab}
+                >
+                  <span>{t("estimator.bridgeCta")}</span>
+                  <Arrow />
+                </button>
+              </div>
             </>
           ) : (
             <div className="estimator-card">
@@ -606,6 +633,14 @@ export default function App() {
                   href={estimatorWhatsappUrl}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() =>
+                    trackWhatsAppLead({
+                      source: "estimator_calculator",
+                      category: estSpace,
+                      intentTier: "high",
+                      detail: `${estNeed} | ${selectedScaleLabel} | ${selectedTierLabel}`,
+                    })
+                  }
                 >
                   <span>{t("estimator.cta")}</span>
                   <Arrow />
@@ -718,7 +753,7 @@ export default function App() {
         <div className="shell about-grid">
           <div className="about-image">
             <img
-              src="https://images.unsplash.com/photo-1636029697866-214ee5315764?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+              src="/person-rm.png"
               alt="Detail kabinet ka  yu yang hangat dan presisi"
             />
             <span>
@@ -754,7 +789,13 @@ export default function App() {
             <i>{t("closing.titleEmphasis")}</i>
           </h2>
           <p>{t("closing.desc")}</p>
-          <a className="primary-button" href={mainWhatsappUrl} target="_blank" rel="noreferrer">
+          <a
+            className="primary-button"
+            href={mainWhatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackWhatsAppLead({ source: "closing_cta" })}
+          >
             {t("closing.cta")} <Arrow />
           </a>
         </div>
@@ -776,7 +817,12 @@ export default function App() {
           </div>
           <div>
             <p className="footer-label">{t("footer.contact")}</p>
-            <a href={mainWhatsappUrl} target="_blank" rel="noreferrer">
+            <a
+              href={mainWhatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackWhatsAppLead({ source: "footer_wa" })}
+            >
               {t("footer.whatsappLabel")}
             </a>
             <span>{t("footer.city")}</span>
