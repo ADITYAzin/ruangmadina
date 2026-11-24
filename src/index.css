@@ -649,17 +649,49 @@ a:hover .arrow {
   align-items: stretch;
 }
 .service-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--warm-white);
-  border-top: 2px solid var(--gold);
-  padding: 34px 30px;
-  box-shadow: 0 4px 18px rgba(26, 22, 18, 0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e6dfd3;
 }
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(26, 22, 18, 0.07);
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.service-card:hover img {
+  transform: scale(1.04);
+}
+.service-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 22, 18, 0) 40%, rgba(26, 22, 18, 0.82) 100%);
+  pointer-events: none;
+}
+.service-meta {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 24px;
+  color: var(--warm-white);
+}
+.service-meta h3 {
+  font-size: 30px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.service-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--label);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d3b477;
 }
 .service-card-top {
   padding-bottom: 20px;
@@ -986,6 +1018,68 @@ a:hover .arrow {
 .estimator-pill.active {
   background: var(--ink);
   color: var(--warm-white);
+  border-color: var(--ink);
+}
+.estimator-pill-input {
+  width: 210px;
+  padding: 9px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--sand);
+  color: var(--ink);
+  border: 1px solid rgba(139, 110, 82, 0.24);
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.estimator-pill-input::placeholder {
+  color: var(--clay);
+}
+.estimator-pill-input:focus,
+.estimator-pill-input.active {
+  border-color: var(--ink);
+  background: var(--warm-white);
+}
+.estimator-design-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.estimator-design-inputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.estimator-unit-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: var(--sand);
+  border: 1px solid rgba(139, 110, 82, 0.24);
+}
+.estimator-unit-field span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.estimator-unit-field input {
+  width: 64px;
+  padding: 5px 8px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--warm-white);
+  border: 1px solid rgba(139, 110, 82, 0.28);
+  outline: none;
+  text-align: center;
+}
+.estimator-unit-field input:focus {
   border-color: var(--ink);
 }
 .estimator-kitchen-scale {
@@ -1484,9 +1578,6 @@ footer {
   }
   .sector-card {
     height: 400px;
-  }
-  .service-card {
-    min-height: 410px;
   }
   .estimator-card {
     grid-template-columns: 1fr;

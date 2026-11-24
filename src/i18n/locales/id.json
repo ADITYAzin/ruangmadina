@@ -196,7 +196,7 @@
         "tiers": [
           {
             "name": "Esensial",
-            "price": "Rp2,5 jt / m'"
+            "price": "Rp3,0 jt / m'"
           },
           {
             "name": "Premium",
@@ -216,7 +216,7 @@
           }
         ],
         "exampleLabel": "Contoh hitungan",
-        "exampleText": "Dapur dinding 4 m = 8 m lari (4 m bawah + 4 m atas) = Rp20 jt (Esensial).",
+        "exampleText": "Dapur dinding 4 m = 8 m lari (4 m bawah + 4 m atas) = Rp24 jt (Esensial).",
         "scope": "Termasuk kabinet dan pemasangan. Top table, backsplash, dan sink terpisah.",
         "cta": "Konsultasi kitchen set",
         "waQuery": "Halo RUANG MADINA, saya ingin berkonsultasi tentang kitchen set."
@@ -303,15 +303,35 @@
     "needs": [
       { "id": "kitchen", "label": "Kitchen Set" },
       { "id": "furniture", "label": "Furniture Custom" },
-      { "id": "design", "label": "Paket Desain" },
-      { "id": "full", "label": "Full Interior" }
+      { "id": "design", "label": "Paket interior (desain)" }
     ],
     "scaleLabel": "3. Perkiraan Ukuran",
     "kitchenConfig": [
       { "id": "lower", "label": "Bawah Saja" },
+      { "id": "upper", "label": "Atas Saja" },
       { "id": "both", "label": "Atas & Bawah" }
     ],
-    "unitOptions": ["1 Unit", "2–3 Unit", "4+ Unit"],
+    "kitchenLowerLabel": "Kabinet bawah (Meter lari)",
+    "kitchenUpperLabel": "Kabinet atas (Meter persegi)",
+    "kitchenLowerPlaceholder": "Bawah (m' / Meter lari)",
+    "kitchenUpperPlaceholder": "Atas (m² / Meter persegi)",
+    "kitchenLowerUnit": "m' (Meter lari)",
+    "kitchenUpperUnit": "m² (Meter persegi)",
+    "kitchenBothScale": "Bawah {{lower}} m' & Atas {{upper}} m²",
+    "notFilled": "belum diisi",
+    "furnitureUnit": "m² bidang muka",
+    "furnitureAriaLabel": "Perkiraan meter persegi bidang muka",
+    "unitOptions": ["1 Unit", "2 Unit", "3 Unit"],
+    "unitCustomPlaceholder": "Jumlah lain (cth: 5)",
+    "designScopes": [
+      { "id": "room", "label": "Ruang" },
+      { "id": "building", "label": "Bangunan" }
+    ],
+    "designRoomUnit": "Ruang",
+    "designBuildingUnit": "Bangunan",
+    "designRoomPlaceholder": "Jumlah Ruang (cth: 2)",
+    "designBuildingPlaceholder": "Jumlah Bangunan (cth: 1)",
+    "designQtyPlaceholder": "Jumlah",
     "roomOptions": ["1 Ruang", "2–3 Ruang", "Satu Bangunan"],
     "tierLabel": "4. Kelas Material",
     "tiers": ["Esensial", "Premium / Signature", "Duco", "Minta Saran"],

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import LanguageModal from "./components/LanguageModal";
@@ -80,6 +80,8 @@ interface CraftCardItem {
 }
 
 const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/2.webp"];
+
+const serviceImages = ["/4.webp", "/1.webp", "/2.webp"];
 
 const testimonialVideoIds = [
   "EUW6GfB0i0E",
@@ -167,7 +169,12 @@ interface OptionItem {
 export default function App() {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [length, setLength] = useState(4);
+  const [length, setLength] = useState("");
+  const [upperArea, setUpperArea] = useState("");
+  const [customUnitCount, setCustomUnitCount] = useState("");
+  const [designScopes, setDesignScopes] = useState<string[]>(["room"]);
+  const [designRoomCount, setDesignRoomCount] = useState("");
+  const [designBuildingCount, setDesignBuildingCount] = useState("");
   const [activeServiceTab, setActiveServiceTab] = useState<"services" | "calculator">("services");
   const [estSpace, setEstSpace] = useState<string>("residential");
   const [estNeed, setEstNeed] = useState<string>("kitchen");
@@ -175,12 +182,28 @@ export default function App() {
   const [estScaleIdx, setEstScaleIdx] = useState<number>(0);
   const [estTierIdx, setEstTierIdx] = useState<number>(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [totalTestimonialStops, setTotalTestimonialStops] = useState(
+    Math.max(1, testimonialVideoIds.length - 1),
+  );
   const testimonialTrackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateStops = () => {
+      const visibleCards = window.innerWidth > 980 ? 2 : 1;
+      const stops = Math.max(1, testimonialVideoIds.length - visibleCards + 1);
+      setTotalTestimonialStops(stops);
+      setActiveTestimonial((prev) => Math.min(prev, stops - 1));
+    };
+
+    updateStops();
+    window.addEventListener("resize", updateStops);
+    return () => window.removeEventListener("resize", updateStops);
+  }, []);
 
   const scrollTestimonialTo = (index: number) => {
     const track = testimonialTrackRef.current;
     if (!track) return;
-    const clamped = Math.max(0, Math.min(testimonialVideoIds.length - 1, index));
+    const clamped = Math.max(0, Math.min(totalTestimonialStops - 1, index));
     const card = track.children[clamped] as HTMLElement | undefined;
     if (card) {
       track.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
@@ -192,9 +215,10 @@ export default function App() {
     const track = testimonialTrackRef.current;
     if (!track) return;
     const children = Array.from(track.children) as HTMLElement[];
+    const maxStop = totalTestimonialStops - 1;
     let closestIdx = 0;
     let minDiff = Infinity;
-    for (let i = 0; i < children.length; i++) {
+    for (let i = 0; i <= maxStop && i < children.length; i++) {
       const diff = Math.abs(children[i].offsetLeft - track.scrollLeft);
       if (diff < minDiff) {
         minDiff = diff;
@@ -224,8 +248,19 @@ export default function App() {
   const rawUnitOptions = t("estimator.unitOptions", { returnObjects: true });
   const unitOptions: string[] = Array.isArray(rawUnitOptions) ? (rawUnitOptions as string[]) : [];
 
-  const rawRoomOptions = t("estimator.roomOptions", { returnObjects: true });
-  const roomOptions: string[] = Array.isArray(rawRoomOptions) ? (rawRoomOptions as string[]) : [];
+  const rawDesignScopes = t("estimator.designScopes", { returnObjects: true });
+  const designScopeOptions: OptionItem[] = Array.isArray(rawDesignScopes)
+    ? (rawDesignScopes as OptionItem[])
+    : [];
+
+  const toggleDesignScope = (scopeId: string) => {
+    setDesignScopes((prev) => {
+      if (prev.includes(scopeId)) {
+        return prev.length > 1 ? prev.filter((item) => item !== scopeId) : prev;
+      }
+      return [...prev, scopeId];
+    });
+  };
 
   const rawTiers = t("estimator.tiers", { returnObjects: true });
   const tierOptions: string[] = Array.isArray(rawTiers) ? (rawTiers as string[]) : [];
@@ -238,12 +273,51 @@ export default function App() {
     estKitchenConfigs.find((item) => item.id === estKitchenConfig)?.label || "";
 
   let selectedScaleLabel = "";
+  const lowerVal = length.trim();
+  const upperVal = upperArea.trim();
+  const notFilled = t("estimator.notFilled");
+
   if (estNeed === "kitchen") {
-    selectedScaleLabel = `${length} m (${selectedKitchenConfigLabel})`;
+    if (estKitchenConfig === "lower") {
+      selectedScaleLabel = lowerVal
+        ? `${lowerVal} ${t("estimator.kitchenLowerUnit")} (${selectedKitchenConfigLabel})`
+        : `${selectedKitchenConfigLabel} (${notFilled})`;
+    } else if (estKitchenConfig === "upper") {
+      selectedScaleLabel = upperVal
+        ? `${upperVal} ${t("estimator.kitchenUpperUnit")} (${selectedKitchenConfigLabel})`
+        : `${selectedKitchenConfigLabel} (${notFilled})`;
+    } else {
+      selectedScaleLabel =
+        lowerVal || upperVal
+          ? `${t("estimator.kitchenBothScale", {
+              lower: lowerVal || notFilled,
+              upper: upperVal || notFilled,
+            })} (${selectedKitchenConfigLabel})`
+          : `${selectedKitchenConfigLabel} (${notFilled})`;
+    }
   } else if (estNeed === "furniture") {
-    selectedScaleLabel = unitOptions[estScaleIdx] || unitOptions[0] || "";
+    selectedScaleLabel = customUnitCount.trim()
+      ? `${customUnitCount.trim()} Unit`
+      : unitOptions[estScaleIdx] || unitOptions[0] || "";
   } else {
-    selectedScaleLabel = roomOptions[estScaleIdx] || roomOptions[0] || "";
+    const parts: string[] = [];
+    if (designScopes.includes("room")) {
+      const roomQty = designRoomCount.trim();
+      parts.push(
+        roomQty
+          ? `${roomQty} ${t("estimator.designRoomUnit")}`
+          : `${t("estimator.designRoomUnit")} (${notFilled})`,
+      );
+    }
+    if (designScopes.includes("building")) {
+      const buildingQty = designBuildingCount.trim();
+      parts.push(
+        buildingQty
+          ? `${buildingQty} ${t("estimator.designBuildingUnit")}`
+          : `${t("estimator.designBuildingUnit")} (${notFilled})`,
+      );
+    }
+    selectedScaleLabel = parts.join(" & ");
   }
 
   const selectedTierLabel = tierOptions[estTierIdx] || tierOptions[0] || "";
@@ -582,7 +656,7 @@ export default function App() {
 
             <div className="testimonials-controls">
               <span className="testimonials-counter">
-                0{activeTestimonial + 1} / 0{testimonialVideoIds.length}
+                0{activeTestimonial + 1} / 0{totalTestimonialStops}
               </span>
               <div className="testimonials-nav">
                 <button
@@ -600,7 +674,7 @@ export default function App() {
                   type="button"
                   className="slider-btn"
                   onClick={() => scrollTestimonialTo(activeTestimonial + 1)}
-                  disabled={activeTestimonial >= testimonialVideoIds.length - 1}
+                  disabled={activeTestimonial >= totalTestimonialStops - 1}
                   aria-label="Next testimonial"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -636,9 +710,9 @@ export default function App() {
           </div>
 
           <div className="testimonials-dots" aria-label="Slide indicators">
-            {testimonialVideoIds.map((videoId, idx) => (
+            {Array.from({ length: totalTestimonialStops }).map((_, idx) => (
               <button
-                key={videoId}
+                key={idx}
                 type="button"
                 className={`slider-dot ${activeTestimonial === idx ? "active" : ""}`}
                 onClick={() => scrollTestimonialTo(idx)}
@@ -685,102 +759,33 @@ export default function App() {
           {activeServiceTab === "services" ? (
             <>
               <div className="service-grid">
-                {servicesList.map((service) => (
-                  <article className="service-card" key={service.number}>
-                    <div className="service-card-top">
-                      <div className="service-badge">
-                        <span className="service-number">{service.number}</span>
-                        <span className="service-tag">{t("services.serviceTag")}</span>
-                      </div>
+                {servicesList.map((service, idx) => (
+                  <a
+                    className="service-card"
+                    key={service.number}
+                    href={buildWhatsAppUrl(waBaseUrl, service.waQuery)}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() =>
+                      trackWhatsAppLead({
+                        source: `service_${service.number}`,
+                        category: service.title,
+                      })
+                    }
+                  >
+                    <img
+                      src={serviceImages[idx] || serviceImages[0]}
+                      alt={service.title}
+                      loading="lazy"
+                    />
+                    <div className="service-shade" />
+                    <div className="service-meta">
                       <h3>{service.title}</h3>
-                      <div className="service-basis-wrap">
-                        <strong className="service-basis">{service.basis}</strong>
-                        <span className="service-basis-note">{service.basisNote}</span>
-                      </div>
+                      <span className="service-cta">
+                        {service.cta} <Arrow />
+                      </span>
                     </div>
-
-                    <div className="service-card-body">
-                      {service.tiers && (
-                        <div className="service-price-list">
-                          {service.tiers.map((tier) => (
-                            <div className="price-row" key={tier.name}>
-                              <span className="price-name">{tier.name}</span>
-                              <span className="price-dots" />
-                              <span className="price-val">{tier.price}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {service.customPrices && (
-                        <div className="service-custom-pricing">
-                          <div className="custom-price-featured">
-                            <span className="custom-item-name">{service.customPrices[0].title}</span>
-                            <div className="custom-price-highlight">
-                              <span className="price-val">{service.customPrices[0].price}</span>
-                              <span className="custom-unit">/ {service.customPrices[0].unit}</span>
-                            </div>
-                          </div>
-                          <div className="custom-other-box">
-                            <span className="custom-item-name">{service.customPrices[1].title}</span>
-                            <p className="custom-desc">{service.customPrices[1].desc}</p>
-                          </div>
-                        </div>
-                      )}
-
-                      {service.designPrices && (
-                        <div className="service-design-pricing">
-                          <div className="design-subgroup">
-                            <span className="design-label">{t("services.byRoom")}</span>
-                            <div className="design-rows">
-                              {service.designPrices.rooms.map((room) => (
-                                <div className="price-row" key={room.label}>
-                                  <span className="price-name">{room.label}</span>
-                                  <span className="price-dots" />
-                                  <span className="price-val">{room.price}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                          <div className="design-subgroup">
-                            <span className="design-label">{t("services.byArea")}</span>
-                            <div className="design-tags">
-                              {service.designPrices.areaPackages.map((pkg) => (
-                                <span key={pkg} className="design-tag">
-                                  {pkg}
-                                </span>
-                              ))}
-                            </div>
-                            <span className="design-subnote">{service.designPrices.areaDesc}</span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="service-card-bottom">
-                      <div className="service-note-box">
-                        <p className="note-example">
-                          <b>{service.exampleLabel}:</b> {service.exampleText}
-                        </p>
-                        <p className="note-scope">{service.scope}</p>
-                      </div>
-                      <a
-                        className="service-card-action"
-                        href={buildWhatsAppUrl(waBaseUrl, service.waQuery)}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={() =>
-                          trackWhatsAppLead({
-                            source: `service_${service.number}`,
-                            category: service.title,
-                          })
-                        }
-                      >
-                        <span>{service.cta}</span>
-                        <Arrow />
-                      </a>
-                    </div>
-                  </article>
+                  </a>
                 ))}
               </div>
 
@@ -859,19 +864,7 @@ export default function App() {
                 <div className="estimator-group">
                   <span className="estimator-label">{t("estimator.scaleLabel")}</span>
                   {estNeed === "kitchen" ? (
-                    <div className="estimator-kitchen-scale">
-                      <div className="estimator-slider-row">
-                        <input
-                          type="range"
-                          min="2"
-                          max="8"
-                          step="0.5"
-                          value={length}
-                          onChange={(event) => setLength(Number(event.target.value))}
-                          aria-label={t("calculator.ariaLabel")}
-                        />
-                        <strong className="estimator-length-val">{length} m</strong>
-                      </div>
+                    <div className="estimator-design-row">
                       <div className="estimator-pills">
                         {estKitchenConfigs.map((cfg) => (
                           <button
@@ -884,19 +877,111 @@ export default function App() {
                           </button>
                         ))}
                       </div>
+                      <div className="estimator-design-inputs">
+                        {(estKitchenConfig === "lower" || estKitchenConfig === "both") && (
+                          <input
+                            type="number"
+                            min="0.5"
+                            max="99"
+                            step="0.5"
+                            inputMode="decimal"
+                            className={`estimator-pill-input ${length.trim() ? "active" : ""}`}
+                            placeholder={t("estimator.kitchenLowerPlaceholder")}
+                            value={length}
+                            onChange={(event) => setLength(event.target.value)}
+                            aria-label={t("estimator.kitchenLowerLabel")}
+                          />
+                        )}
+                        {(estKitchenConfig === "upper" || estKitchenConfig === "both") && (
+                          <input
+                            type="number"
+                            min="0.5"
+                            max="99"
+                            step="0.5"
+                            inputMode="decimal"
+                            className={`estimator-pill-input ${upperArea.trim() ? "active" : ""}`}
+                            placeholder={t("estimator.kitchenUpperPlaceholder")}
+                            value={upperArea}
+                            onChange={(event) => setUpperArea(event.target.value)}
+                            aria-label={t("estimator.kitchenUpperLabel")}
+                          />
+                        )}
+                      </div>
                     </div>
-                  ) : (
+                  ) : estNeed === "furniture" ? (
                     <div className="estimator-pills">
-                      {(estNeed === "furniture" ? unitOptions : roomOptions).map((opt, idx) => (
+                      {unitOptions.map((opt, idx) => (
                         <button
                           key={opt}
                           type="button"
-                          className={`estimator-pill ${estScaleIdx === idx ? "active" : ""}`}
-                          onClick={() => setEstScaleIdx(idx)}
+                          className={`estimator-pill ${!customUnitCount.trim() && estScaleIdx === idx ? "active" : ""}`}
+                          onClick={() => {
+                            setCustomUnitCount("");
+                            setEstScaleIdx(idx);
+                          }}
                         >
                           {opt}
                         </button>
                       ))}
+                      <input
+                        type="number"
+                        min="1"
+                        max="99"
+                        inputMode="numeric"
+                        className={`estimator-pill-input ${customUnitCount.trim() ? "active" : ""}`}
+                        placeholder={t("estimator.unitCustomPlaceholder")}
+                        value={customUnitCount}
+                        onChange={(event) => setCustomUnitCount(event.target.value)}
+                        aria-label={t("estimator.unitCustomPlaceholder")}
+                      />
+                    </div>
+                  ) : (
+                    <div className="estimator-design-row">
+                      <div className="estimator-pills">
+                        {designScopeOptions.map((scope) => {
+                          const isSelected = designScopes.includes(scope.id);
+                          return (
+                            <button
+                              key={scope.id}
+                              type="button"
+                              aria-pressed={isSelected}
+                              className={`estimator-pill ${isSelected ? "active" : ""}`}
+                              onClick={() => toggleDesignScope(scope.id)}
+                            >
+                              {scope.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="estimator-design-inputs">
+                        {designScopes.includes("room") && (
+                          <input
+                            type="number"
+                            min="1"
+                            max="99"
+                            inputMode="numeric"
+                            className={`estimator-pill-input ${designRoomCount.trim() ? "active" : ""}`}
+                            placeholder={t("estimator.designRoomPlaceholder")}
+                            value={designRoomCount}
+                            onChange={(event) => setDesignRoomCount(event.target.value)}
+                            aria-label={t("estimator.designRoomPlaceholder")}
+                          />
+                        )}
+                        {designScopes.includes("building") && (
+                          <input
+                            type="number"
+                            min="1"
+                            max="99"
+                            inputMode="numeric"
+                            className={`estimator-pill-input ${designBuildingCount.trim() ? "active" : ""}`}
+                            placeholder={t("estimator.designBuildingPlaceholder")}
+                            value={designBuildingCount}
+                            onChange={(event) => setDesignBuildingCount(event.target.value)}
+                            aria-label={t("estimator.designBuildingPlaceholder")}
+                          />
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

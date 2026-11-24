@@ -196,7 +196,7 @@
         "tiers": [
           {
             "name": "Essential",
-            "price": "IDR 2.5M / m'"
+            "price": "IDR 3.0M / m'"
           },
           {
             "name": "Premium",
@@ -216,7 +216,7 @@
           }
         ],
         "exampleLabel": "Calculation example",
-        "exampleText": "4 m wall kitchen = 8 linear meters (4 m lower + 4 m upper) = IDR 20M (Essential).",
+        "exampleText": "4 m wall kitchen = 8 linear meters (4 m lower + 4 m upper) = IDR 24M (Essential).",
         "scope": "Includes cabinetry and on-site installation. Countertop, backsplash, and sink quoted separately.",
         "cta": "Consult for kitchen set",
         "waQuery": "Hello RUANG MADINA, I would like to consult about a kitchen set."
@@ -303,15 +303,36 @@
     "needs": [
       { "id": "kitchen", "label": "Kitchen Set" },
       { "id": "furniture", "label": "Custom Furniture" },
-      { "id": "design", "label": "Design Package" },
-      { "id": "full", "label": "Full Interior" }
+      { "id": "design", "label": "Interior Package (Design)" }
     ],
     "scaleLabel": "3. Estimated Size",
     "kitchenConfig": [
       { "id": "lower", "label": "Lower Only" },
+      { "id": "upper", "label": "Upper Only" },
       { "id": "both", "label": "Upper & Lower" }
     ],
-    "unitOptions": ["1 Unit", "2–3 Units", "4+ Units"],
+    "kitchenLowerLabel": "Lower cabinet (Linear meter)",
+    "kitchenUpperLabel": "Upper cabinet (Square meter)",
+    "kitchenLowerPlaceholder": "Lower (m' / Linear m)",
+    "kitchenUpperPlaceholder": "Upper (m² / Square m)",
+    "kitchenLowerUnit": "m' (Linear meter)",
+    "kitchenUpperUnit": "m² (Square meter)",
+    "kitchenBothScale": "Lower {{lower}} m' & Upper {{upper}} m²",
+    "notFilled": "not specified",
+    "furnitureUnit": "m² front area",
+    "furniturePlaceholder": "Size (m² front area)",
+    "furnitureAriaLabel": "Estimated square meters front area",
+    "unitOptions": ["1 Unit", "2 Units", "3 Units"],
+    "unitCustomPlaceholder": "Other qty (e.g. 5)",
+    "designScopes": [
+      { "id": "room", "label": "Room" },
+      { "id": "building", "label": "Building" }
+    ],
+    "designRoomUnit": "Room(s)",
+    "designBuildingUnit": "Building(s)",
+    "designRoomPlaceholder": "Rooms (e.g. 2)",
+    "designBuildingPlaceholder": "Buildings (e.g. 1)",
+    "designQtyPlaceholder": "Qty",
     "roomOptions": ["1 Room", "2–3 Rooms", "Full Property"],
     "tierLabel": "4. Material Tier",
     "tiers": ["Essential", "Premium / Signature", "Duco", "Need Advice"],
