@@ -124,9 +124,9 @@
   },
   "sectors": {
     "eyebrow": "Project typologies",
-    "title": "Spaces shaped for",
-    "titleEmphasis": "how you live & grow",
-    "desc": "Bespoke interior crafting tailored to your space, from private residences and commercial venues to getaway villas.",
+    "title": "Types of spaces",
+    "titleEmphasis": "we design and build",
+    "desc": "We handle interior design and custom fabrication for private homes, commercial spaces, and villas.",
     "items": [
       {
         "id": "residential",

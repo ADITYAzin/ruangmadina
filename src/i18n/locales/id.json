@@ -124,9 +124,9 @@
   },
   "sectors": {
     "eyebrow": "Ruang lingkup & sektor",
-    "title": "Karakter ruang yang",
-    "titleEmphasis": "siap kami wujudkan",
-    "desc": "Merancang interior custom yang fungsional dan berkarakter, untuk hunian pribadi, ruang usaha, hingga villa peristirahatan.",
+    "title": "Jenis ruang yang",
+    "titleEmphasis": "kami kerjakan",
+    "desc": "Kami menangani desain dan pengerjaan interior untuk rumah tinggal, ruang usaha, hingga villa.",
     "items": [
       {
         "id": "residential",
