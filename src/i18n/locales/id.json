@@ -11,7 +11,8 @@
     "locationTag": "Sidoarjo · ID"
   },
   "hero": {
-    "title": "Interior & Furniture Custom untuk ruangan Anda",
+    "titleLine1": "Rancang Hunian Anda",
+    "titleLine2": "Biaya Jelas Sejak Awal",
     "copy": "Kami melayani perancangan dan pembuatan interior untuk hunian, ruang komersial, hingga villa.",
     "cta": "Jadwalkan Konsultasi",
     "secondaryCta": "Pelajari Ruang Madina"
@@ -28,8 +29,8 @@
   },
   "projects": {
     "eyebrow": "Hasil pengerjaan",
-    "title": "Contoh hasil",
-    "titleEmphasis": "pengerjaan",
+    "title": "Hasil pengerjaan",
+    "titleEmphasis": "yang kami lakukan",
     "desc": "Bukan sekadar indah di foto, setiap sudut dirancang untuk menjawab kebutuhan nyata, dari pagi yang sibuk hingga waktu berkumpul",
     "askProject": "Tanyakan {{title}}",
     "photoNote": "Foto inspirasi mewakili arah dan karakter pengerjaan. Dokumentasi proyek ditampilkan dengan menjaga privasi klien.",
@@ -92,6 +93,7 @@
   "principles": {
     "eyebrow": "Prinsip desain",
     "title": "Lima standar tata ruang yang kami terapkan",
+    "desc": "Standar kerja yang kami pegang di setiap proyek agar ruang tetap nyaman digunakan, rapi secara detail, dan jelas dari sisi biaya.",
     "items": [
       {
         "icon": "path",
@@ -156,6 +158,7 @@
     "eyebrow": "Cerita klien",
     "title": "Pengalaman nyata dari",
     "titleEmphasis": "klien kami",
+    "desc": "Pengalaman langsung dari klien yang telah mempercayakan perencanaan hingga pengerjaan interior bersama tim kami.",
     "playLabel": "Putar video testimoni",
     "items": [
       {
@@ -338,17 +341,25 @@
   "about": {
     "badge1": "DIVISI INTERIOR",
     "badge2": "PT MADINA BUILD INTERNATIONAL",
-    "eyebrow": "Tentang Ruang Madina",
-    "title": "Desain, workshop, dan instalasi",
-    "titleEmphasis": "dalam satu tim",
-    "p1": "RUANG MADINA adalah unit layanan interior dan furniture custom dari PT Madina Build International yang berbasis di Sidoarjo. Kami menangani perencanaan desain 3D, produksi kabinet di workshop sendiri, hingga pemasangan di lokasi.",
-    "p2": "Dengan integrasi tim desain dan konstruksi dalam satu atap, setiap proyek hunian, ruang komersial, maupun villa dikerjakan terkoordinasi dari awal tanpa perlu bongkar ulang pekerjaan arsitektur.",
-    "cta": "Lihat profil Madina Build"
+    "headline": "Tentang Ruang Madina",
+    "fullDesc": "Kami adalah mitra jasa arsitek untuk kustom interior dan furnitur — bagian dari PT Madina Build Internasional yang beroperasi sejak 2016 dengan kepercayaan 100+ klien nasional dan internasional.",
+    "cta": "Lihat profil Madina Build",
+    "galleryLabel": "Aktivitas tim dan pengerjaan Ruang Madina",
+    "gallery": {
+      "team_model": "Diskusi Konsep & Tata Ruang",
+      "blueprint_review": "Review Gambar Kerja Teknis",
+      "material_studio": "Kurasi Material & Warna",
+      "wood_craft": "Pengerjaan Workshop Kayu",
+      "workshop_floor": "Produksi Furnitur In-House",
+      "site_measure": "Pengukuran Presisi Lapangan",
+      "interior_progress": "Supervisi & Instalasi Ruang"
+    }
   },
   "craft": {
     "eyebrow": "Dibalik pengerjaan kami",
-    "title": "Dikerjakan langsung,",
-    "titleEmphasis": "tanpa perantara",
+    "title": "Dibalik pengerjaan kami",
+    "titleEmphasis": "",
+    "desc": "Dari workshop internal di Sidoarjo hingga pemasangan di lokasi, setiap detail dikerjakan tim kami sendiri untuk menjaga kualitas dan ketepatan waktu.",
     "cards": [
       {
         "tag": "WORKSHOP SIDOARJO",

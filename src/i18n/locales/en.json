@@ -11,7 +11,8 @@
     "locationTag": "Sidoarjo · ID"
   },
   "hero": {
-    "title": "Custom Interiors & Furniture for your space",
+    "titleLine1": "Design Your Home",
+    "titleLine2": "Transparent Costs from Day One",
     "copy": "We design and build custom interiors for private homes, commercial spaces, and villas.",
     "cta": "Schedule Consultation",
     "secondaryCta": "About Ruang Madina"
@@ -28,8 +29,8 @@
   },
   "projects": {
     "eyebrow": "Selected works",
-    "title": "Selected project",
-    "titleEmphasis": "examples",
+    "title": "Works we have",
+    "titleEmphasis": "delivered",
     "desc": "Not merely picturesque in photos, every corner is crafted to fulfill real daily needs, from bustling mornings to quiet gatherings",
     "askProject": "Inquire about {{title}}",
     "photoNote": "Inspiration imagery reflects design intent and craftsmanship character. Client projects are presented respecting privacy.",
@@ -92,6 +93,7 @@
   "principles": {
     "eyebrow": "Design principles",
     "title": "Five space standards we apply in every project",
+    "desc": "The working standards we uphold in every project so each space stays comfortable to use, clean in detail, and clear in cost.",
     "items": [
       {
         "icon": "path",
@@ -156,6 +158,7 @@
     "eyebrow": "Client stories",
     "title": "Real experiences from",
     "titleEmphasis": "our clients",
+    "desc": "Direct stories from clients who trusted our team with planning through building their interior spaces.",
     "playLabel": "Play testimonial video",
     "items": [
       {
@@ -339,17 +342,25 @@
   "about": {
     "badge1": "INTERIOR DIVISION",
     "badge2": "PT MADINA BUILD INTERNATIONAL",
-    "eyebrow": "About Ruang Madina",
-    "title": "Design, workshop, and installation",
-    "titleEmphasis": "in one integrated team",
-    "p1": "RUANG MADINA is the interior and custom furniture division of PT Madina Build International, based in Sidoarjo. We handle 3D design planning, in-house cabinet fabrication at our workshop, and on-site installation.",
-    "p2": "By integrating interior work and construction under one team, residential, commercial, and villa projects stay coordinated from the start without costly architectural rework.",
-    "cta": "Visit Madina Build"
+    "headline": "About Ruang Madina",
+    "fullDesc": "We are an architectural partner for custom interiors and furniture — part of PT Madina Build International, operating since 2016 with the trust of 100+ clients nationally and internationally.",
+    "cta": "Visit Madina Build",
+    "galleryLabel": "Ruang Madina team and craftsmanship in action",
+    "gallery": {
+      "team_model": "Spatial Concept Discussion",
+      "blueprint_review": "Technical Blueprint Review",
+      "material_studio": "Material & Finish Curation",
+      "wood_craft": "In-House Wood Craftsmanship",
+      "workshop_floor": "Custom Furniture Workshop",
+      "site_measure": "Precision Site Measurement",
+      "interior_progress": "On-Site Installation Review"
+    }
   },
   "craft": {
     "eyebrow": "Behind our craft",
-    "title": "Built in-house,",
-    "titleEmphasis": "without shortcuts",
+    "title": "Behind Our Craft",
+    "titleEmphasis": "",
+    "desc": "From our in-house workshop in Sidoarjo to on-site installation, every detail is handled by our own team to maintain quality and schedule.",
     "cards": [
       {
         "tag": "SIDOARJO WORKSHOP",

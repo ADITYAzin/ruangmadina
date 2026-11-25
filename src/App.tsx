@@ -1,12 +1,14 @@
+
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import AboutArcGallery from "./components/AboutArcGallery";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import LiteYouTube from "./components/LiteYouTube";
 import { buildWhatsAppUrl, trackMetaEvent, trackWhatsAppLead } from "./utils/metaPixel";
 
-const heroImage = "/livingroom.webp";
+const heroImage = "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D";
 
 const projectMetadata = [
   {
@@ -115,7 +117,13 @@ function ArchLogo({ light = false }: { light?: boolean }) {
 
 function Arrow({ down = false }: { down?: boolean }) {
   return (
-    <svg className={down ? "arrow down" : "arrow"} viewBox="0 0 24 24" aria-hidden="true">
+    <svg
+      className={down ? "arrow down" : "arrow"}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d={down ? "M12 4v15M6 13l6 6 6-6" : "M5 12h14M13 6l6 6-6 6"} />
     </svg>
   );
@@ -170,6 +178,7 @@ export default function App() {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [navScrolled, setNavScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [activeNav, setActiveNav] = useState("sektor");
   const [length, setLength] = useState("");
   const [upperArea, setUpperArea] = useState("");
@@ -187,6 +196,7 @@ export default function App() {
   const [totalTestimonialStops, setTotalTestimonialStops] = useState(
     Math.max(1, testimonialVideoIds.length - 1),
   );
+  const [scrollY, setScrollY] = useState(0);
   const testimonialTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -203,10 +213,17 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["sektor", "karya", "cara-kerja", "testimoni", "layanan", "tentang"];
+    const sectionIds = ["tentang", "sektor", "karya", "cara-kerja", "testimoni", "layanan"];
     const onScroll = () => {
-      setNavScrolled(window.scrollY > 24);
-      const probe = window.scrollY + 180;
+      const currentScroll = window.scrollY;
+      setScrollY(currentScroll);
+      setNavScrolled(currentScroll > 24);
+
+      const heroEl = document.getElementById("hero") || document.querySelector(".hero") as HTMLElement | null;
+      const heroThreshold = heroEl ? Math.max(heroEl.offsetHeight - 150, 300) : 400;
+      setPastHero(currentScroll >= heroThreshold);
+
+      const probe = currentScroll + 180;
       let current = sectionIds[0];
       for (const id of sectionIds) {
         const el = document.getElementById(id);
@@ -415,6 +432,16 @@ export default function App() {
           <div id="primary-nav" className={`nav-links ${menuOpen ? "is-open" : ""}`}>
             <div className="nav-pill-dock">
               <a
+                href="#tentang"
+                className={activeNav === "tentang" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("tentang");
+                  closeMenu();
+                }}
+              >
+                {t("nav.about")}
+              </a>
+              <a
                 href="#sektor"
                 className={activeNav === "sektor" ? "is-active" : ""}
                 onClick={() => {
@@ -464,16 +491,6 @@ export default function App() {
               >
                 {t("nav.services")}
               </a>
-              <a
-                href="#tentang"
-                className={activeNav === "tentang" ? "is-active" : ""}
-                onClick={() => {
-                  setActiveNav("tentang");
-                  closeMenu();
-                }}
-              >
-                {t("nav.about")}
-              </a>
             </div>
             <div className="nav-right-group">
               <div className="nav-desktop-lang">
@@ -512,17 +529,34 @@ export default function App() {
         </nav>
       </header>
 
-      <section className="hero">
-        <img
-          src={heroImage}
-          alt="Interior ruang keluarga hangat dengan material kayu dan cahaya alami"
-          width={1920}
-          height={1072}
-          fetchPriority="high"
-        />
+      <section id="hero" className="hero">
+        <div
+          className="hero-media-wrap"
+          style={{
+            transform: `translate3d(0, ${Math.min(scrollY * 0.35, 300)}px, 0) scale(1.08)`,
+          }}
+        >
+          <img
+            src={heroImage}
+            alt="Interior ruang keluarga hangat dengan material kayu dan cahaya alami"
+            width={1920}
+            height={1072}
+            fetchPriority="high"
+          />
+        </div>
         <div className="hero-overlay" />
-        <div className="hero-content shell">
-          <h1>{t("hero.title")}</h1>
+        <div
+          className="hero-content shell"
+          style={{
+            transform: `translate3d(0, ${Math.min(scrollY * 0.15, 120)}px, 0)`,
+            opacity: Math.max(0, 1 - scrollY / 650),
+          }}
+        >
+          <h1>
+            {t("hero.titleLine1")}
+            <br />
+            <i>{t("hero.titleLine2")}</i>
+          </h1>
           <p className="hero-copy">{t("hero.copy")}</p>
           <div className="hero-actions">
             <a
@@ -535,50 +569,34 @@ export default function App() {
               <span>{t("hero.cta")}</span>
               <Arrow />
             </a>
-            <a className="hero-secondary-button" href="#tentang">
-              {t("hero.secondaryCta")}
+            <a
+              className="hero-secondary-button"
+              href="#tentang"
+              aria-label={t("hero.secondaryCta")}
+              title={t("hero.secondaryCta")}
+            >
+              <Arrow down />
             </a>
           </div>
+        </div>
+      </section>
 
-          <div className="hero-trust-row">
-            <div className="hero-trust-item">
-              <img
-                className="hero-trust-logo"
-                src="/madina-build-logo.webp"
-                alt="Madina Build"
-                width={32}
-                height={32}
-              />
-              <div className="hero-trust-text">
-                <strong>
-                  {t("trust.partOf")} Madina Build
-                </strong>
-                <span>{t("trust.company")}</span>
-              </div>
-            </div>
-
-            <span className="hero-trust-sep" aria-hidden="true" />
-
-            <div className="hero-trust-item">
-              <span className="hero-trust-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z" />
-                  <circle cx="12" cy="11" r="2.2" />
-                </svg>
-              </span>
-              <div className="hero-trust-text">
-                <strong>{t("trust.locationTitle")}</strong>
-                <span>{t("trust.locationSub")}</span>
-              </div>
-            </div>
+      <section className="section about-section" id="tentang">
+        <div className="shell about-content">
+          <div className="about-copy">
+            <h2>{t("about.headline")}</h2>
+            <p className="about-editorial-lead">{t("about.fullDesc")}</p>
+            <a href="https://madinabuild.com" target="_blank" rel="noreferrer">
+              {t("about.cta")} <Arrow />
+            </a>
           </div>
         </div>
+        <AboutArcGallery />
       </section>
 
       <section className="section sectors-section" id="sektor">
         <div className="shell">
           <div className="section-heading centered">
-            <p className="eyebrow">{t("sectors.eyebrow")}</p>
             <h2>
               {t("sectors.title")}
               <br />
@@ -619,7 +637,6 @@ export default function App() {
         <div className="shell">
           <div className="section-heading split-heading">
             <div>
-              <p className="eyebrow">{t("projects.eyebrow")}</p>
               <h2>
                 {t("projects.title")}
                 <br />
@@ -652,10 +669,11 @@ export default function App() {
       <section className="section craft-section" id="dibalik-pengerjaan">
         <div className="shell">
           <div className="craft-header">
-            <p className="eyebrow">{t("craft.eyebrow")}</p>
             <h2>
-              {t("craft.title")} <i>{t("craft.titleEmphasis")}</i>
+              {t("craft.title")}
+               
             </h2>
+            <p>{t("craft.desc")}</p>
           </div>
 
           <div className="craft-grid">
@@ -680,7 +698,6 @@ export default function App() {
       <section className="section process-section" id="cara-kerja">
         <div className="shell">
           <div className="process-intro">
-            <p className="eyebrow">{t("process.eyebrow")}</p>
             <h2>
               {t("process.title")}
               <br />
@@ -704,8 +721,8 @@ export default function App() {
       <section className="section principles-section">
         <div className="shell">
           <div className="principles-top">
-            <p className="eyebrow light">{t("principles.eyebrow")}</p>
             <h2>{t("principles.title")}</h2>
+            <p>{t("principles.desc")}</p>
           </div>
           <div className="principles-list">
             {principlesList.map((principle, index) => (
@@ -726,12 +743,12 @@ export default function App() {
         <div className="shell">
           <div className="testimonials-head">
             <div>
-              <p className="eyebrow">{t("testimonials.eyebrow")}</p>
               <h2>
                 {t("testimonials.title")}
                 <br />
                 <i>{t("testimonials.titleEmphasis")}</i>
               </h2>
+              <p>{t("testimonials.desc")}</p>
             </div>
 
             <div className="testimonials-controls">
@@ -806,7 +823,6 @@ export default function App() {
       <section className="section services-section" id="layanan">
         <div className="shell">
           <div className="section-heading centered">
-            <p className="eyebrow">{t("services.eyebrow")}</p>
             <h2>
               {t("services.title")}
               <br />
@@ -1087,40 +1103,9 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section about-section" id="tentang">
-        <div className="shell about-grid">
-          <div className="about-image">
-            <img
-              src="/person-rm.webp"
-              alt="Detail kabinet kayu yang hangat dan presisi"
-              loading="lazy"
-            />
-            <span>
-              {t("about.badge1")}
-              <br />
-              {t("about.badge2")}
-            </span>
-          </div>
-          <div className="about-copy">
-            <p className="eyebrow">{t("about.eyebrow")}</p>
-            <h2>
-              {t("about.title")}
-              <br />
-              <i>{t("about.titleEmphasis")}</i>
-            </h2>
-            <p>{t("about.p1")}</p>
-            <p>{t("about.p2")}</p>
-            <a href="https://madinabuild.com" target="_blank" rel="noreferrer">
-              {t("about.cta")} <Arrow />
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="closing">
         <div className="closing-pattern" />
         <div className="shell closing-content">
-          <p className="eyebrow light">{t("closing.eyebrow")}</p>
           <h2>
             {t("closing.title")}
             <br />
@@ -1148,11 +1133,11 @@ export default function App() {
           </div>
           <div>
             <p className="footer-label">{t("footer.explore")}</p>
+            <a href="#tentang">{t("nav.about")}</a>
             <a href="#sektor">{t("nav.sectors")}</a>
             <a href="#karya">{t("nav.works")}</a>
             <a href="#cara-kerja">{t("nav.process")}</a>
             <a href="#layanan">{t("nav.services")}</a>
-            <a href="#tentang">{t("nav.about")}</a>
           </div>
           <div>
             <p className="footer-label">{t("footer.contact")}</p>
@@ -1181,7 +1166,10 @@ export default function App() {
         </div>
       </footer>
 
-      <FloatingWhatsApp onOpenCalculator={handleOpenCalculatorFromWa} />
+      <FloatingWhatsApp
+        onOpenCalculator={handleOpenCalculatorFromWa}
+        isVisible={pastHero}
+      />
     </main>
   );
 }

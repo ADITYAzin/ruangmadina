@@ -16,11 +16,15 @@ interface WaTopic {
 
 interface FloatingWhatsAppProps {
   onOpenCalculator?: (categoryId: string) => void;
+  isVisible?: boolean;
 }
 
 const WA_BASE_URL = "https://wa.me/628113330232";
 
-export default function FloatingWhatsApp({ onOpenCalculator }: FloatingWhatsAppProps) {
+export default function FloatingWhatsApp({
+  onOpenCalculator,
+  isVisible = true,
+}: FloatingWhatsAppProps) {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCatId, setSelectedCatId] = useState<string>("residential");
@@ -71,7 +75,10 @@ export default function FloatingWhatsApp({ onOpenCalculator }: FloatingWhatsAppP
   const directWaUrl = buildWaUrl(t("floatingWa.directQuery"));
 
   return (
-    <div className={`fwa-root ${isOpen ? "is-open" : ""}`} ref={containerRef}>
+    <div
+      className={`fwa-root ${isOpen ? "is-open" : ""} ${isVisible ? "is-visible" : ""}`}
+      ref={containerRef}
+    >
       <div
         className={`fwa-panel ${isOpen ? "is-visible" : ""}`}
         role="dialog"
