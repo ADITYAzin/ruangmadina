@@ -1563,6 +1563,13 @@ input[type="range"] {
   margin-top: clamp(36px, 5vw, 56px);
   padding-bottom: 50px;
   overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.about-arc-wrapper.is-dragging {
+  cursor: grabbing;
 }
 
 .about-arc-wrapper::before,
@@ -1607,7 +1614,7 @@ input[type="range"] {
   box-shadow: 0 14px 30px rgba(35, 30, 26, 0.1);
   will-change: transform;
   transform-origin: center center;
-  cursor: pointer;
+  cursor: inherit;
 }
 
 .about-arc-card img {

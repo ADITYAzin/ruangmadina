@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface GalleryItem {
@@ -38,7 +38,19 @@ export default function AboutArcGallery() {
   const { t } = useTranslation();
   const stageRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const isPausedRef = useRef(false);
+  const isHoveredRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const dragRef = useRef({
+    active: false,
+    pointerId: -1,
+    lastX: 0,
+    lastTime: 0,
+    velocity: 0,
+  });
+
+  const offsetRef = useRef(0);
+  const totalWidthRef = useRef(1);
 
   const items: GalleryItem[] = ITEM_IDS.map((id) => ({
     id,
@@ -58,8 +70,7 @@ export default function AboutArcGallery() {
     let cardWidth = cardRefs.current[0]?.offsetWidth || 270;
     let gap = stageWidth < 640 ? 18 : 28;
     let stride = cardWidth + gap;
-    let totalWidth = stride * items.length;
-    let offset = 0;
+    totalWidthRef.current = stride * items.length;
     let currentSpeed = prefersReducedMotion ? 0 : stageWidth < 640 ? 28 : 42;
     let lastTime = performance.now();
     let rafId = 0;
@@ -69,7 +80,7 @@ export default function AboutArcGallery() {
       cardWidth = cardRefs.current[0]?.offsetWidth || 270;
       gap = stageWidth < 640 ? 18 : 28;
       stride = cardWidth + gap;
-      totalWidth = stride * items.length;
+      totalWidthRef.current = stride * items.length;
     };
 
     const resizeObserver = new ResizeObserver(() => {
@@ -81,10 +92,25 @@ export default function AboutArcGallery() {
       const dt = Math.min((now - lastTime) / 1000, 0.05);
       lastTime = now;
 
-      const baseSpeed = prefersReducedMotion ? 0 : stageWidth < 640 ? 28 : 42;
-      const targetSpeed = isPausedRef.current ? 0 : baseSpeed;
-      currentSpeed += (targetSpeed - currentSpeed) * 0.08;
-      offset = (offset + currentSpeed * dt) % totalWidth;
+      const totalWidth = totalWidthRef.current;
+
+      if (!dragRef.current.active) {
+        if (Math.abs(dragRef.current.velocity) > 4) {
+          // Apply inertia after drag release
+          offsetRef.current += dragRef.current.velocity * dt;
+          dragRef.current.velocity *= Math.pow(0.05, dt);
+        } else {
+          dragRef.current.velocity = 0;
+          const baseSpeed = prefersReducedMotion ? 0 : stageWidth < 640 ? 28 : 42;
+          const targetSpeed = isHoveredRef.current ? 0 : baseSpeed;
+          currentSpeed += (targetSpeed - currentSpeed) * 0.08;
+          offsetRef.current += currentSpeed * dt;
+        }
+      }
+
+      // Keep offset normalized within [0, totalWidth)
+      offsetRef.current =
+        ((offsetRef.current % totalWidth) + totalWidth) % totalWidth;
 
       const halfStage = stageWidth * 0.5;
       const curveDepth = stageWidth < 640 ? 44 : stageWidth < 1024 ? 72 : 104;
@@ -94,8 +120,7 @@ export default function AboutArcGallery() {
         const el = cardRefs.current[i];
         if (!el) continue;
 
-        // Wrap seamlessly around totalWidth
-        const rawX = i * stride - offset;
+        const rawX = i * stride - offsetRef.current;
         const wrappedX =
           (((rawX + cardWidth) % totalWidth) + totalWidth) % totalWidth -
           cardWidth;
@@ -122,22 +147,66 @@ export default function AboutArcGallery() {
     };
   }, [items.length]);
 
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    dragRef.current = {
+      active: true,
+      pointerId: e.pointerId,
+      lastX: e.clientX,
+      lastTime: performance.now(),
+      velocity: 0,
+    };
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current.active || dragRef.current.pointerId !== e.pointerId) {
+      return;
+    }
+    const now = performance.now();
+    const dt = Math.max((now - dragRef.current.lastTime) / 1000, 0.008);
+    const dx = e.clientX - dragRef.current.lastX;
+
+    offsetRef.current -= dx;
+    const instantVelocity = Math.max(-1800, Math.min(1800, -dx / dt));
+    dragRef.current.velocity =
+      dragRef.current.velocity * 0.45 + instantVelocity * 0.55;
+    dragRef.current.lastX = e.clientX;
+    dragRef.current.lastTime = now;
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current.active || dragRef.current.pointerId !== e.pointerId) {
+      return;
+    }
+    dragRef.current.active = false;
+    setIsDragging(false);
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+  };
+
   return (
     <div
-      className="about-arc-wrapper"
+      className={`about-arc-wrapper ${isDragging ? "is-dragging" : ""}`}
       aria-label={t("about.galleryLabel")}
       onMouseEnter={() => {
-        isPausedRef.current = true;
+        isHoveredRef.current = true;
       }}
       onMouseLeave={() => {
-        isPausedRef.current = false;
+        isHoveredRef.current = false;
       }}
       onFocusCapture={() => {
-        isPausedRef.current = true;
+        isHoveredRef.current = true;
       }}
       onBlurCapture={() => {
-        isPausedRef.current = false;
+        isHoveredRef.current = false;
       }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
     >
       <div className="about-arc-stage" ref={stageRef}>
         {items.map((item, idx) => (
@@ -155,6 +224,7 @@ export default function AboutArcGallery() {
               height={600}
               loading="lazy"
               decoding="async"
+              draggable={false}
             />
             <figcaption className="about-arc-caption">{item.caption}</figcaption>
           </figure>
