@@ -2,18 +2,19 @@
   "nav": {
     "works": "Karya",
     "process": "Cara kerja",
+    "testimonials": "Testimoni",
     "sectors": "Sektor",
     "services": "Layanan",
     "about": "Tentang kami",
-    "consultation": "Konsultasi",
-    "openMenu": "Buka menu"
+    "consultation": "Jadwalkan Konsultasi",
+    "openMenu": "Buka menu",
+    "locationTag": "Sidoarjo · ID"
   },
   "hero": {
-    "eyebrow": "INTERIOR & FURNITURE CUSTOM · SIDOARJO",
-    "title": "RUANG MADINA",
-    "copy": "Kami merancang interior yang rapi, fungsional, dan nyaman—dibuat khusus mengikuti cara keluarga Anda hidup",
-    "cta": "Konsultasi Disini",
-    "scrollHint": "JELAJAHI"
+    "title": "Interior & Furniture Custom untuk ruangan Anda",
+    "copy": "Kami melayani perancangan dan pembuatan interior untuk hunian, ruang komersial, hingga villa.",
+    "cta": "Jadwalkan Konsultasi",
+    "secondaryCta": "Pelajari Ruang Madina"
   },
   "trust": {
     "partOf": "Bagian dari",
@@ -26,32 +27,32 @@
     "customSub": "Sesuai ruang dan kebutuhan Anda"
   },
   "projects": {
-    "eyebrow": "HASIL PENGERJAAN",
-    "title": "Detail yang hadir",
-    "titleEmphasis": "untuk dipakai",
+    "eyebrow": "Hasil pengerjaan",
+    "title": "Contoh hasil",
+    "titleEmphasis": "pengerjaan",
     "desc": "Bukan sekadar indah di foto, setiap sudut dirancang untuk menjawab kebutuhan nyata, dari pagi yang sibuk hingga waktu berkumpul",
     "askProject": "Tanyakan {{title}}",
     "photoNote": "Foto inspirasi mewakili arah dan karakter pengerjaan. Dokumentasi proyek ditampilkan dengan menjaga privasi klien.",
     "items": [
       {
-        "title": "Dapur yang mengalir",
+        "title": "Kitchen set & area masak",
         "category": "Kitchen set",
         "place": ""
       },
       {
-        "title": "Ruang pulang yang tenang",
+        "title": "Ruang keluarga",
         "category": "Living room",
         "place": ""
       },
       {
-        "title": "Penyimpanan yang fungsional",
+        "title": "Lemari built-in",
         "category": "Built-in wardrobe",
         "place": ""
       }
     ]
   },
   "process": {
-    "eyebrow": "CARA KERJA",
+    "eyebrow": "Cara kerja",
     "title": "Jelas sejak awal,",
     "titleEmphasis": "tenang sampai akhir",
     "desc": "Enam langkah sederhana untuk menjaga anggaran, ukuran, dan waktu pengerjaan tetap terarah",
@@ -89,12 +90,8 @@
     ]
   },
   "principles": {
-    "eyebrow": "PRINSIP DESAIN",
-    "kicker": "Ruang yang baik bukan hanya tentang tampilan",
-    "title": "Menyederhanakan keseharian,",
-    "titleLine2": "menjaga privasi, dan memberi",
-    "titleLine3": "tempat untuk",
-    "titleEmphasis": "hal yang berarti",
+    "eyebrow": "Prinsip desain",
+    "title": "Lima standar tata ruang yang kami terapkan",
     "items": [
       {
         "icon": "path",
@@ -124,10 +121,10 @@
     ]
   },
   "sectors": {
-    "eyebrow": "RUANG LINGKUP & SEKTOR",
+    "eyebrow": "Ruang lingkup & sektor",
     "title": "Karakter ruang yang",
     "titleEmphasis": "siap kami wujudkan",
-    "desc": "Merancang interior custom yang fungsional dan berkarakter—untuk hunian pribadi, ruang usaha, hingga villa peristirahatan.",
+    "desc": "Merancang interior custom yang fungsional dan berkarakter, untuk hunian pribadi, ruang usaha, hingga villa peristirahatan.",
     "items": [
       {
         "id": "residential",
@@ -156,9 +153,9 @@
     ]
   },
   "testimonials": {
-    "eyebrow": "CERITA KLIEN",
+    "eyebrow": "Cerita klien",
     "title": "Pengalaman nyata dari",
-    "titleEmphasis": "rumah yang telah selesai",
+    "titleEmphasis": "klien kami",
     "playLabel": "Putar video testimoni",
     "items": [
       {
@@ -180,7 +177,7 @@
     ]
   },
   "services": {
-    "eyebrow": "LAYANAN & ESTIMASI",
+    "eyebrow": "Layanan & estimasi",
     "title": "Mulai dari satu ruang,",
     "titleEmphasis": "tumbuh bersama rumah Anda",
     "desc": "Kami membantu Anda memahami lingkup dan komponen biaya sebelum memulai",
@@ -339,17 +336,17 @@
     "waMessage": "Halo RUANG MADINA, saya ingin minta estimasi awal:\n• Tipe: {{space}}\n• Kebutuhan: {{need}}\n• Ukuran: {{scale}}\n• Kelas: {{tier}}"
   },
   "about": {
-    "badge1": "DIRANCANG DENGAN NIAT",
-    "badge2": "DIBUAT DENGAN TELITI",
-    "eyebrow": "TENTANG RUANG MADINA",
-    "title": "Berawal dari mendengar,",
-    "titleEmphasis": "hadir untuk menyamankan",
-    "p1": "RUANG MADINA adalah layanan interior dan furniture custom dari Madina Build. Kami percaya rumah yang nyaman berawal dari mendengarkan: bagaimana Anda bergerak, menyimpan, berkumpul, dan beristirahat",
-    "p2": "Dari sana, kami menerjemahkannya menjadi ruang yang terasa tenang, personal, dan relevan untuk waktu yang panjang",
-    "cta": "Kenali Madina Build"
+    "badge1": "DIVISI INTERIOR",
+    "badge2": "PT MADINA BUILD INTERNATIONAL",
+    "eyebrow": "Tentang Ruang Madina",
+    "title": "Desain, workshop, dan instalasi",
+    "titleEmphasis": "dalam satu tim",
+    "p1": "RUANG MADINA adalah unit layanan interior dan furniture custom dari PT Madina Build International yang berbasis di Sidoarjo. Kami menangani perencanaan desain 3D, produksi kabinet di workshop sendiri, hingga pemasangan di lokasi.",
+    "p2": "Dengan integrasi tim desain dan konstruksi dalam satu atap, setiap proyek hunian, ruang komersial, maupun villa dikerjakan terkoordinasi dari awal tanpa perlu bongkar ulang pekerjaan arsitektur.",
+    "cta": "Lihat profil Madina Build"
   },
   "craft": {
-    "eyebrow": "DIBALIK PENGERJAAN KAMI",
+    "eyebrow": "Dibalik pengerjaan kami",
     "title": "Dikerjakan langsung,",
     "titleEmphasis": "tanpa perantara",
     "cards": [
@@ -368,7 +365,7 @@
     ]
   },
   "closing": {
-    "eyebrow": "MULAI DARI SINI",
+    "eyebrow": "Mulai dari sini",
     "title": "Ruang yang Anda bayangkan,",
     "titleLine2": "bisa dimulai dari",
     "titleEmphasis": "satu percakapan",
@@ -382,7 +379,7 @@
     "connect": "TERHUBUNG",
     "whatsappLabel": "WhatsApp resmi",
     "city": "Sidoarjo, Jawa Timur",
-    "workingHours": "Senin—Sabtu, 09.00—17.00",
+    "workingHours": "Senin sampai Sabtu, 09.00 hingga 17.00",
     "copyright": "© {{year}} PT Madina Build International",
     "brandLocation": "RUANG MADINA · Sidoarjo",
     "backToTop": "Kembali ke atas ↑"

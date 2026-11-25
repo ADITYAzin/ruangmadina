@@ -169,6 +169,8 @@ interface OptionItem {
 export default function App() {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
+  const [activeNav, setActiveNav] = useState("sektor");
   const [length, setLength] = useState("");
   const [upperArea, setUpperArea] = useState("");
   const [customUnitCount, setCustomUnitCount] = useState("");
@@ -199,6 +201,36 @@ export default function App() {
     window.addEventListener("resize", updateStops);
     return () => window.removeEventListener("resize", updateStops);
   }, []);
+
+  useEffect(() => {
+    const sectionIds = ["sektor", "karya", "cara-kerja", "testimoni", "layanan", "tentang"];
+    const onScroll = () => {
+      setNavScrolled(window.scrollY > 24);
+      const probe = window.scrollY + 180;
+      let current = sectionIds[0];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= probe) {
+          current = id;
+        }
+      }
+      setActiveNav(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
   const scrollTestimonialTo = (index: number) => {
     const track = testimonialTrackRef.current;
@@ -377,50 +409,101 @@ export default function App() {
       {/* First-visit IP Geolocation Language Popup Modal */}
       <LanguageModal />
 
-      <header className="nav-wrap">
+      <header className={`nav-wrap ${navScrolled || menuOpen ? "is-scrolled" : ""}`}>
         <nav className="nav shell" aria-label="Navigasi utama">
-          <ArchLogo />
-          <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
-            <a href="#sektor" onClick={closeMenu}>
-              {t("nav.sectors")}
-            </a>
-            <a href="#karya" onClick={closeMenu}>
-              {t("nav.works")}
-            </a>
-            <a href="#cara-kerja" onClick={closeMenu}>
-              {t("nav.process")}
-            </a>
-            <a href="#layanan" onClick={closeMenu}>
-              {t("nav.services")}
-            </a>
-            <a href="#tentang" onClick={closeMenu}>
-              {t("nav.about")}
-            </a>
-            <div className="nav-desktop-lang">
-              <LanguageSwitcher />
+          <ArchLogo light={!navScrolled && !menuOpen} />
+          <div id="primary-nav" className={`nav-links ${menuOpen ? "is-open" : ""}`}>
+            <div className="nav-pill-dock">
+              <a
+                href="#sektor"
+                className={activeNav === "sektor" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("sektor");
+                  closeMenu();
+                }}
+              >
+                {t("nav.sectors")}
+              </a>
+              <a
+                href="#karya"
+                className={activeNav === "karya" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("karya");
+                  closeMenu();
+                }}
+              >
+                {t("nav.works")}
+              </a>
+              <a
+                href="#cara-kerja"
+                className={activeNav === "cara-kerja" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("cara-kerja");
+                  closeMenu();
+                }}
+              >
+                {t("nav.process")}
+              </a>
+              <a
+                href="#testimoni"
+                className={activeNav === "testimoni" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("testimoni");
+                  closeMenu();
+                }}
+              >
+                {t("nav.testimonials")}
+              </a>
+              <a
+                href="#layanan"
+                className={activeNav === "layanan" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("layanan");
+                  closeMenu();
+                }}
+              >
+                {t("nav.services")}
+              </a>
+              <a
+                href="#tentang"
+                className={activeNav === "tentang" ? "is-active" : ""}
+                onClick={() => {
+                  setActiveNav("tentang");
+                  closeMenu();
+                }}
+              >
+                {t("nav.about")}
+              </a>
             </div>
-            <a
-              className="nav-cta"
-              href={mainWhatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => {
-                closeMenu();
-                trackWhatsAppLead({ source: "nav_cta" });
-              }}
-            >
-              {t("nav.consultation")} <Arrow />
-            </a>
+            <div className="nav-right-group">
+              <div className="nav-desktop-lang">
+                <LanguageSwitcher />
+              </div>
+              <a
+                className="nav-cta-split"
+                href={mainWhatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => {
+                  closeMenu();
+                  trackWhatsAppLead({ source: "nav_cta" });
+                }}
+              >
+                <span className="nav-cta-pill">{t("nav.consultation")}</span>
+              </a>
+            </div>
           </div>
           <div className="nav-mobile-right">
             <div className="nav-mobile-lang">
               <LanguageSwitcher />
             </div>
             <button
+              type="button"
               className={`menu-button ${menuOpen ? "active" : ""}`}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={t("nav.openMenu")}
               aria-expanded={menuOpen}
+              aria-controls="primary-nav"
             >
               <span />
               <span />
@@ -433,56 +516,61 @@ export default function App() {
         <img
           src={heroImage}
           alt="Interior ruang keluarga hangat dengan material kayu dan cahaya alami"
+          width={1920}
+          height={1072}
           fetchPriority="high"
         />
         <div className="hero-overlay" />
         <div className="hero-content shell">
-          <p className="eyebrow light">{t("hero.eyebrow")}</p>
           <h1>{t("hero.title")}</h1>
           <p className="hero-copy">{t("hero.copy")}</p>
-          <a
-            className="primary-button"
-            href={mainWhatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => trackWhatsAppLead({ source: "hero_cta" })}
-          >
-            {t("hero.cta")} <Arrow />
-          </a>
-        </div>
-        <a className="scroll-hint" href="#trust">
-          <span>{t("hero.scrollHint")}</span>
-          <Arrow down />
-        </a>
-      </section>
+          <div className="hero-actions">
+            <a
+              className="primary-button"
+              href={mainWhatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackWhatsAppLead({ source: "hero_cta" })}
+            >
+              <span>{t("hero.cta")}</span>
+              <Arrow />
+            </a>
+            <a className="hero-secondary-button" href="#tentang">
+              {t("hero.secondaryCta")}
+            </a>
+          </div>
 
-      <section className="trust-bar" id="trust">
-        <div className="shell trust-grid">
-          <div className="trust-parent">
-            <img
-              className="trust-parent-logo"
-              src="/madina-build-logo.webp"
-              alt="Madina Build"
-              width={96}
-              height={96}
-            />
-            <p>
-              {t("trust.partOf")} <strong>Madina Build</strong>
-              <small>{t("trust.company")}</small>
-            </p>
-          </div>
-          <div className="trust-divider" />
-          <div>
-            <b>{t("trust.locationTitle")}</b>
-            <span>{t("trust.locationSub")}</span>
-          </div>
-          <div>
-            <b>{t("trust.processTitle")}</b>
-            <span>{t("trust.processSub")}</span>
-          </div>
-          <div>
-            <b>{t("trust.customTitle")}</b>
-            <span>{t("trust.customSub")}</span>
+          <div className="hero-trust-row">
+            <div className="hero-trust-item">
+              <img
+                className="hero-trust-logo"
+                src="/madina-build-logo.webp"
+                alt="Madina Build"
+                width={32}
+                height={32}
+              />
+              <div className="hero-trust-text">
+                <strong>
+                  {t("trust.partOf")} Madina Build
+                </strong>
+                <span>{t("trust.company")}</span>
+              </div>
+            </div>
+
+            <span className="hero-trust-sep" aria-hidden="true" />
+
+            <div className="hero-trust-item">
+              <span className="hero-trust-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z" />
+                  <circle cx="12" cy="11" r="2.2" />
+                </svg>
+              </span>
+              <div className="hero-trust-text">
+                <strong>{t("trust.locationTitle")}</strong>
+                <span>{t("trust.locationSub")}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -617,15 +705,7 @@ export default function App() {
         <div className="shell">
           <div className="principles-top">
             <p className="eyebrow light">{t("principles.eyebrow")}</p>
-            <p className="principles-kicker">{t("principles.kicker")}</p>
-            <h2>
-              {t("principles.title")}
-              <br />
-              {t("principles.titleLine2")}
-              <br />
-              {t("principles.titleLine3")}{" "}
-              <i>{t("principles.titleEmphasis")}</i>
-            </h2>
+            <h2>{t("principles.title")}</h2>
           </div>
           <div className="principles-list">
             {principlesList.map((principle, index) => (

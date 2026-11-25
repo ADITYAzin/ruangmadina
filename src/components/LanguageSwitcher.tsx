@@ -21,7 +21,6 @@ export default function LanguageSwitcher() {
       >
         ID
       </button>
-      <span className="lang-divider">/</span>
       <button
         type="button"
         className={`lang-btn ${currentLang === "en" ? "active" : ""}`}

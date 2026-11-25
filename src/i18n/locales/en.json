@@ -2,18 +2,19 @@
   "nav": {
     "works": "Works",
     "process": "Process",
+    "testimonials": "Testimonials",
     "sectors": "Typologies",
     "services": "Services",
     "about": "About us",
-    "consultation": "Consultation",
-    "openMenu": "Open menu"
+    "consultation": "Schedule Consultation",
+    "openMenu": "Open menu",
+    "locationTag": "Sidoarjo · ID"
   },
   "hero": {
-    "eyebrow": "INTERIOR & CUSTOM FURNITURE · SIDOARJO",
-    "title": "RUANG MADINA",
-    "copy": "We design neat, functional, and peaceful interiors—tailor-made to embrace how your family truly lives",
-    "cta": "Consult Here",
-    "scrollHint": "EXPLORE"
+    "title": "Custom Interiors & Furniture for your space",
+    "copy": "We design and build custom interiors for private homes, commercial spaces, and villas.",
+    "cta": "Schedule Consultation",
+    "secondaryCta": "About Ruang Madina"
   },
   "trust": {
     "partOf": "Part of",
@@ -21,37 +22,37 @@
     "locationTitle": "Based in Sidoarjo",
     "locationSub": "Serving Surabaya & surroundings",
     "processTitle": "Design through installation",
-    "processSub": "One team, a seamless process",
+    "processSub": "One team, a structured process",
     "customTitle": "Custom crafted",
     "customSub": "Tailored to your space and lifestyle"
   },
   "projects": {
-    "eyebrow": "SELECTED WORKS",
-    "title": "Details crafted",
-    "titleEmphasis": "to be lived in",
+    "eyebrow": "Selected works",
+    "title": "Selected project",
+    "titleEmphasis": "examples",
     "desc": "Not merely picturesque in photos, every corner is crafted to fulfill real daily needs, from bustling mornings to quiet gatherings",
     "askProject": "Inquire about {{title}}",
     "photoNote": "Inspiration imagery reflects design intent and craftsmanship character. Client projects are presented respecting privacy.",
     "items": [
       {
-        "title": "Seamless flow kitchen",
+        "title": "Kitchen set & cooking area",
         "category": "Kitchen set",
         "place": ""
       },
       {
-        "title": "A serene living sanctuary",
+        "title": "Family living room",
         "category": "Living area",
         "place": ""
       },
       {
-        "title": "Functional storage",
+        "title": "Built-in wardrobe",
         "category": "Built-in wardrobe",
         "place": ""
       }
     ]
   },
   "process": {
-    "eyebrow": "OUR PROCESS",
+    "eyebrow": "Our process",
     "title": "Clarity from the start,",
     "titleEmphasis": "peace of mind throughout",
     "desc": "Six thoughtful steps to keep budget, dimensions, and project timeline precisely on track",
@@ -89,12 +90,8 @@
     ]
   },
   "principles": {
-    "eyebrow": "DESIGN PRINCIPLES",
-    "kicker": "A good space is about much more than appearance",
-    "title": "Simplify daily life,",
-    "titleLine2": "safeguards your privacy, and creates",
-    "titleLine3": "a home for",
-    "titleEmphasis": "what truly matters",
+    "eyebrow": "Design principles",
+    "title": "Five space standards we apply in every project",
     "items": [
       {
         "icon": "path",
@@ -124,10 +121,10 @@
     ]
   },
   "sectors": {
-    "eyebrow": "PROJECT TYPOLOGIES",
+    "eyebrow": "Project typologies",
     "title": "Spaces shaped for",
     "titleEmphasis": "how you live & grow",
-    "desc": "Bespoke interior crafting tailored to your space—from private residences and commercial venues to getaway villas.",
+    "desc": "Bespoke interior crafting tailored to your space, from private residences and commercial venues to getaway villas.",
     "items": [
       {
         "id": "residential",
@@ -156,9 +153,9 @@
     ]
   },
   "testimonials": {
-    "eyebrow": "CLIENT STORIES",
+    "eyebrow": "Client stories",
     "title": "Real experiences from",
-    "titleEmphasis": "completed homes",
+    "titleEmphasis": "our clients",
     "playLabel": "Play testimonial video",
     "items": [
       {
@@ -180,7 +177,7 @@
     ]
   },
   "services": {
-    "eyebrow": "SERVICES & ESTIMATIONS",
+    "eyebrow": "Services & estimations",
     "title": "Starting from one room,",
     "titleEmphasis": "growing with your home",
     "desc": "We guide you in understanding the scope and cost components before breaking ground",
@@ -340,17 +337,17 @@
     "waMessage": "Hello RUANG MADINA, I would like an initial estimate:\n• Type: {{space}}\n• Scope: {{need}}\n• Size: {{scale}}\n• Tier: {{tier}}"
   },
   "about": {
-    "badge1": "DESIGNED WITH INTENTION",
-    "badge2": "CRAFTED WITH PRECISION",
-    "eyebrow": "ABOUT RUANG MADINA",
-    "title": "Beginning with listening,",
-    "titleEmphasis": "crafted to comfort",
-    "p1": "RUANG MADINA is the interior and custom furniture division of Madina Build. We believe a peaceful home begins by listening: how you move, store, gather, and rest",
-    "p2": "From there, we translate your lifestyle into spaces that feel serene, personal, and enduring for years to come",
-    "cta": "Discover Madina Build"
+    "badge1": "INTERIOR DIVISION",
+    "badge2": "PT MADINA BUILD INTERNATIONAL",
+    "eyebrow": "About Ruang Madina",
+    "title": "Design, workshop, and installation",
+    "titleEmphasis": "in one integrated team",
+    "p1": "RUANG MADINA is the interior and custom furniture division of PT Madina Build International, based in Sidoarjo. We handle 3D design planning, in-house cabinet fabrication at our workshop, and on-site installation.",
+    "p2": "By integrating interior work and construction under one team, residential, commercial, and villa projects stay coordinated from the start without costly architectural rework.",
+    "cta": "Visit Madina Build"
   },
   "craft": {
-    "eyebrow": "BEHIND OUR CRAFT",
+    "eyebrow": "Behind our craft",
     "title": "Built in-house,",
     "titleEmphasis": "without shortcuts",
     "cards": [
@@ -369,7 +366,7 @@
     ]
   },
   "closing": {
-    "eyebrow": "BEGIN HERE",
+    "eyebrow": "Begin here",
     "title": "The space you envision,",
     "titleLine2": "can begin from",
     "titleEmphasis": "a single conversation",
@@ -383,7 +380,7 @@
     "connect": "CONNECT",
     "whatsappLabel": "Official WhatsApp",
     "city": "Sidoarjo, East Java",
-    "workingHours": "Mon—Sat, 09.00—17.00 WIB",
+    "workingHours": "Mon to Sat, 09.00 to 17.00 WIB",
     "copyright": "© {{year}} PT Madina Build International",
     "brandLocation": "RUANG MADINA · Sidoarjo",
     "backToTop": "Back to top ↑"
