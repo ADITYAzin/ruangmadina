@@ -8,20 +8,14 @@ interface GalleryItem {
 }
 
 const GALLERY_IMAGES: Record<string, string> = {
-  team_model:
-    "https://images.pexels.com/photos/6615107/pexels-photo-6615107.jpeg?auto=compress&cs=tinysrgb&w=900",
+  team_model: "/dpk-2.webp",
   blueprint_review:
     "https://images.pexels.com/photos/5584052/pexels-photo-5584052.jpeg?auto=compress&cs=tinysrgb&w=900",
-  material_studio:
-    "https://images.pexels.com/photos/9617369/pexels-photo-9617369.jpeg?auto=compress&cs=tinysrgb&w=900",
-  wood_craft:
-    "https://images.pexels.com/photos/6790088/pexels-photo-6790088.jpeg?auto=compress&cs=tinysrgb&w=900",
-  workshop_floor:
-    "https://images.pexels.com/photos/6790066/pexels-photo-6790066.jpeg?auto=compress&cs=tinysrgb&w=900",
-  site_measure:
-    "https://images.pexels.com/photos/4981810/pexels-photo-4981810.jpeg?auto=compress&cs=tinysrgb&w=900",
-  interior_progress:
-    "https://images.pexels.com/photos/5691533/pexels-photo-5691533.jpeg?auto=compress&cs=tinysrgb&w=900",
+  material_studio: "/kurasi-material.png",
+  wood_craft: "/pengerjaan-kayu.png",
+  workshop_floor: "/perakitan-furniture.png",
+  site_measure: "/pengukuran.png",
+  interior_progress: "/inspeksi.jpeg",
 };
 
 const ITEM_IDS = [

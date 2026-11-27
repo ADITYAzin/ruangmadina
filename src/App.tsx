@@ -339,9 +339,9 @@ export default function App() {
       selectedScaleLabel =
         lowerVal || upperVal
           ? `${t("estimator.kitchenBothScale", {
-              lower: lowerVal || notFilled,
-              upper: upperVal || notFilled,
-            })} (${selectedKitchenConfigLabel})`
+            lower: lowerVal || notFilled,
+            upper: upperVal || notFilled,
+          })} (${selectedKitchenConfigLabel})`
           : `${selectedKitchenConfigLabel} (${notFilled})`;
     }
   } else if (estNeed === "furniture") {
@@ -671,7 +671,7 @@ export default function App() {
           <div className="craft-header">
             <h2>
               {t("craft.title")}
-               
+
             </h2>
             <p>{t("craft.desc")}</p>
           </div>

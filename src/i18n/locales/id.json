@@ -349,10 +349,10 @@
       "team_model": "Diskusi Konsep & Tata Ruang",
       "blueprint_review": "Review Gambar Kerja Teknis",
       "material_studio": "Kurasi Material & Warna",
-      "wood_craft": "Pengerjaan Workshop Kayu",
-      "workshop_floor": "Produksi Furnitur In-House",
+      "wood_craft": "Pengerjaan Kayu Workshop",
+      "workshop_floor": "Perakitan Furnitur Custom",
       "site_measure": "Pengukuran Presisi Lapangan",
-      "interior_progress": "Supervisi & Instalasi Ruang"
+      "interior_progress": "Inspeksi & Kontrol Kualitas"
     }
   },
   "craft": {
