@@ -15,7 +15,7 @@ const GALLERY_IMAGES: Record<string, string> = {
   wood_craft: "/pengerjaan-kayu.png",
   workshop_floor: "/perakitan-furniture.png",
   site_measure: "/pengukuran.png",
-  interior_progress: "/inspeksi.jpeg",
+  interior_progress: "/inspeksi.png",
 };
 
 const ITEM_IDS = [
@@ -24,8 +24,8 @@ const ITEM_IDS = [
   "material_studio",
   "wood_craft",
   "workshop_floor",
-  "site_measure",
   "interior_progress",
+  "site_measure",
 ] as const;
 
 export default function AboutArcGallery() {

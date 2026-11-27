@@ -671,7 +671,6 @@ export default function App() {
           <div className="craft-header">
             <h2>
               {t("craft.title")}
-
             </h2>
             <p>{t("craft.desc")}</p>
           </div>
