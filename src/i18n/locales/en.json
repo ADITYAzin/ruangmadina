@@ -329,7 +329,6 @@
     "kitchenBothScale": "Lower {{lower}} m' & Upper {{upper}} m²",
     "notFilled": "not specified",
     "furnitureUnit": "m² front area",
-    "furniturePlaceholder": "Size (m² front area)",
     "furnitureAriaLabel": "Estimated square meters front area",
     "unitOptions": ["1 Unit", "2 Units", "3 Units"],
     "unitCustomPlaceholder": "Other qty (e.g. 5)",

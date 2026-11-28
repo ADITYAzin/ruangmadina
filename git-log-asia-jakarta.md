@@ -5,7 +5,20 @@ Daftar riwayat commit repository **ruang-madina** dalam timezone **Asia/Jakarta 
 ## Git Graph Terbaru
 
 ```text
-* 7f99b54 (HEAD -> main, origin/main) feat: add Lite YouTube testimonial slider and finalize dpk-2.webp (2026-11-23 11:01:33 +0700, ADITYAzin)
+* d69ce83 (HEAD -> main, origin/main, origin/HEAD) Remove Dibalik pengerjaan kami section to streamline page flow (2026-11-28 10:24:42 +0700, ADITYAzin)
+* 78bc1af Refine Estimasi Harga calculator, compress public images to WebP, and restore logical section order (2026-11-28 10:20:17 +0700, ADITYAzin)
+* c67d946 Update Cara Kerja & Prinsip card titles to 28px, desc to 16px, and refine Material Quality icon (2026-11-28 09:36:51 +0700, ADITYAzin)
+* b9cafb3 Fix selectedTierLabel in App.tsx and update craft card to Survey lokasi (2026-11-28 09:22:01 +0700, ADITYAzin)
+* 409e4c1 Optimize hero parallax performance with direct DOM refs and rAF damping (2026-11-28 09:18:41 +0700, ADITYAzin)
+* d570152 Add Desain Pengerjaan Kami section with U-curve gallery, update craft card image, and remove material tier from calculator (2026-11-28 09:13:34 +0700, ADITYAzin)
+* 45c0099 change: image arch gallery #2 (2026-11-27 13:47:22 +0700, ADITYAzin)
+* 6562270 change: image arch gallery (2026-11-27 11:23:12 +0700, ADITYAzin)
+* 8b12bc6 Refine sectors copy and optimize hero layout and parallax on tablet and mobile (2026-11-25 14:10:53 +0700, ADITYAzin)
+* fa1f901 Add pointer drag and touch swipe with momentum to About U-curve gallery (2026-11-25 13:53:46 +0700, ADITYAzin)
+* 62db4d8 Refine Ruang Madina UI: warm palette, U-curve team gallery, Figtree headings, section descriptions, and floating WA trigger (2026-11-25 13:47:28 +0700, ADITYAzin)
+* 45cc683 ui (2026-11-25 09:01:01 +0700, ADITYAzin)
+* 8cc56ad feat: update service image cards, calculator inputs, and dynamic WA copy (2026-11-24 10:38:43 +0700, ADITYAzin)
+* 7f99b54 feat: add Lite YouTube testimonial slider and finalize dpk-2.webp (2026-11-23 11:01:33 +0700, ADITYAzin)
 * b5e6ae4 style: set craft cards to 4:3 on warm-white background and use dpk-2.webp (2026-11-23 10:17:02 +0700, ADITYAzin)
 * e6eeed6 perf: compress and convert images to WebP (2026-11-23 10:06:06 +0700, ADITYAzin)
 * 0711a52 feat: background we worked (2026-11-23 09:55:44 +0700, ADITYAzin)
@@ -29,6 +42,19 @@ Daftar riwayat commit repository **ruang-madina** dalam timezone **Asia/Jakarta 
 
 | Commit | Waktu Awal | Waktu Asia/Jakarta (`+0700`) | Pesan Commit |
 | :--- | :--- | :--- | :--- |
+| `d69ce83` | `2026-11-28 10:24:42 +0700` | `2026-11-28 10:24:42 +0700` | `Remove Dibalik pengerjaan kami section to streamline page flow` |
+| `78bc1af` | `2026-11-28 10:20:17 +0700` | `2026-11-28 10:20:17 +0700` | `Refine Estimasi Harga calculator, compress public images to WebP, and restore logical section order` |
+| `c67d946` | `2026-11-28 09:36:51 +0700` | `2026-11-28 09:36:51 +0700` | `Update Cara Kerja & Prinsip card titles to 28px, desc to 16px, and refine Material Quality icon` |
+| `b9cafb3` | `2026-11-28 09:22:01 +0700` | `2026-11-28 09:22:01 +0700` | `Fix selectedTierLabel in App.tsx and update craft card to Survey lokasi` |
+| `409e4c1` | `2026-11-28 09:18:41 +0700` | `2026-11-28 09:18:41 +0700` | `Optimize hero parallax performance with direct DOM refs and rAF damping` |
+| `d570152` | `2026-11-28 09:13:34 +0700` | `2026-11-28 09:13:34 +0700` | `Add Desain Pengerjaan Kami section with U-curve gallery, update craft card image, and remove material tier from calculator` |
+| `45c0099` | `2026-11-27 13:47:22 +0700` | `2026-11-27 13:47:22 +0700` | `change: image arch gallery #2` |
+| `6562270` | `2026-11-27 11:23:12 +0700` | `2026-11-27 11:23:12 +0700` | `change: image arch gallery` |
+| `8b12bc6` | `2026-11-25 14:10:53 +0700` | `2026-11-25 14:10:53 +0700` | `Refine sectors copy and optimize hero layout and parallax on tablet and mobile` |
+| `fa1f901` | `2026-11-25 13:53:46 +0700` | `2026-11-25 13:53:46 +0700` | `Add pointer drag and touch swipe with momentum to About U-curve gallery` |
+| `62db4d8` | `2026-11-25 13:47:28 +0700` | `2026-11-25 13:47:28 +0700` | `Refine Ruang Madina UI: warm palette, U-curve team gallery, Figtree headings, section descriptions, and floating WA trigger` |
+| `45cc683` | `2026-11-25 09:01:01 +0700` | `2026-11-25 09:01:01 +0700` | `ui` |
+| `8cc56ad` | `2026-11-24 10:38:43 +0700` | `2026-11-24 10:38:43 +0700` | `feat: update service image cards, calculator inputs, and dynamic WA copy` |
 | `7f99b54` | `2026-11-23 11:01:33 +0700` | `2026-11-23 11:01:33 +0700` | `feat: add Lite YouTube testimonial slider and finalize dpk-2.webp` |
 | `b5e6ae4` | `2026-11-23 10:17:02 +0700` | `2026-11-23 10:17:02 +0700` | `style: set craft cards to 4:3 on warm-white background and use dpk-2.webp` |
 | `e6eeed6` | `2026-11-23 10:06:06 +0700` | `2026-11-23 10:06:06 +0700` | `perf: compress and convert images to WebP` |
@@ -47,7 +73,6 @@ Daftar riwayat commit repository **ruang-madina** dalam timezone **Asia/Jakarta 
 | `e50a5b8` | `2026-11-15 01:36:26 -0500` | `2026-11-15 13:36:26 +0700` | `fix: update pnpm-lock.yaml with i18next dependencies` |
 | `c7108bf` | `2026-11-13 22:48:42 -0500` | `2026-11-14 10:48:42 +0700` | `feat: bilingual` |
 | `b7e4ea6` | `2026-11-13 04:07:18 -0500` | `2026-11-13 16:07:18 +0700` | `feat: implement service and estimation cards based on price structure` |
-
 ---
 
 ## Cara Mengubah Langsung di Riwayat Git Lokal (Opsional)
