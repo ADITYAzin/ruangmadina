@@ -960,7 +960,7 @@ export default function App() {
                       source: "estimator_calculator",
                       category: estSpace,
                       intentTier: "high",
-                      detail: `${estNeed} | ${selectedScaleLabel} | ${selectedTierLabel}`,
+                      detail: `${estNeed} | ${selectedScaleLabel}`,
                     })
                   }
                 >
