@@ -77,13 +77,6 @@ interface PrincipleItem {
   text: string;
 }
 
-interface CraftCardItem {
-  tag: string;
-  title: string;
-}
-
-const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/rapi-hingga-terpasang.webp"];
-
 const designWorkItems: ArcGalleryItem[] = [
   { id: "di-1", image: "/di-1.webp", alt: "Desain interior Ruang Madina 01" },
   { id: "fk-1", image: "/fk-1.webp", alt: "Desain furnitur kustom Ruang Madina 01" },
@@ -231,7 +224,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["tentang", "sektor", "desain-pengerjaan", "karya", "dibalik-pengerjaan", "cara-kerja", "testimoni", "layanan"];
+    const sectionIds = ["tentang", "sektor", "desain-pengerjaan", "karya", "cara-kerja", "testimoni", "layanan"];
     let rafId = 0;
 
     const onScroll = () => {
@@ -458,11 +451,6 @@ export default function App() {
 
   const rawServices = t("services.items", { returnObjects: true });
   const servicesList: ServiceItem[] = Array.isArray(rawServices) ? (rawServices as ServiceItem[]) : [];
-
-  const rawCraftCards = t("craft.cards", { returnObjects: true });
-  const craftCardsList: CraftCardItem[] = Array.isArray(rawCraftCards)
-    ? (rawCraftCards as CraftCardItem[])
-    : [];
 
   const rawTestimonials = t("testimonials.items", { returnObjects: true });
   const testimonialsList: TestimonialItem[] = Array.isArray(rawTestimonials)
@@ -714,34 +702,6 @@ export default function App() {
                 </article>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section craft-section" id="dibalik-pengerjaan">
-        <div className="shell">
-          <div className="craft-header">
-            <h2>
-              {t("craft.title")}
-            </h2>
-            <p>{t("craft.desc")}</p>
-          </div>
-
-          <div className="craft-grid">
-            {craftCardsList.map((card, idx) => (
-              <article className="craft-card" key={card.title}>
-                <img
-                  src={craftImages[idx] || craftImages[0]}
-                  alt={card.title}
-                  loading="lazy"
-                />
-                <div className="craft-shade" />
-                <div className="craft-meta">
-                  <span>{card.tag}</span>
-                  <h3>{card.title}</h3>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       </section>
