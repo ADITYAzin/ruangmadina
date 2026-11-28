@@ -1306,12 +1306,42 @@ a:hover .arrow {
   font-size: 14px;
   color: var(--clay);
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   max-width: 340px;
+}
+
+.estimator-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.estimator-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.estimator-benefits svg {
+  width: 16px;
+  height: 16px;
+  color: var(--terracotta);
+  flex-shrink: 0;
 }
 
 .estimator-cta {
   width: fit-content;
+}
+
+.estimator-action-row {
+  margin-top: 18px;
+  padding-top: 12px;
 }
 
 .estimator-controls {
@@ -1380,6 +1410,24 @@ a:hover .arrow {
 .estimator-pill-input.active {
   border-color: var(--ink);
   background: var(--warm-white);
+}
+
+.estimator-pill-survey {
+  border-style: dashed;
+  border-color: rgba(158, 75, 35, 0.4);
+  color: var(--terracotta);
+}
+
+.estimator-pill-survey:hover {
+  border-color: var(--terracotta);
+  background: rgba(158, 75, 35, 0.08);
+}
+
+.estimator-pill-survey.active {
+  background: var(--terracotta);
+  color: var(--warm-white);
+  border-style: solid;
+  border-color: var(--terracotta);
 }
 
 .estimator-design-row {

@@ -85,16 +85,16 @@ interface CraftCardItem {
 const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/rapi-hingga-terpasang.webp"];
 
 const designWorkItems: ArcGalleryItem[] = [
-  { id: "di-1", image: "/di-1.jpeg", alt: "Desain interior Ruang Madina 01" },
-  { id: "fk-1", image: "/fk-1.jpeg", alt: "Desain furnitur kustom Ruang Madina 01" },
-  { id: "fk-2", image: "/fk-2.jpeg", alt: "Desain furnitur kustom Ruang Madina 02" },
-  { id: "di-2", image: "/di-2.jpeg", alt: "Desain interior Ruang Madina 02" },
-  { id: "fk-3", image: "/fk-3.jpeg", alt: "Desain furnitur kustom Ruang Madina 03" },
-  { id: "fk-4", image: "/fk-4.jpeg", alt: "Desain furnitur kustom Ruang Madina 04" },
-  { id: "di-3", image: "/di-3.jpeg", alt: "Desain interior Ruang Madina 03" },
-  { id: "fk-5", image: "/fk-5.jpeg", alt: "Desain furnitur kustom Ruang Madina 05" },
-  { id: "fk-6", image: "/fk-6.jpeg", alt: "Desain furnitur kustom Ruang Madina 06" },
-  { id: "fk-7", image: "/fk-7.jpeg", alt: "Desain furnitur kustom Ruang Madina 07" },
+  { id: "di-1", image: "/di-1.webp", alt: "Desain interior Ruang Madina 01" },
+  { id: "fk-1", image: "/fk-1.webp", alt: "Desain furnitur kustom Ruang Madina 01" },
+  { id: "fk-2", image: "/fk-2.webp", alt: "Desain furnitur kustom Ruang Madina 02" },
+  { id: "di-2", image: "/di-2.webp", alt: "Desain interior Ruang Madina 02" },
+  { id: "fk-3", image: "/fk-3.webp", alt: "Desain furnitur kustom Ruang Madina 03" },
+  { id: "fk-4", image: "/fk-4.webp", alt: "Desain furnitur kustom Ruang Madina 04" },
+  { id: "di-3", image: "/di-3.webp", alt: "Desain interior Ruang Madina 03" },
+  { id: "fk-5", image: "/fk-5.webp", alt: "Desain furnitur kustom Ruang Madina 05" },
+  { id: "fk-6", image: "/fk-6.webp", alt: "Desain furnitur kustom Ruang Madina 06" },
+  { id: "fk-7", image: "/fk-7.webp", alt: "Desain furnitur kustom Ruang Madina 07" },
 ];
 
 const serviceImages = ["/4.webp", "/1.webp", "/2.webp"];
@@ -206,6 +206,7 @@ export default function App() {
   const [estNeed, setEstNeed] = useState<string>("kitchen");
   const [estKitchenConfig, setEstKitchenConfig] = useState<string>("both");
   const [estScaleIdx, setEstScaleIdx] = useState<number>(0);
+  const [requestSurveyDirect, setRequestSurveyDirect] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [totalTestimonialStops, setTotalTestimonialStops] = useState(
     Math.max(1, testimonialVideoIds.length - 1),
@@ -374,7 +375,9 @@ export default function App() {
   const upperVal = upperArea.trim();
   const notFilled = t("estimator.notFilled");
 
-  if (estNeed === "kitchen") {
+  if (requestSurveyDirect) {
+    selectedScaleLabel = t("estimator.requestSurveyOption");
+  } else if (estNeed === "kitchen") {
     if (estKitchenConfig === "lower") {
       selectedScaleLabel = lowerVal
         ? `${lowerVal} ${t("estimator.kitchenLowerUnit")} (${selectedKitchenConfigLabel})`
@@ -712,7 +715,6 @@ export default function App() {
               );
             })}
           </div>
-          <p className="photo-note">{t("projects.photoNote")}</p>
         </div>
       </section>
 
@@ -951,23 +953,19 @@ export default function App() {
               <div className="estimator-info">
                 <h3>{t("estimator.title")}</h3>
                 <p>{t("estimator.subtitle")}</p>
-                <a
-                  className="primary-button estimator-cta"
-                  href={estimatorWhatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() =>
-                    trackWhatsAppLead({
-                      source: "estimator_calculator",
-                      category: estSpace,
-                      intentTier: "high",
-                      detail: `${estNeed} | ${selectedScaleLabel}`,
-                    })
-                  }
-                >
-                  <span>{t("estimator.cta")}</span>
-                  <Arrow />
-                </a>
+                {Array.isArray(t("estimator.benefits", { returnObjects: true })) && (
+                  <ul className="estimator-benefits">
+                    {(t("estimator.benefits", { returnObjects: true }) as string[]).map((benefit, i) => (
+                      <li key={i}>
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2" />
+                          <path d="m5 8 2 2 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div className="estimator-controls">
@@ -1051,6 +1049,13 @@ export default function App() {
                             aria-label={t("estimator.kitchenUpperLabel")}
                           />
                         )}
+                        <button
+                          type="button"
+                          className={`estimator-pill estimator-pill-survey ${requestSurveyDirect ? "active" : ""}`}
+                          onClick={() => setRequestSurveyDirect(!requestSurveyDirect)}
+                        >
+                          {t("estimator.requestSurveyOption")}
+                        </button>
                       </div>
                     </div>
                   ) : estNeed === "furniture" ? (
@@ -1079,6 +1084,13 @@ export default function App() {
                         onChange={(event) => setCustomUnitCount(event.target.value)}
                         aria-label={t("estimator.unitCustomPlaceholder")}
                       />
+                      <button
+                        type="button"
+                        className={`estimator-pill estimator-pill-survey ${requestSurveyDirect ? "active" : ""}`}
+                        onClick={() => setRequestSurveyDirect(!requestSurveyDirect)}
+                      >
+                        {t("estimator.requestSurveyOption")}
+                      </button>
                     </div>
                   ) : (
                     <div className="estimator-design-row">
@@ -1126,9 +1138,36 @@ export default function App() {
                             aria-label={t("estimator.designBuildingPlaceholder")}
                           />
                         )}
+                        <button
+                          type="button"
+                          className={`estimator-pill estimator-pill-survey ${requestSurveyDirect ? "active" : ""}`}
+                          onClick={() => setRequestSurveyDirect(!requestSurveyDirect)}
+                        >
+                          {t("estimator.requestSurveyOption")}
+                        </button>
                       </div>
                     </div>
                   )}
+
+                  <div className="estimator-action-row">
+                    <a
+                      className="primary-button estimator-cta"
+                      href={estimatorWhatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() =>
+                        trackWhatsAppLead({
+                          source: "estimator_calculator",
+                          category: estSpace,
+                          intentTier: "high",
+                          detail: `${estNeed} | ${selectedScaleLabel}`,
+                        })
+                      }
+                    >
+                      <span>{t("estimator.cta")}</span>
+                      <Arrow />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

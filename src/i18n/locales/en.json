@@ -38,7 +38,6 @@
     "titleEmphasis": "delivered",
     "desc": "Not merely picturesque in photos, every corner is crafted to fulfill real daily needs, from bustling mornings to quiet gatherings",
     "askProject": "Inquire about {{title}}",
-    "photoNote": "Inspiration imagery reflects design intent and craftsmanship character. Client projects are presented respecting privacy.",
     "items": [
       {
         "title": "Kitchen set & cooking area",
@@ -296,11 +295,16 @@
     "tabCalculator": "Calculator",
     "bridgeText": "Already have rough dimensions?",
     "bridgeCta": "Open Calculator",
-    "title": "Space Needs Estimator",
-    "subtitle": "Select 4 quick points below and get an initial estimate via WhatsApp.",
+    "title": "Price Estimation",
+    "subtitle": "Get a transparent initial estimate for your interior before planning begins.",
+    "benefits": [
+      "Transparent pricing without hidden fees",
+      "Clear calculation based on scope & dimensions",
+      "Direct initial consultation with architects"
+    ],
     "spaceLabel": "1. Space Type",
     "spaces": [
-      { "id": "residential", "label": "Residential" },
+      { "id": "residential", "label": "House / Apartment" },
       { "id": "commercial", "label": "Commercial" },
       { "id": "villa", "label": "Villa" }
     ],
@@ -308,7 +312,7 @@
     "needs": [
       { "id": "kitchen", "label": "Kitchen Set" },
       { "id": "furniture", "label": "Custom Furniture" },
-      { "id": "design", "label": "Interior Package (Design)" }
+      { "id": "design", "label": "Interior Design Package" }
     ],
     "scaleLabel": "3. Estimated Size",
     "kitchenConfig": [
@@ -339,8 +343,9 @@
     "designBuildingPlaceholder": "Buildings (e.g. 1)",
     "designQtyPlaceholder": "Qty",
     "roomOptions": ["1 Room", "2–3 Rooms", "Full Property"],
-    "cta": "Calculate via WhatsApp",
-    "waMessage": "Hello RUANG MADINA, I would like an initial estimate:\n• Type: {{space}}\n• Scope: {{need}}\n• Size: {{scale}}"
+    "requestSurveyOption": "Request direct on-site measurement",
+    "cta": "Submit and Inquire",
+    "waMessage": "Hello RUANG MADINA, I would like a price estimate consultation:\n• Type: {{space}}\n• Scope: {{need}}\n• Size: {{scale}}"
   },
   "about": {
     "badge1": "INTERIOR DIVISION",

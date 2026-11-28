@@ -38,7 +38,6 @@
     "titleEmphasis": "yang kami lakukan",
     "desc": "Bukan sekadar indah di foto, setiap sudut dirancang untuk menjawab kebutuhan nyata, dari pagi yang sibuk hingga waktu berkumpul",
     "askProject": "Tanyakan {{title}}",
-    "photoNote": "Foto inspirasi mewakili arah dan karakter pengerjaan. Dokumentasi proyek ditampilkan dengan menjaga privasi klien.",
     "items": [
       {
         "title": "Kitchen set & area masak",
@@ -296,19 +295,24 @@
     "tabCalculator": "Kalkulator",
     "bridgeText": "Sudah punya gambaran ukuran ruang?",
     "bridgeCta": "Hitung di Kalkulator",
-    "title": "Estimasi Kebutuhan Ruang",
-    "subtitle": "Pilih 4 poin di bawah, rincian biaya kami kirim via WhatsApp.",
+    "title": "Estimasi Harga",
+    "subtitle": "Ketahui perkiraan biaya interior Anda secara transparan sebelum memulai perencanaan.",
+    "benefits": [
+      "Transparan tanpa biaya tersembunyi",
+      "Perhitungan jelas sesuai ukuran & kebutuhan",
+      "Konsultasi awal langsung dengan tim arsitek"
+    ],
     "spaceLabel": "1. Tipe Ruang",
     "spaces": [
-      { "id": "residential", "label": "Residential" },
-      { "id": "commercial", "label": "Commercial" },
+      { "id": "residential", "label": "Rumah / Apartemen" },
+      { "id": "commercial", "label": "Komersial" },
       { "id": "villa", "label": "Villa" }
     ],
     "needLabel": "2. Kebutuhan",
     "needs": [
       { "id": "kitchen", "label": "Kitchen Set" },
       { "id": "furniture", "label": "Furniture Custom" },
-      { "id": "design", "label": "Paket interior (desain)" }
+      { "id": "design", "label": "Paket Desain Interior" }
     ],
     "scaleLabel": "3. Perkiraan Ukuran",
     "kitchenConfig": [
@@ -338,8 +342,9 @@
     "designBuildingPlaceholder": "Jumlah Bangunan (cth: 1)",
     "designQtyPlaceholder": "Jumlah",
     "roomOptions": ["1 Ruang", "2–3 Ruang", "Satu Bangunan"],
-    "cta": "Kirim & Hitung via WhatsApp",
-    "waMessage": "Halo RUANG MADINA, saya ingin minta estimasi awal:\n• Tipe: {{space}}\n• Kebutuhan: {{need}}\n• Ukuran: {{scale}}"
+    "requestSurveyOption": "Ajukan pengukuran langsung",
+    "cta": "Kirim dan Ajukan",
+    "waMessage": "Halo RUANG MADINA, saya ingin konsultasi estimasi harga:\n• Tipe: {{space}}\n• Kebutuhan: {{need}}\n• Ukuran: {{scale}}"
   },
   "about": {
     "badge1": "DIVISI INTERIOR",

@@ -5,11 +5,11 @@ const GALLERY_IMAGES: Record<string, string> = {
   team_model: "/dpk-2.webp",
   blueprint_review:
     "https://images.pexels.com/photos/5584052/pexels-photo-5584052.jpeg?auto=compress&cs=tinysrgb&w=900",
-  material_studio: "/kurasi-material.png",
-  wood_craft: "/pengerjaan-kayu.png",
-  workshop_floor: "/perakitan-furniture.png",
-  site_measure: "/pengukuran.png",
-  interior_progress: "/inspeksi.png",
+  material_studio: "/kurasi-material.webp",
+  wood_craft: "/pengerjaan-kayu.webp",
+  workshop_floor: "/perakitan-furniture.webp",
+  site_measure: "/pengukuran.webp",
+  interior_progress: "/inspeksi.webp",
 };
 
 const ITEM_IDS = [
