@@ -770,6 +770,11 @@ a:hover .arrow {
   border-top: 1px solid rgba(139, 110, 82, 0.16);
 }
 
+.design-work-section {
+  background: var(--warm-white);
+  border-top: 1px solid rgba(139, 110, 82, 0.16);
+}
+
 .sectors-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import AboutArcGallery from "./components/AboutArcGallery";
+import ArcGallery, { type ArcGalleryItem } from "./components/ArcGallery";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import LanguageModal from "./components/LanguageModal";
 import LanguageSwitcher from "./components/LanguageSwitcher";
@@ -81,7 +82,20 @@ interface CraftCardItem {
   title: string;
 }
 
-const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/2.webp"];
+const craftImages = ["/person-rm.webp", "/dpk-2.webp", "/rapi-hingga-terpasang.webp"];
+
+const designWorkItems: ArcGalleryItem[] = [
+  { id: "di-1", image: "/di-1.jpeg", alt: "Desain interior Ruang Madina 01" },
+  { id: "fk-1", image: "/fk-1.jpeg", alt: "Desain furnitur kustom Ruang Madina 01" },
+  { id: "fk-2", image: "/fk-2.jpeg", alt: "Desain furnitur kustom Ruang Madina 02" },
+  { id: "di-2", image: "/di-2.jpeg", alt: "Desain interior Ruang Madina 02" },
+  { id: "fk-3", image: "/fk-3.jpeg", alt: "Desain furnitur kustom Ruang Madina 03" },
+  { id: "fk-4", image: "/fk-4.jpeg", alt: "Desain furnitur kustom Ruang Madina 04" },
+  { id: "di-3", image: "/di-3.jpeg", alt: "Desain interior Ruang Madina 03" },
+  { id: "fk-5", image: "/fk-5.jpeg", alt: "Desain furnitur kustom Ruang Madina 05" },
+  { id: "fk-6", image: "/fk-6.jpeg", alt: "Desain furnitur kustom Ruang Madina 06" },
+  { id: "fk-7", image: "/fk-7.jpeg", alt: "Desain furnitur kustom Ruang Madina 07" },
+];
 
 const serviceImages = ["/4.webp", "/1.webp", "/2.webp"];
 
@@ -191,7 +205,6 @@ export default function App() {
   const [estNeed, setEstNeed] = useState<string>("kitchen");
   const [estKitchenConfig, setEstKitchenConfig] = useState<string>("both");
   const [estScaleIdx, setEstScaleIdx] = useState<number>(0);
-  const [estTierIdx, setEstTierIdx] = useState<number>(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [totalTestimonialStops, setTotalTestimonialStops] = useState(
     Math.max(1, testimonialVideoIds.length - 1),
@@ -311,9 +324,6 @@ export default function App() {
     });
   };
 
-  const rawTiers = t("estimator.tiers", { returnObjects: true });
-  const tierOptions: string[] = Array.isArray(rawTiers) ? (rawTiers as string[]) : [];
-
   const selectedSpaceLabel =
     estSpaces.find((item) => item.id === estSpace)?.label || estSpaces[0]?.label || "Residential";
   const selectedNeedLabel =
@@ -369,13 +379,10 @@ export default function App() {
     selectedScaleLabel = parts.join(" & ");
   }
 
-  const selectedTierLabel = tierOptions[estTierIdx] || tierOptions[0] || "";
-
   const estimatorWaQuery = t("estimator.waMessage", {
     space: selectedSpaceLabel,
     need: selectedNeedLabel,
     scale: selectedScaleLabel,
-    tier: selectedTierLabel,
   });
   const estimatorWhatsappUrl = buildWhatsAppUrl(waBaseUrl, estimatorWaQuery);
 
@@ -631,6 +638,16 @@ export default function App() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="section design-work-section" id="desain-pengerjaan">
+        <div className="shell">
+          <div className="section-heading centered">
+            <h2>{t("designWork.title")}</h2>
+            <p>{t("designWork.desc")}</p>
+          </div>
+        </div>
+        <ArcGallery items={designWorkItems} ariaLabel={t("designWork.galleryLabel")} />
       </section>
 
       <section className="section projects-section" id="karya">
@@ -1079,22 +1096,6 @@ export default function App() {
                       </div>
                     </div>
                   )}
-                </div>
-
-                <div className="estimator-group">
-                  <span className="estimator-label">{t("estimator.tierLabel")}</span>
-                  <div className="estimator-pills">
-                    {tierOptions.map((tier, idx) => (
-                      <button
-                        key={tier}
-                        type="button"
-                        className={`estimator-pill ${estTierIdx === idx ? "active" : ""}`}
-                        onClick={() => setEstTierIdx(idx)}
-                      >
-                        {tier}
-                      </button>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>

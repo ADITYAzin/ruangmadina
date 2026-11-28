@@ -27,6 +27,11 @@
     "customTitle": "Custom crafted",
     "customSub": "Tailored to your space and lifestyle"
   },
+  "designWork": {
+    "title": "Our design work",
+    "desc": "Interior layout and custom furniture concepts crafted before moving into workshop production.",
+    "galleryLabel": "Ruang Madina interior design and custom furniture gallery"
+  },
   "projects": {
     "eyebrow": "Selected works",
     "title": "Works we have",
@@ -334,10 +339,8 @@
     "designBuildingPlaceholder": "Buildings (e.g. 1)",
     "designQtyPlaceholder": "Qty",
     "roomOptions": ["1 Room", "2–3 Rooms", "Full Property"],
-    "tierLabel": "4. Material Tier",
-    "tiers": ["Essential", "Premium / Signature", "Duco", "Need Advice"],
     "cta": "Calculate via WhatsApp",
-    "waMessage": "Hello RUANG MADINA, I would like an initial estimate:\n• Type: {{space}}\n• Scope: {{need}}\n• Size: {{scale}}\n• Tier: {{tier}}"
+    "waMessage": "Hello RUANG MADINA, I would like an initial estimate:\n• Type: {{space}}\n• Scope: {{need}}\n• Size: {{scale}}"
   },
   "about": {
     "badge1": "INTERIOR DIVISION",

@@ -27,6 +27,11 @@
     "customTitle": "Dibuat khusus",
     "customSub": "Sesuai ruang dan kebutuhan Anda"
   },
+  "designWork": {
+    "title": "Desain pengerjaan kami",
+    "desc": "Gambaran konsep tata ruang dan furnitur kustom sebelum masuk ke tahap produksi di workshop.",
+    "galleryLabel": "Galeri desain interior dan furnitur kustom Ruang Madina"
+  },
   "projects": {
     "eyebrow": "Hasil pengerjaan",
     "title": "Hasil pengerjaan",
@@ -333,10 +338,8 @@
     "designBuildingPlaceholder": "Jumlah Bangunan (cth: 1)",
     "designQtyPlaceholder": "Jumlah",
     "roomOptions": ["1 Ruang", "2–3 Ruang", "Satu Bangunan"],
-    "tierLabel": "4. Kelas Material",
-    "tiers": ["Esensial", "Premium / Signature", "Duco", "Minta Saran"],
     "cta": "Kirim & Hitung via WhatsApp",
-    "waMessage": "Halo RUANG MADINA, saya ingin minta estimasi awal:\n• Tipe: {{space}}\n• Kebutuhan: {{need}}\n• Ukuran: {{scale}}\n• Kelas: {{tier}}"
+    "waMessage": "Halo RUANG MADINA, saya ingin minta estimasi awal:\n• Tipe: {{space}}\n• Kebutuhan: {{need}}\n• Ukuran: {{scale}}"
   },
   "about": {
     "badge1": "DIVISI INTERIOR",
