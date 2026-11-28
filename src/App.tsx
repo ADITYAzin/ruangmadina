@@ -209,7 +209,10 @@ export default function App() {
   const [totalTestimonialStops, setTotalTestimonialStops] = useState(
     Math.max(1, testimonialVideoIds.length - 1),
   );
-  const [scrollY, setScrollY] = useState(0);
+  const parallaxYRef = useRef(0);
+  const targetScrollYRef = useRef(0);
+  const heroMediaRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
   const testimonialTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -226,13 +229,15 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["tentang", "sektor", "karya", "cara-kerja", "testimoni", "layanan"];
+    const sectionIds = ["tentang", "sektor", "desain-pengerjaan", "karya", "dibalik-pengerjaan", "cara-kerja", "testimoni", "layanan"];
+    let rafId = 0;
+
     const onScroll = () => {
       const currentScroll = window.scrollY;
-      setScrollY(currentScroll);
+      targetScrollYRef.current = currentScroll;
       setNavScrolled(currentScroll > 24);
 
-      const heroEl = document.getElementById("hero") || document.querySelector(".hero") as HTMLElement | null;
+      const heroEl = document.getElementById("hero") || (document.querySelector(".hero") as HTMLElement | null);
       const heroThreshold = heroEl ? Math.max(heroEl.offsetHeight - 150, 300) : 400;
       setPastHero(currentScroll >= heroThreshold);
 
@@ -246,9 +251,41 @@ export default function App() {
       }
       setActiveNav(current);
     };
+
+    const updateParallax = () => {
+      const target = targetScrollYRef.current;
+      // Smooth interpolation for parallax values (lerp factor 0.1)
+      const diff = target - parallaxYRef.current;
+      if (Math.abs(diff) > 0.05) {
+        parallaxYRef.current += diff * 0.1;
+      } else {
+        parallaxYRef.current = target;
+      }
+
+      const pY = parallaxYRef.current;
+      if (heroMediaRef.current) {
+        const mediaOffset = Math.min(pY * 0.38, 320);
+        heroMediaRef.current.style.transform = `translate3d(0, ${mediaOffset.toFixed(2)}px, 0) scale(1.08)`;
+      }
+
+      if (heroContentRef.current) {
+        const contentOffset = Math.min(pY * 0.16, 130);
+        const opacity = Math.max(0, 1 - pY / 620);
+        heroContentRef.current.style.transform = `translate3d(0, ${contentOffset.toFixed(2)}px, 0)`;
+        heroContentRef.current.style.opacity = opacity.toFixed(3);
+      }
+
+      rafId = requestAnimationFrame(updateParallax);
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    rafId = requestAnimationFrame(updateParallax);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -538,10 +575,8 @@ export default function App() {
 
       <section id="hero" className="hero">
         <div
+          ref={heroMediaRef}
           className="hero-media-wrap"
-          style={{
-            transform: `translate3d(0, ${Math.min(scrollY * 0.35, 300)}px, 0) scale(1.08)`,
-          }}
         >
           <img
             src={heroImage}
@@ -553,11 +588,8 @@ export default function App() {
         </div>
         <div className="hero-overlay" />
         <div
+          ref={heroContentRef}
           className="hero-content shell"
-          style={{
-            transform: `translate3d(0, ${Math.min(scrollY * 0.15, 120)}px, 0)`,
-            opacity: Math.max(0, 1 - scrollY / 650),
-          }}
         >
           <h1>
             {t("hero.titleLine1")}
