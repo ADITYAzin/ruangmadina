@@ -683,15 +683,15 @@ a:hover .arrow {
 }
 
 .step-card h3 {
-  font-size: 21px;
+  font-size: 28px;
   line-height: 1.25;
 }
 
 .step-card p {
   margin-top: 13px;
   color: var(--clay);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .principles-section {
@@ -757,13 +757,16 @@ a:hover .arrow {
 }
 
 .principles-list h3 {
-  font-size: 31px;
+  font-size: 28px;
+  line-height: 1.25;
 }
 
 .principles-list p {
-  width: 380px;
+  width: 440px;
+  max-width: 100%;
   color: rgba(252, 249, 244, 0.76);
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .sectors-section {
@@ -2412,13 +2415,15 @@ footer {
   }
 
   .principles-list h3 {
-    font-size: 25px;
+    font-size: 24px;
+    line-height: 1.25;
   }
 
   .principles-list p {
     width: auto;
-    margin-top: 6px;
-    font-size: 11px;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.55;
   }
 
   .service-meta {

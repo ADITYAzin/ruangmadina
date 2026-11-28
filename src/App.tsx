@@ -165,8 +165,9 @@ function PrincipleIcon({ type }: { type: string }) {
     ),
     drop: (
       <>
-        <path d="M20 5S10 17 10 24a10 10 0 0 0 20 0C30 17 20 5 20 5Z" />
-        <path d="M17 29c-2-1-3-3-3-5" />
+        {/* Shield with certified check / material grain - symbol of verified high quality & durable material */}
+        <path d="M20 4s11 3 11 13c0 9-7 16-11 19C16 33 9 26 9 17c0-10 11-13 11-13Z" />
+        <path d="m15 19 3.5 3.5 7-7" strokeLinecap="round" strokeLinejoin="round" />
       </>
     ),
     sun: (
